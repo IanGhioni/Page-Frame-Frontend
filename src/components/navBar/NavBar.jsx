@@ -9,7 +9,7 @@ const [nombre, setNombre] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await buscarPorNombre(nombre, 1, 10); // ejemplo: página 0, tamaño 10
+            const data = await buscarPorNombre(nombre, 1, 12); // ejemplo: página 0, tamaño 10
             console.log("Resultado de la búsqueda:", data);
         } catch (err) {
             console.error("Error en la búsqueda:", err);
