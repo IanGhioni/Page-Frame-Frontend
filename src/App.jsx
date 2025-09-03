@@ -10,17 +10,10 @@ function App() {
 
   
   
-  const tryConnection = async () => {
-    const x = await api.get("/contenido/100").then((response) => setPelibro(response.data));
-    return x
-  }
 
   useEffect(() => {
-    const res = tryConnection
-    setPelibro(res)
-  }, [])
 
-  console.log(pelibro)
+  }, [])
 
 
   return (
