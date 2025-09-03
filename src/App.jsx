@@ -1,10 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import api from './service/axiosInstance'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [pelibro, setPelibro] = useState("")
+
+  
+  
+  const tryConnection = async () => {
+    const x = await api.get("/contenido/100").then((response) => setPelibro(response.data));
+    return x
+  }
+
+  useEffect(() => {
+    const res = tryConnection
+    setPelibro(res)
+  }, [])
+
+  console.log(pelibro)
+
 
   return (
     <>
