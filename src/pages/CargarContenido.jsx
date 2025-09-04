@@ -22,18 +22,68 @@ const CargarContenido = () => {
       ...prev,
       [name]: value,
     }));
+
+    if (name === "isbn" && formData.tipo === "libro") {
+      if (value.trim() === "") {
+        setIsbnError("");
+      } else if (!validarISBN(value)) {
+        setIsbnError("El ISBN debe tener 10 o 13 dígitos válidos");
+      } else {
+        setIsbnError("");
+      }
+    }
+  };
+
+  const [isbnError, setIsbnError] = useState("");
+
+  const validarISBN = (isbn) => {
+    const clean = isbn.replace(/[-\s]/g, "");
+    return /^(?:\d{9}[\dXx]|\d{13})$/.test(clean);
+  };
+
+  const validarData = () => {
+    if (
+      !formData.tipo ||
+      (formData.tipo === "libro" && !formData.isbn) ||
+      !formData.titulo ||
+      !formData.autores ||
+      !formData.largo ||
+      !formData.publicacion ||
+      !formData.categoria ||
+      !formData.imagen ||
+      !formData.descripcion
+    ) {
+      toast.error("Por favor completa todos los campos obligatorios");
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    validarData();
+    crearContenido();
+  };
+
+  const blanquearFormulario = () => {
+    setFormData({
+      isbn: "",
+      imagen: "",
+      titulo: "",
+      autores: "",
+      largo: "",
+      publicacion: "",
+      categoria: "",
+      descripcion: "",
+      tipo: ""
+    });
+    setIsbnError("");
   };
 
   const crearContenido = async () => {
     try {
-      await api.post("/contenido", formData);
+      api.post("/contenido", formData);
       toast.success("Se cargó el contenido exitosamente");
+      blanquearFormulario();
     } catch (e) {
-      toast.error("Error al cargar el contenido");
       console.error(e);
     }
   };
@@ -77,6 +127,11 @@ const CargarContenido = () => {
                       : "ISBN"
                   }
                 />
+                {isbnError && (
+                <span style={{ color: "red", fontSize: "0.9em" }}>
+                  {isbnError}
+                </span>
+                )}
             </div>
           </div>
 
@@ -110,7 +165,7 @@ const CargarContenido = () => {
             <div className="form-group">
               <label>Largo</label>
               <input
-                type="text"
+                type="number"
                 name="largo"
                 value={formData.largo}
                 onChange={handleChange}
@@ -170,7 +225,7 @@ const CargarContenido = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className="submit-btn" onClick={crearContenido}>
+          <button type="submit" className="submit-btn">
             Publicar contenido
           </button>
         </form>
