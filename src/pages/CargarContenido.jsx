@@ -16,8 +16,22 @@ const CargarContenido = () => {
     descripcion: "",
   });
 
+  const prevenirPeliculaConISBN = (name, value) => {
+    if (name === "tipo" && value === "pelicula") {
+    setFormData((prev) => ({
+      ...prev,
+      tipo: value,
+      isbn: ""
+    }));
+    setIsbnError("");
+    return;
+  }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    prevenirPeliculaConISBN(name, value);
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -54,12 +68,17 @@ const CargarContenido = () => {
       !formData.descripcion
     ) {
       toast.error("Por favor completa todos los campos obligatorios");
+      return false;
     }
+    return true;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validarData();
+    if (!validarData()) return;
+    if (formData.tipo === "libro" && isbnError) {
+      toast.error("Corrige el ISBN antes de enviar");
+    }
     crearContenido();
   };
 
@@ -80,11 +99,12 @@ const CargarContenido = () => {
 
   const crearContenido = async () => {
     try {
-      api.post("/contenido", formData);
+      await api.post("/contenido", formData);
       toast.success("Se cargó el contenido exitosamente");
       blanquearFormulario();
     } catch (e) {
       console.error(e);
+      toast.error("Error al cargar el contenido");
     }
   };
 
