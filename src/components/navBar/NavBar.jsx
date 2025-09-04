@@ -2,18 +2,15 @@
 import './Navbar.css';
 import { useState } from 'react';
 import buscarPorNombre from '../../service/contenido';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-const [nombre, setNombre] = useState("");
+    const [nombre, setNombre] = useState("");
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const data = await buscarPorNombre(nombre, 1, 12); // ejemplo: página 0, tamaño 10
-            console.log("Resultado de la búsqueda:", data);
-        } catch (err) {
-            console.error("Error en la búsqueda:", err);
-        }
+        navigate("/buscarContenido/"+nombre+"/0")
     };
 
     return (

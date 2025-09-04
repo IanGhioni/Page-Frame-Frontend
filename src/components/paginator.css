@@ -1,0 +1,17 @@
+.p-paginator {
+  justify-content: center;
+  margin-top: 1rem;
+  background: transparent;
+}
+
+.p-paginator .p-paginator-page {
+  border-radius: 6px;
+  margin: 0 4px;
+  color: #ffffff;
+  border-radius: 25rem;
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+  background: #641085; 
+  color: white;        
+}
