@@ -23,7 +23,6 @@ const CargarContenido = () => {
       tipo: value,
       isbn: ""
     }));
-    setIsbnError("");
     return;
   }
   }
@@ -36,23 +35,6 @@ const CargarContenido = () => {
       ...prev,
       [name]: value,
     }));
-
-    if (name === "isbn" && formData.tipo === "libro") {
-      if (value.trim() === "") {
-        setIsbnError("");
-      } else if (!validarISBN(value)) {
-        setIsbnError("El ISBN debe tener 10 o 13 dígitos válidos");
-      } else {
-        setIsbnError("");
-      }
-    }
-  };
-
-  const [isbnError, setIsbnError] = useState("");
-
-  const validarISBN = (isbn) => {
-    const clean = isbn.replace(/[-\s]/g, "");
-    return /^(?:\d{9}[\dXx]|\d{13})$/.test(clean);
   };
 
   const validarData = () => {
@@ -76,9 +58,6 @@ const CargarContenido = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validarData()) return;
-    if (formData.tipo === "libro" && isbnError) {
-      toast.error("Corrige el ISBN antes de enviar");
-    }
     crearContenido();
   };
 
@@ -94,7 +73,6 @@ const CargarContenido = () => {
       descripcion: "",
       tipo: ""
     });
-    setIsbnError("");
   };
 
   const crearContenido = async () => {
@@ -147,11 +125,6 @@ const CargarContenido = () => {
                       : "ISBN"
                   }
                 />
-                {isbnError && (
-                <span style={{ color: "red", fontSize: "0.9em" }}>
-                  {isbnError}
-                </span>
-                )}
             </div>
           </div>
 
