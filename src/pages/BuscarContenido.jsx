@@ -40,7 +40,10 @@ const BuscarContenido = () => {
             {dataPagina.resultados && dataPagina.resultados.length > 0 ? (
             <>
                 <div>
-                    <h2 className="buscador-titulo">Resultados de buscar "{params.titulo}"</h2>
+                    <div className="container-titulo">
+                        <h2 className="buscador-titulo">Resultados de buscar "{params.titulo}"</h2>
+                        <button onClick={() => navigate("/cargarContenido")}>Cargar contenido</button>
+                    </div>
                 {dataPagina.resultados.map((contenido) => (
                 <div key={contenido.id}>
                     <CardContenido contenido={contenido} />

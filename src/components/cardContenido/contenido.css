@@ -12,6 +12,7 @@
     border-style: solid;
     width: 800px;
     align-items: center;
+    transition: 200ms;
 }
 
 .contenido-card:hover {
@@ -43,6 +44,11 @@
     font-weight: bold;
     margin: 0;
     text-align: left;
+}
+
+.contenido-titulo:hover {
+    cursor: pointer;
+    text-decoration: underline solid 2px black;
 }
 
 .contenido-autor {
