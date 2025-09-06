@@ -42,6 +42,7 @@ const BuscarContenido = () => {
                 <div>
                     <div className="container-titulo">
                         <h2 className="buscador-titulo">Resultados de buscar "{params.titulo}"</h2>
+                        <button onClick={() => navigate("/cargarContenido")}>Cargar contenido</button>
                     </div>
                 {dataPagina.resultados.map((contenido) => (
                 <div key={contenido.id}>
@@ -66,10 +67,11 @@ const BuscarContenido = () => {
             </>
             ) : (
             <div>
-                <p>No se encontraron resultados</p>
+                <h2>No se encontraron resultados</h2>
                 <button onClick={() => navigate("/cargarContenido")}>Cargar contenido</button>
             </div>
             )}
+            
         </div>
     );
 
