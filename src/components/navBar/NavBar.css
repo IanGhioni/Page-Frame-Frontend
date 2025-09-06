@@ -1,0 +1,16 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #641085;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    position: fixed;  /* queda fijo arriba */
+    top: 0;
+    left: 0;
+}
+
+.input-Busqueda {
+    width: 500px;
+}

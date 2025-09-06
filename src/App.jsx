@@ -1,52 +1,29 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import api from './service/axiosInstance'
+import './App.css';
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import api from './service/axiosInstance';
+import CargarContenido from './pages/CargarContenido';
+import BuscarContenido from './pages/BuscarContenido';
+
+import BaseLayout from './BaseLayout';
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [pelibro, setPelibro] = useState("")
-
-  
-  
-  const tryConnection = async () => {
-    const x = await api.get("/contenido/100").then((response) => setPelibro(response.data));
-    return x
-  }
+  const [pelibro, setPelibro] = useState("");
 
   useEffect(() => {
-    const res = tryConnection
-    setPelibro(res)
-  }, [])
+  }, []);
 
-  console.log(pelibro)
-
+  console.log(pelibro);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Page & Frame</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<BaseLayout/>}></Route>
+        <Route path="/cargarContenido" element={<CargarContenido />} />
+        <Route path="/buscarContenido/:titulo/:pagina" element={<BuscarContenido />}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
