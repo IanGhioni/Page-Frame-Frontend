@@ -1,8 +1,8 @@
 import { useState } from "react";
 import api from '../service/axiosInstance';
 import '../pages/CargarContenido.css'
-//import { toast, ToastContainer } from 'react-toastify';
-//import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CargarContenido = () => {
   const [formData, setFormData] = useState({
