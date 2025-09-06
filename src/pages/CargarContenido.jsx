@@ -16,25 +16,73 @@ const CargarContenido = () => {
     descripcion: "",
   });
 
+  const prevenirPeliculaConISBN = (name, value) => {
+    if (name === "tipo" && value === "pelicula") {
+    setFormData((prev) => ({
+      ...prev,
+      tipo: value,
+      isbn: ""
+    }));
+    return;
+  }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    prevenirPeliculaConISBN(name, value);
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
+  const validarData = () => {
+    if (
+      !formData.tipo ||
+      (formData.tipo === "libro" && !formData.isbn) ||
+      !formData.titulo ||
+      !formData.autores ||
+      !formData.largo ||
+      !formData.publicacion ||
+      !formData.categoria ||
+      !formData.imagen ||
+      !formData.descripcion
+    ) {
+      toast.error("Por favor completa todos los campos obligatorios");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validarData()) return;
+    crearContenido();
+  };
+
+  const blanquearFormulario = () => {
+    setFormData({
+      isbn: "",
+      imagen: "",
+      titulo: "",
+      autores: "",
+      largo: "",
+      publicacion: "",
+      categoria: "",
+      descripcion: "",
+      tipo: ""
+    });
   };
 
   const crearContenido = async () => {
     try {
       await api.post("/contenido", formData);
       toast.success("Se cargó el contenido exitosamente");
+      blanquearFormulario();
     } catch (e) {
-      toast.error("Error al cargar el contenido");
       console.error(e);
+      toast.error("Error al cargar el contenido");
     }
   };
 
@@ -110,7 +158,7 @@ const CargarContenido = () => {
             <div className="form-group">
               <label>Largo</label>
               <input
-                type="text"
+                type="number"
                 name="largo"
                 value={formData.largo}
                 onChange={handleChange}
@@ -170,7 +218,7 @@ const CargarContenido = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className="submit-btn" onClick={crearContenido}>
+          <button type="submit" className="submit-btn">
             Publicar contenido
           </button>
         </form>
