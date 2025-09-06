@@ -1,0 +1,9 @@
+.buscador-titulo {
+    text-align: left;
+    margin-top: 8%;
+}
+
+.paginado-container {
+    display: flex;
+    flex-direction: column;
+}

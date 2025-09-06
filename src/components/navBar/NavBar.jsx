@@ -1,7 +1,6 @@
 
 import './Navbar.css';
 import { useState } from 'react';
-import buscarPorNombre from '../../service/contenido';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -20,6 +19,7 @@ const Navbar = () => {
         <div className="navbar-center">
             <form onSubmit={handleSubmit} style={{ display: "flex", gap: "0.5rem" }}>
             <input
+                className='input-Busqueda'
                 type="text"
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
