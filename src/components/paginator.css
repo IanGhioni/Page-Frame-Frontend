@@ -1,0 +1,39 @@
+.p-paginator {
+  justify-content: center;
+  margin-top: 1rem;
+  background: transparent;
+}
+
+.p-paginator, 
+.p-paginator-page,
+.p-paginator-first, 
+.p-paginator-prev,
+.p-paginator-next, 
+.p-paginator-last {
+  border-radius: 6px;
+  margin: 0 4px;
+  color: #ffffff;
+  border-radius: 25rem;
+}
+
+.p-paginator .p-paginator-page.p-highlight {
+  background: #641085; 
+  color: white;        
+}
+
+.p-paginator-page:hover,
+.p-paginator-first:hover, 
+.p-paginator-prev:hover,
+.p-paginator-next:hover, 
+.p-paginator-last:hover {
+  transform: scale(110%);
+  border-color: #641085;
+  border-width: 2px;
+}
+
+.p-paginator-first:disabled, 
+.p-paginator-prev:disabled,
+.p-paginator-next:disabled, 
+.p-paginator-last:disabled{
+  color: grey;
+}
