@@ -54,7 +54,21 @@ const PaginaDeContenido = () => {
                 <div className="container">
                     <div className="container-header">
                         <div className="container-img">
-                        <Image src={contenido.imagen} alt="Logo de pelicula" width="200" preview />
+                        <Image 
+                            src={contenido.imagen} 
+                            alt="Logo de pelicula" width="200" 
+                            preview 
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+                            }}
+                            onLoad={(e) => {
+                                const img = e.target;
+                                if (img.naturalWidth <= 1 && img.naturalHeight <= 1) {
+                                    img.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+                                }
+                            }}    
+                        />
                         <button className="button-options" disabled>Añadir a lista</button>
                         <button className="button-options" disabled>Marcar como visto</button>
                         <button className="button-options" disabled>Escribir review</button>

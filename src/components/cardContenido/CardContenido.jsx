@@ -22,6 +22,16 @@ const CardContenido = ({contenido}) => {
             <img
             onClick={() => navigate(`/contenido/${contenido.id}`)}
             src={contenido.imagen}
+            onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+            }}
+            onLoad={(e) => {
+                const img = e.target;
+                if (img.naturalWidth <= 1 && img.naturalHeight <= 1) {
+                    img.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+                }
+            }}
             />
         </div>
         <div className="contenido-info">
