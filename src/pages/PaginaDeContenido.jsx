@@ -54,7 +54,16 @@ const PaginaDeContenido = () => {
                 <Navbar/>
                 <div className="container">
                     <div className="container-header">
-                        <Image src={contenido.imagen} alt="Logo de pelicula" width="190" preview />
+                        <div className="container-img">
+                        <Image src={contenido.imagen} alt="Logo de pelicula" width="200" preview />
+                        <button className="button-options" disabled>Añadir a lista</button>
+                        <button className="button-options" disabled>Marcar como visto</button>
+                        <button className="button-options" disabled>Escribir review</button>
+                        <button className="button-options" disabled>Calificar ★</button>
+                        </div>
+
+                        <div>
+                        <div className="container-header-titulo-icon">
                         <div className="container-header-central">
                             <text className="header-titulo">
                                 {contenido.titulo}
@@ -83,13 +92,13 @@ const PaginaDeContenido = () => {
                             </div>
                             <text className="header-publicacion">Publicado en el año {contenido.publicacion}</text>
                         </div>
-                        <img src={icon()} className="icon">
-                        
-                        </img>
-                    </div>
-                    <div className="div-descripcion">
-                        <h3>Descripcion:</h3>
-                        <t>{contenido.descripcion}</t>
+                        <img src={icon()} className="icon"/>
+                        </div>
+                        <div className="div-descripcion">
+                            <h4 className="titulo-descripcion">Descripcion:</h4>
+                            <t>{contenido.descripcion}</t>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
