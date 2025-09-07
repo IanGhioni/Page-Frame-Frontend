@@ -17,6 +17,7 @@
 
 .contenido-card:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(105%);
 }
 
 .contenido-imagen {
