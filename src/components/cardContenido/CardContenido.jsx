@@ -1,16 +1,17 @@
 import "./contenido.css"
 import bookIcon from "../../assets/book-icon.svg"
 import movieIcon from "../../assets/movie-icon-small.svg"
+import { useNavigate } from "react-router-dom";
 
 const CardContenido = ({contenido}) => {
-    console.log(contenido)
+    const navigate = useNavigate()
+    
     const icon = () => {
         if (contenido.isbn == "") {
             return movieIcon
         } else {
             return bookIcon
         }
-
     }
 
     return (
@@ -21,7 +22,7 @@ const CardContenido = ({contenido}) => {
             />
         </div>
         <div className="contenido-info">
-            <h2 className="contenido-titulo">{contenido.titulo}</h2>
+            <h2 className="contenido-titulo" onClick={() => navigate(`/contenido/${contenido.id}`)}>{contenido.titulo}</h2>
             <p className="contenido-autor">de {contenido.autores}</p>
             
             <div className="contenido-rating">

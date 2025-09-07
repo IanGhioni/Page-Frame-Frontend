@@ -1,0 +1,101 @@
+import { useEffect, useState } from "react"
+import Navbar from "../components/navBar/NavBar"
+import { useParams } from "react-router-dom"
+import { buscarPorId } from "../service/contenido"
+import { Image } from 'primereact/image';
+import "./PaginaDeContenido.css"
+import bookIcon from "../assets/book-icon.svg"
+import movieIcon from "../assets/movie-icon-small.svg"
+
+
+
+const PaginaDeContenido = () => {
+    const params = useParams();
+    const [contenido, setContenido] = useState(null);
+    const [error, setError] = useState(false);
+
+
+    const fetchData = async () => {
+        try {
+            const c = await buscarPorId(params.id)
+            setContenido(c)
+            console.log(c)
+        } catch (error) {
+            console.log(error)
+            setError(true)
+        }
+    }
+
+    const icon = () => {
+        if (contenido.isbn == "") {
+            return movieIcon
+        } else {
+            return bookIcon
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    return(
+        <>
+        {error ? (
+            <div>
+                <Navbar/>
+                <div className="error-container">
+                <h2>Ocurrió un error al cargar este contenido</h2>
+                <p>Por favor, intentá nuevamente más tarde.</p>
+                </div>
+            </div>
+        ) : contenido ?
+            <div>
+                
+                <Navbar/>
+                <div className="container">
+                    <div className="container-header">
+                        <Image src={contenido.imagen} alt="Logo de pelicula" width="190" preview />
+                        <div className="container-header-central">
+                            <text className="header-titulo">
+                                {contenido.titulo}
+                            </text>
+                            <text className="header-autores">
+                                de {contenido.autores}
+                            </text>
+                            <text className="header-generos">
+                                Géneros: {contenido.categoria}
+                            </text>
+                            <div className="container-puntaje">
+                            {Array.from({ length: 5 }, (_, i) => (
+                                <span
+                                key={i}
+                                className={
+                                    i < Math.round(contenido.ratingAverage)
+                                    ? "star star-filled"
+                                    : "star star-empty"
+                                }
+                                >
+                                ★
+                                </span>
+                            ))}
+                            <text className="header-puntaje">{contenido.ratingAverage}</text>
+                            <text className="header-reseñas"> de {contenido.ratingCount} reseñas</text>
+                            </div>
+                            <text className="header-publicacion">Publicado en el año {contenido.publicacion}</text>
+                        </div>
+                        <img src={icon()} className="icon">
+                        
+                        </img>
+                    </div>
+                    <div>
+                        <h3>{contenido.descripcion}</h3>
+                    </div>
+                </div>
+            </div>
+            : <>Cargando</>
+        }
+        </>
+    )
+}
+
+export default PaginaDeContenido
