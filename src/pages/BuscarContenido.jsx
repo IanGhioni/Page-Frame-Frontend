@@ -7,22 +7,27 @@ import { useNavigate } from "react-router-dom";
 import "../components/paginator.css"
 import "./BuscarContenido.css"
 import CardContenido from "../components/cardContenido/CardContenido";
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 const BuscarContenido = () => {
     const params = useParams();
     const [dataPagina, setDataPagina] = useState({});
+    const [loading, setLoading] = useState(false);
     const [first, setFirst] = useState(0);
     const [rows] = useState(12);
     const navigate = useNavigate();
 
     const fetchData = async () => {
         try {
-        const res = await buscarPorNombre(params.titulo, params.pagina, rows);
-        console.log("📌 Datos del back:", res);
-        setDataPagina(res);
-        setFirst(res.numeroDePagina * rows); // alineamos con paginator
+            setLoading(true); 
+            const res = await buscarPorNombre(params.titulo, params.pagina, rows);
+            console.log("📌 Datos del back:", res);
+            setDataPagina(res);
+            setFirst(res.numeroDePagina * rows); 
         } catch (err) {
-        console.error("Error al buscar:", err);
+            console.error("Error al buscar:", err);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -38,7 +43,17 @@ const BuscarContenido = () => {
     return (
         <div>
             <Navbar />
-            {dataPagina.resultados && dataPagina.resultados.length > 0 ? (
+            {loading ? (
+            <div className="loading-container">
+                <h2>Cargando resultados</h2>
+                <ProgressSpinner 
+                    style={{width: '50px', height: '50px'}} 
+                    strokeWidth="7" 
+                    animationDuration=".5s"
+                />
+            </div>
+            ) :
+            dataPagina.resultados && dataPagina.resultados.length > 0 ? (
             <>
                 <div>
                     <div className="container-titulo">
