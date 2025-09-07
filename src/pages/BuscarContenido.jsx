@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/navBar/NavBar";
-import buscarPorNombre from "../service/contenido"
+//import {buscarPorNombre} from "../service/contenido"
+import { buscarPorNombre } from "../service/contenido";
 import { Paginator } from "primereact/paginator";
 import { useNavigate } from "react-router-dom";
 import "../components/paginator.css"

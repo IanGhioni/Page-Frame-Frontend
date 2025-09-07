@@ -24,6 +24,9 @@
     height: 160px;
     flex-shrink: 0;
 }
+.contenido-imagen:hover {
+    cursor: pointer;
+}
 
 .contenido-imagen img {
     width: 100%;
@@ -99,7 +102,7 @@
 }
 
 .icon-imagen {
-    align-self: flex-end;
+    align-self: flex-start;
     width: 80px;
     height: 80px;
     flex-shrink: 0;

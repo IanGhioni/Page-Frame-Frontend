@@ -6,6 +6,7 @@ import CargarContenido from './pages/CargarContenido';
 import BuscarContenido from './pages/BuscarContenido';
 
 import BaseLayout from './BaseLayout';
+import PaginaDeContenido from './pages/PaginaDeContenido';
 
 function App() {
   const [pelibro, setPelibro] = useState("");
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={<BaseLayout/>}></Route>
         <Route path="/cargarContenido" element={<CargarContenido />} />
         <Route path="/buscarContenido/:titulo/:pagina" element={<BuscarContenido />}/>
+        <Route path='/contenido/:id' element={<PaginaDeContenido />}></Route>
       </Routes>
     </BrowserRouter>
   );
