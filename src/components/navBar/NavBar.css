@@ -6,9 +6,11 @@
     color: #fff;
     padding: 1rem;
     width: 100%;
-    position: fixed;  /* queda fijo arriba */
+    position: fixed;
     top: 0;
     left: 0;
+    height: 40px;  /* 👈 altura fija */
+    z-index: 1000; /* para que siempre quede arriba */
 }
 
 .input-Busqueda {

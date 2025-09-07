@@ -2,6 +2,8 @@ import "./contenido.css"
 import bookIcon from "../../assets/book-icon.svg"
 import movieIcon from "../../assets/movie-icon-small.svg"
 import { useNavigate } from "react-router-dom";
+import Rating from '@mui/material/Rating';
+import RatingReadOnly from "../rating/RatingReadOnly";
 
 const CardContenido = ({contenido}) => {
     const navigate = useNavigate()
@@ -27,22 +29,12 @@ const CardContenido = ({contenido}) => {
             <p className="contenido-autor">de {contenido.autores}</p>
             
             <div className="contenido-rating">
-            {Array.from({ length: 5 }, (_, i) => (
-                <span
-                key={i}
-                className={
-                    i < Math.round(contenido.ratingAverage)
-                    ? "star star-filled"
-                    : "star star-empty"
-                }
-                >
-                ★
-                </span>
-            ))}
+            <RatingReadOnly value={contenido.ratingAverage}/>
             <span className="contenido-rating-text">
-                {contenido.ratingAverage} avg rating -{" "}
+                {contenido.ratingAverage} -{" "}
                 {contenido.ratingCount} reseñas
             </span>
+            
             </div>
             <p className="contenido-publicacion">
             Publicado en {contenido.publicacion}

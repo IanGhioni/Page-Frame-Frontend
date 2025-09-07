@@ -6,7 +6,8 @@ import { Image } from 'primereact/image';
 import "./PaginaDeContenido.css"
 import bookIcon from "../assets/book-icon.svg"
 import movieIcon from "../assets/movie-icon-small.svg"
-
+import Rating from '@mui/material/Rating';
+import RatingReadOnly from "../components/rating/RatingReadOnly";
 
 
 const PaginaDeContenido = () => {
@@ -75,18 +76,7 @@ const PaginaDeContenido = () => {
                                 Géneros: {contenido.categoria}
                             </text>
                             <div className="container-puntaje">
-                            {Array.from({ length: 5 }, (_, i) => (
-                                <span
-                                key={i}
-                                className={
-                                    i < Math.round(contenido.ratingAverage)
-                                    ? "star star-filled"
-                                    : "star star-empty"
-                                }
-                                >
-                                ★
-                                </span>
-                            ))}
+                            <RatingReadOnly value={contenido.ratingAverage}/>
                             <text className="header-puntaje">{contenido.ratingAverage}</text>
                             <text className="header-reseñas"> de {contenido.ratingCount} reseñas</text>
                             </div>
