@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import "../components/paginator.css"
 import "./BuscarContenido.css"
 import CardContenido from "../components/cardContenido/CardContenido";
-import { ProgressSpinner } from 'primereact/progressspinner';
 
 const BuscarContenido = () => {
     const params = useParams();
@@ -37,20 +36,21 @@ const BuscarContenido = () => {
 
     const onPageChange = (event) => {
         const newPage = event.page;
-        navigate(`/buscarContenido/${params.titulo}/${newPage}`);
         window.scrollTo({ top: 0, behavior: "smooth" });
+        setLoading(true)
+        navigate(`/buscarContenido/${params.titulo}/${newPage}`);
     };
+
+    /*
+    <h3 style={{textAlign: "left"}}>Pagina: {dataPagina.numeroDePagina+1}</h3>
+    Despues peleo para ver como acomodar esto debajo de Resultados de buscar "{params.titulo}"
+    */
     return (
         <div>
             <Navbar />
             {loading ? (
             <div className="loading-container">
                 <h2>Cargando resultados</h2>
-                <ProgressSpinner 
-                    style={{width: '50px', height: '50px'}} 
-                    strokeWidth="7" 
-                    animationDuration=".5s"
-                />
             </div>
             ) :
             dataPagina.resultados && dataPagina.resultados.length > 0 ? (

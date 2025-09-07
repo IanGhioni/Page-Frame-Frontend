@@ -6,7 +6,6 @@ import { Image } from 'primereact/image';
 import "./PaginaDeContenido.css"
 import bookIcon from "../assets/book-icon.svg"
 import movieIcon from "../assets/movie-icon-small.svg"
-import Rating from '@mui/material/Rating';
 import RatingReadOnly from "../components/rating/RatingReadOnly";
 
 
@@ -22,7 +21,6 @@ const PaginaDeContenido = () => {
             setContenido(c)
             console.log(c)
         } catch (error) {
-            console.log(error)
             setError(true)
         }
     }
