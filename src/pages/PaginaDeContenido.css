@@ -11,9 +11,28 @@
     width: 1000px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     align-self: flex-start;
     justify-content: space-around;
+}
+
+.container-img {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-options {
+    margin: 4%;
+}
+
+.button-options:disabled:hover {
+    cursor: not-allowed;
+    border-color: red;
+}
+
+.container-header-titulo-icon {
+    display: flex;
+    align-items: baseline;
 }
 
 .container-header {
@@ -33,7 +52,7 @@
     font-size: 2.5rem;
     font-weight: 600;
     text-align: left;
-    width: 660px;
+    width: 600px;
 }
 
 .header-autores {
@@ -81,9 +100,18 @@
 .icon {
     width: 100px;
     height: 100px;
-    align-self: auto;
+    align-self: normal;
+    margin-left: 7%;
 }
 
 .div-descripcion {
+    margin-left: 1%;
     text-align: left;
+}
+
+.titulo-descripcion {
+    margin-top: 4%;
+    margin-bottom: 0%;
+    font-size: large;
+    font-style: oblique;
 }
