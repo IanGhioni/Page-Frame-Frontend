@@ -87,8 +87,9 @@ const PaginaDeContenido = () => {
                         
                         </img>
                     </div>
-                    <div>
-                        <h3>{contenido.descripcion}</h3>
+                    <div className="div-descripcion">
+                        <h3>Descripcion:</h3>
+                        <t>{contenido.descripcion}</t>
                     </div>
                 </div>
             </div>

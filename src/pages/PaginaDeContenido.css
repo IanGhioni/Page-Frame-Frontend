@@ -83,3 +83,7 @@
     height: 100px;
     align-self: auto;
 }
+
+.div-descripcion {
+    text-align: left;
+}

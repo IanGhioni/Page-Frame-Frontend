@@ -1,7 +1,8 @@
 
 import './Navbar.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
     const [nombre, setNombre] = useState("");
@@ -9,6 +10,9 @@ const Navbar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (nombre.trim() === "") {
+            return;
+        }
         navigate("/buscarContenido/"+nombre+"/0")
     };
 
@@ -24,11 +28,11 @@ const Navbar = () => {
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
                 placeholder="Buscar..."
+                required={true}
             />
             <button type="submit">Buscar</button>
             </form>
         </div>
-
         <div className="navbar-right"></div>
         </nav>
     );
