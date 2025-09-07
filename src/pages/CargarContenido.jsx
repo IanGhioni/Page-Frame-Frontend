@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from '../service/axiosInstance';
 import '../pages/CargarContenido.css'
 import { toast, ToastContainer } from 'react-toastify';
@@ -15,6 +16,7 @@ const CargarContenido = () => {
     categoria: "",
     descripcion: "",
   });
+  const navigate = useNavigate()
 
   const prevenirPeliculaConISBN = (name, value) => {
     if (name === "tipo" && value === "pelicula") {
@@ -77,7 +79,7 @@ const CargarContenido = () => {
 
   const crearContenido = async () => {
     try {
-      await api.post("/contenido", formData);
+      await api.post("/contenido", formData).then((response) =>navigate(`/contenido/${response.data.id}`));
       toast.success("Se cargó el contenido exitosamente");
       blanquearFormulario();
     } catch (e) {

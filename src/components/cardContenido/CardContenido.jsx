@@ -18,6 +18,7 @@ const CardContenido = ({contenido}) => {
         <div className="contenido-card">
         <div className="contenido-imagen">
             <img
+            onClick={() => navigate(`/contenido/${contenido.id}`)}
             src={contenido.imagen}
             />
         </div>
