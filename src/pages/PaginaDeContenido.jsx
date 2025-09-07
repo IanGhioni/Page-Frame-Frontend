@@ -93,6 +93,11 @@ const PaginaDeContenido = () => {
                             <text className="header-reseñas"> de {contenido.ratingCount} reseñas</text>
                             </div>
                             <text className="header-publicacion">Publicado en el año {contenido.publicacion}</text>
+                            {contenido.isbn === "" ? (
+                                <text className="header-largo"> Duracion: {contenido.largo} minutos</text>
+                            ): (
+                                <text className="header-largo">{contenido.largo} paginas</text>
+                            )}
                         </div>
                         <img src={icon()} className="icon"/>
                         </div>
