@@ -64,7 +64,7 @@ const PaginaDeContenido = () => {
                             }}
                             onLoad={(e) => {
                                 const img = e.target;
-                                if (img.naturalWidth <= 1 && img.naturalHeight <= 1) {
+                                if (img.naturalWidth <= 90 && img.naturalHeight <= 90) {
                                     img.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
                                 }
                             }}    
