@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/navBar/NavBar";
-//import {buscarPorNombre} from "../service/contenido"
 import { buscarPorNombre } from "../service/contenido";
 import { Paginator } from "primereact/paginator";
 import { useNavigate } from "react-router-dom";
@@ -12,18 +11,22 @@ import CardContenido from "../components/cardContenido/CardContenido";
 const BuscarContenido = () => {
     const params = useParams();
     const [dataPagina, setDataPagina] = useState({});
+    const [loading, setLoading] = useState(false);
     const [first, setFirst] = useState(0);
     const [rows] = useState(12);
     const navigate = useNavigate();
 
     const fetchData = async () => {
         try {
-        const res = await buscarPorNombre(params.titulo, params.pagina, rows);
-        console.log("📌 Datos del back:", res);
-        setDataPagina(res);
-        setFirst(res.numeroDePagina * rows); // alineamos con paginator
+            setLoading(true); 
+            const res = await buscarPorNombre(params.titulo, params.pagina, rows);
+            console.log("📌 Datos del back:", res);
+            setDataPagina(res);
+            setFirst(res.numeroDePagina * rows); 
         } catch (err) {
-        console.error("Error al buscar:", err);
+            console.error("Error al buscar:", err);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -33,17 +36,29 @@ const BuscarContenido = () => {
 
     const onPageChange = (event) => {
         const newPage = event.page;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setLoading(true)
         navigate(`/buscarContenido/${params.titulo}/${newPage}`);
     };
+
+    /*
+    <h3 style={{textAlign: "left"}}>Pagina: {dataPagina.numeroDePagina+1}</h3>
+    Despues peleo para ver como acomodar esto debajo de Resultados de buscar "{params.titulo}"
+    */
     return (
         <div>
             <Navbar />
-            {dataPagina.resultados && dataPagina.resultados.length > 0 ? (
+            {loading ? (
+            <div className="loading-container">
+                <h2>Cargando resultados</h2>
+            </div>
+            ) :
+            dataPagina.resultados && dataPagina.resultados.length > 0 ? (
             <>
                 <div>
                     <div className="container-titulo">
                         <h2 className="buscador-titulo">Resultados de buscar "{params.titulo}"</h2>
-                        <button onClick={() => navigate("/cargarContenido")}>Cargar contenido</button>
+                        <button onClick={() => { navigate("/cargarContenido"); setLoading(true)}}>Cargar contenido</button>
                     </div>
                 {dataPagina.resultados.map((contenido) => (
                 <div key={contenido.id}>

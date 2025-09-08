@@ -6,7 +6,7 @@ import { Image } from 'primereact/image';
 import "./PaginaDeContenido.css"
 import bookIcon from "../assets/book-icon.svg"
 import movieIcon from "../assets/movie-icon-small.svg"
-
+import RatingReadOnly from "../components/rating/RatingReadOnly";
 
 
 const PaginaDeContenido = () => {
@@ -21,7 +21,6 @@ const PaginaDeContenido = () => {
             setContenido(c)
             console.log(c)
         } catch (error) {
-            console.log(error)
             setError(true)
         }
     }
@@ -55,7 +54,21 @@ const PaginaDeContenido = () => {
                 <div className="container">
                     <div className="container-header">
                         <div className="container-img">
-                        <Image src={contenido.imagen} alt="Logo de pelicula" width="200" preview />
+                        <Image 
+                            src={contenido.imagen} 
+                            alt="Logo de pelicula" width="200" 
+                            preview 
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+                            }}
+                            onLoad={(e) => {
+                                const img = e.target;
+                                if (img.naturalWidth <= 90 && img.naturalHeight <= 90) {
+                                    img.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+                                }
+                            }}    
+                        />
                         <button className="button-options" disabled>Añadir a lista</button>
                         <button className="button-options" disabled>Marcar como visto</button>
                         <button className="button-options" disabled>Escribir review</button>
@@ -75,22 +88,16 @@ const PaginaDeContenido = () => {
                                 Géneros: {contenido.categoria}
                             </text>
                             <div className="container-puntaje">
-                            {Array.from({ length: 5 }, (_, i) => (
-                                <span
-                                key={i}
-                                className={
-                                    i < Math.round(contenido.ratingAverage)
-                                    ? "star star-filled"
-                                    : "star star-empty"
-                                }
-                                >
-                                ★
-                                </span>
-                            ))}
+                            <RatingReadOnly value={contenido.ratingAverage}/>
                             <text className="header-puntaje">{contenido.ratingAverage}</text>
                             <text className="header-reseñas"> de {contenido.ratingCount} reseñas</text>
                             </div>
                             <text className="header-publicacion">Publicado en el año {contenido.publicacion}</text>
+                            {contenido.isbn === "" ? (
+                                <text className="header-largo"> Duracion: {contenido.largo} minutos</text>
+                            ): (
+                                <text className="header-largo">{contenido.largo} paginas</text>
+                            )}
                         </div>
                         <img src={icon()} className="icon"/>
                         </div>

@@ -13,6 +13,7 @@ const Navbar = () => {
         if (nombre.trim() === "") {
             return;
         }
+        window.scrollTo({ top: 0, behavior: "smooth" });
         navigate("/buscarContenido/"+nombre+"/0")
     };
 
