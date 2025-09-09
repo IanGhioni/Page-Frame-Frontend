@@ -20,7 +20,6 @@ const BuscarContenido = () => {
         try {
             setLoading(true); 
             const res = await buscarPorNombre(params.titulo, params.pagina, rows);
-            console.log("📌 Datos del back:", res);
             setDataPagina(res);
             setFirst(res.numeroDePagina * rows); 
         } catch (err) {
@@ -50,7 +49,7 @@ const BuscarContenido = () => {
             <Navbar />
             {loading ? (
             <div className="loading-container">
-                <h2>Cargando resultados</h2>
+                <h2>Cargando resultados...</h2>
             </div>
             ) :
             dataPagina.resultados && dataPagina.resultados.length > 0 ? (
