@@ -28,7 +28,7 @@
 
 .button-options:disabled:hover {
     cursor: not-allowed;
-    border-color: red;
+    border-color: rgb(192, 4, 4);
 }
 
 .container-header-titulo-icon {

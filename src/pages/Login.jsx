@@ -22,7 +22,7 @@ const Login = () => {
          .then((response) => {
             localStorage.setItem("token", response.headers.authorization);
             localStorage.setItem("username", username);
-            navigate("/user");
+            navigate("/");
          })
          .catch((err) => {
             setError(err.response.data.title);

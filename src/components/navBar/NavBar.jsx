@@ -2,6 +2,8 @@ import "./Navbar.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
+import logo from "../../assets/mini-logo.png";
+import profile from "../../assets/panda-pp.png";
 
 const Navbar = () => {
    const [nombre, setNombre] = useState("");
@@ -21,7 +23,7 @@ const Navbar = () => {
          <div className="navbar">
             <img
                className="navbar-logo"
-               src="src\assets\mini-logo.png"
+               src={logo}
                alt="Logo"
             />
             <div className="navbar-search">
@@ -50,7 +52,7 @@ const Navbar = () => {
                   <img
                      className="navbar-pic"
                      onClick={() => navigate("/user")}
-                     src="src\assets\panda-pp.png"
+                     src={profile}
                      alt="Profile"
                   />
                </div>
