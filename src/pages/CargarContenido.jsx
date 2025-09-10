@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../service/axiosInstance";
 import "../pages/CargarContenido.css";
+import "../pages/form.css"
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const CargarContenido = () => {
    const [formData, setFormData] = useState({
