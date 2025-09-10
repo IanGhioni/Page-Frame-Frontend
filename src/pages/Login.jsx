@@ -12,12 +12,12 @@ const Login = () => {
   const failToLogin = () => toast("Login failed");
   const [error, setError] = useState("");
 
-  function postLogin(name, password) {
-    API.loginUser({ username: name, password: password })
+  function postLogin(username, password) {
+    API.loginUser({ username: username, password: password })
       .then((response) => {
         localStorage.setItem("token", response.headers.authorization);
-        localStorage.setItem("name", response.data.name);
-        navigate("/");
+        localStorage.setItem("username", username);
+        navigate("/user");
       })
       .catch((err) => {
         setError(err.response.data.title);
