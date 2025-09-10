@@ -18,10 +18,28 @@ const Register = () => {
       navigate(page);
    };
 
+   const handleRegister = () => {
+      if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
+          setError("Por favor completa todos los campos");
+          return;
+      }
+      if (!isValidEmail(email)) {
+         setError("El email no es valido");
+         return;
+      }
+      if (!isPasswordSecure(password)) {
+         setError("La contraseña no es lo suficientemente segura");
+         return;
+      }
+      setError("");
+      setRegisterData({ username, email, password });
+   };
+
+
    useEffect(() => {
       const token = localStorage.getItem("token");
       if (token != null) {
-         navigate("/user");
+         navigate("/");
       }
       const registerUser = (username, email, password) => {
          API.registerUser({
@@ -35,7 +53,7 @@ const Register = () => {
                setError("");
                toast("Register completed");
                setTimeout(() => {
-                  goToPage("/user");
+                  goToPage("/");
                }, 3000);
             })
             .catch((err) => {
@@ -73,6 +91,11 @@ const Register = () => {
       setHasUppercase(/[A-Z]/.test(password));
       setHasLowwercase(/[a-z]/.test(password));
    }, [password]);
+
+   function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+   }
+
 
    return (
       <div className="form-container">
@@ -144,14 +167,13 @@ const Register = () => {
          <button
             className="submit-btn"
             type="button"
-            disabled={!isPasswordSecure(password)}
-            onClick={() => setRegisterData({ username, email, password })}
+            onClick={handleRegister}
          >
             Create account
          </button>
          <h3 className="redirect-text" onClick={() => navigate("/register")}>
-            Ya tienes una cuenta?{" "}
-            <span className="register-link">Inicia sesión!</span>
+            Ya tienes una cuenta? 
+            <span className="register-link"> Inicia sesión!</span>
          </h3>
          <ToastContainer
             position="bottom-center"
