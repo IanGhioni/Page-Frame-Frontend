@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CargarContenido from './pages/CargarContenido';
 import BuscarContenido from './pages/BuscarContenido';
 import Home from './pages/Home';
+import Error404 from './pages/Error404';
 
 
 import BaseLayout from './BaseLayout';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/cargarContenido" element={<CargarContenido />} />
         <Route path="/buscarContenido/:titulo/:pagina" element={<BuscarContenido />}/>
         <Route path='/contenido/:id' element={<PaginaDeContenido />}></Route>
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
   );
