@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "../components/paginator.css"
 import "./BuscarContenido.css"
 import CardContenido from "../components/cardContenido/CardContenido";
+import GoBackButton from "../components/GoBackButton/GoBackButton";
 
 const BuscarContenido = () => {
     const params = useParams();
@@ -46,6 +47,7 @@ const BuscarContenido = () => {
     */
     return (
         <div>
+            <GoBackButton />
             <Navbar />
             {loading ? (
             <div className="loading-container">
