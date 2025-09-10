@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../service/axiosInstance";
 import "../pages/CargarContenido.css";
-import "../pages/form.css"
+import "../pages/form.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 const CargarContenido = () => {
    const [formData, setFormData] = useState({
@@ -109,24 +108,27 @@ const CargarContenido = () => {
                <div className="form-row">
                   <div className="form-group">
                      <label className="form-label">Tipo de contenido</label>
-                     <select
-                        className="form-input select"
-                        name="tipo"
-                        value={formData.tipo}
-                        onChange={handleChange}
-                        placeholder="Tipo de contenido"
-                        required
-                     >
-                        <option className="select-option" value="">
-                           Seleccionar
-                        </option>
-                        <option className="select-option" value="libro">
-                           Libro
-                        </option>
-                        <option className="select-option" value="pelicula">
-                           Película
-                        </option>
-                     </select>
+                     <div className="select-wrapper">
+                        <select
+                           className="form-input select"
+                           name="tipo"
+                           value={formData.tipo}
+                           onChange={handleChange}
+                           placeholder="Tipo de contenido"
+                           required
+                        >
+                           <option className="select-option" value="">
+                              Seleccionar
+                           </option>
+                           <option className="select-option" value="libro">
+                              Libro
+                           </option>
+                           <option className="select-option" value="pelicula">
+                              Película
+                           </option>
+                        </select>
+                        <span className="select-arrow">▼</span>
+                     </div>
                   </div>
 
                   <div className="form-group">

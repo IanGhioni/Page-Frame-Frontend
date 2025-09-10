@@ -101,6 +101,28 @@
 
 .select {
    width: 100%;
+   appearance: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   background: transparent;
+   position: relative;
+   z-index: 2;
+}
+
+.select-wrapper {
+   position: relative;
+   width: 100%;
+}
+
+.select-arrow {
+   position: absolute;
+   top: 50%;
+   right: 18px;
+   pointer-events: none;
+   transform: translateY(-50%);
+   font-size: 15px;
+   color: #997e7b;
+   z-index: 3;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
