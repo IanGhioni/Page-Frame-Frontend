@@ -154,3 +154,7 @@ input[type="number"]::-webkit-inner-spin-button {
    border-radius: 30px;
    font-family: "Trebuchet MS", sans-serif;
 }
+
+.password-container {
+   display: flex;
+}
