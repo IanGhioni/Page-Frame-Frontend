@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-   const [name, setName] = useState("");
+   const [username, setUsername] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const navigate = useNavigate();
@@ -21,11 +21,11 @@ const Register = () => {
       if (token != null) {
          navigate("/user");
       }
-      const registerUser = (name, email, password) => {
-         API.registerUser({ username: name, email: email, password: password })
+      const registerUser = (username, email, password) => {
+         API.registerUser({ username: username, email: email, password: password })
             .then((response) => {
                localStorage.setItem("token", response.data.token);
-               localStorage.setItem("name", name);
+               localStorage.setItem("username", username);
                setError("");
                toast("Register completed");
                setTimeout(() => {
@@ -38,7 +38,7 @@ const Register = () => {
             });
       };
       if (getRegisterData) {
-         registerUser(name, email, password);
+         registerUser(username, email, password);
       }
 
       setRegisterData();
@@ -48,12 +48,12 @@ const Register = () => {
       <div className="formcontainer">
         <h3>Register</h3>
         <span>
-          <label>Name</label>
+          <label>Username</label>
           <input
             type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder='Ingresar nombre de usuario'
             required
           />
@@ -84,7 +84,7 @@ const Register = () => {
           {error}
       </span>
       <button className='btn' type="button"
-        onClick={ () => setRegisterData({name, email, password})}>
+        onClick={ () => setRegisterData({username, email, password})}>
         Create account
       </button>
       <ToastContainer
