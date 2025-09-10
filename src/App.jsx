@@ -5,18 +5,14 @@ import CargarContenido from './pages/CargarContenido';
 import BuscarContenido from './pages/BuscarContenido';
 import Home from './pages/Home';
 import Error404 from './pages/Error404';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 
-import BaseLayout from './BaseLayout';
 import PaginaDeContenido from './pages/PaginaDeContenido';
+import User from './pages/User';
 
 function App() {
-  const [pelibro, setPelibro] = useState("");
-
-  useEffect(() => {
-  }, []);
-
-  console.log(pelibro);
 
   return (
     <BrowserRouter>
@@ -25,6 +21,9 @@ function App() {
         <Route path="/cargarContenido" element={<CargarContenido />} />
         <Route path="/buscarContenido/:titulo/:pagina" element={<BuscarContenido />}/>
         <Route path='/contenido/:id' element={<PaginaDeContenido />}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/user" element={<User />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
