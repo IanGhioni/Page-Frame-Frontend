@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../components/paginator.css";
 import "./BuscarContenido.css";
 import CardContenido from "../components/cardContenido/CardContenido";
+import ScrollCard from "../components/scrollCard/ScrollCard";
 import API from "../service/api";
 
 const Home = () => {
@@ -27,7 +28,6 @@ const Home = () => {
       API.explorarContenidos(1)
          .then((response) => {
             setPageDTO(response.data);
-            window.scrollTo({ top: 0, behavior: "smooth" });
             setLoading(false);
             console.log(response.data);
          })
@@ -63,7 +63,7 @@ const Home = () => {
                endReached();
             }
          },
-         { threshold: 1 }
+         { threshold: 0.1 }
       );
       if (loader.current) {
          observer.observe(loader.current);
@@ -71,7 +71,7 @@ const Home = () => {
       return () => {
          if (loader.current) observer.unobserve(loader.current);
       };
-   }, [endReached]);
+   }, [endReached, pageDTO.numeroDePagina, pageDTO.totalDePaginas]);
 
 
    return (
@@ -83,10 +83,10 @@ const Home = () => {
             </div>
          ) : pageDTO.resultados && pageDTO.resultados.length > 0 ? (
             <>
-               <div>
+               <div className="scroll-container">
                   {pageDTO.resultados.map((contenido) => (
-                     <div key={contenido.id}>
-                        <CardContenido contenido={contenido} />
+                     <div key={contenido.id} className="scroll-card">
+                        <ScrollCard contenido={contenido} />
                      </div>
                   ))}
                   <div ref={loader} />
