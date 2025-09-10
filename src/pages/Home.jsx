@@ -7,6 +7,7 @@ import "./BuscarContenido.css";
 import CardContenido from "../components/cardContenido/CardContenido";
 import ScrollCard from "../components/scrollCard/ScrollCard";
 import API from "../service/api";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Home = () => {
    const [loading, setLoading] = useState(true);
@@ -35,10 +36,11 @@ const Home = () => {
             console.error("Error al cargar los contenidos");
          });
    }, []);
-
-      const endReached = useCallback(() => {
-      if (!loading && pageDTO.numeroDePagina < pageDTO.totalDePaginas) {
-         setLoading(true);
+const [isFetching, setIsFetching] = useState(false);
+   const fetchData = () => {
+      if (pageDTO.numeroDePagina < pageDTO.totalDePaginas ||
+         isFetching
+      ) {
          API.explorarContenidos(pageDTO.numeroDePagina + 1)
             .then((response) => {
                setPageDTO((prevPageDTO) => ({
@@ -50,29 +52,10 @@ const Home = () => {
                }));
             })
             .catch(() => {
-               console.error("Error al cargar los contenidos");
-            })
-            .finally(() => setLoading(false));
+               console.error("Error al cargar más contenidos");
+            });
       }
-   }, [loading, pageDTO]);
-
-   useEffect(() => {
-      const observer = new IntersectionObserver(
-         (entries) => {
-            if (entries[0].isIntersecting) {
-               endReached();
-            }
-         },
-         { threshold: 0.1 }
-      );
-      if (loader.current) {
-         observer.observe(loader.current);
-      }
-      return () => {
-         if (loader.current) observer.unobserve(loader.current);
-      };
-   }, [endReached, pageDTO.numeroDePagina, pageDTO.totalDePaginas]);
-
+   };
 
    return (
       <div>
@@ -83,14 +66,25 @@ const Home = () => {
             </div>
          ) : pageDTO.resultados && pageDTO.resultados.length > 0 ? (
             <>
-               <div className="scroll-container">
-                  {pageDTO.resultados.map((contenido) => (
-                     <div key={contenido.id} className="scroll-card">
-                        <ScrollCard contenido={contenido} />
-                     </div>
-                  ))}
-                  <div ref={loader} />
-               </div>
+               <InfiniteScroll
+                  dataLength={pageDTO.resultados.length}
+                  next={fetchData}
+                  hasMore={pageDTO.numeroDePagina < pageDTO.totalDePaginas}
+                  loader={<h4>Cargando más contenidos...</h4>}
+                  endMessage={
+                     <p style={{ textAlign: "center" }}>
+                        <b>Scrolleaste todo!!</b>
+                     </p>
+                  }
+               >
+                  <div className="scroll-container">
+                     {pageDTO.resultados.map((contenido) => (
+                        <div key={contenido.id} className="scroll-card">
+                           <ScrollCard contenido={contenido} />
+                        </div>
+                     ))}
+                  </div>
+               </InfiniteScroll>
             </>
          ) : (
             <div>
