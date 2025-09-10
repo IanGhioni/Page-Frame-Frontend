@@ -1,7 +1,7 @@
 import API from "../service/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
@@ -14,7 +14,19 @@ const Login = () => {
       localStorage.getItem("password") || ""
    );
    const navigate = useNavigate();
-   const failToLogin = () => toast("Login failed");
+   const failToLogin = () =>
+      toast.error("Usuario o contraseña invalidos", {
+         position: "bottom-right",
+         autoClose: 3000,
+         hideProgressBar: true,
+         closeOnClick: false,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "colored",
+         transition: Bounce,
+      });
+
    const [error, setError] = useState("");
 
    function postLogin(username, password) {
@@ -47,23 +59,23 @@ const Login = () => {
          </div>
 
          <div className="form-group">
-            <label className="form-label" >Password</label>
+            <label className="form-label">Password</label>
             <div className="password-container">
-            <input
-               className="form-input password"
-               type={showPassword ? "text" : "password"}
-               name="password"
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-               placeholder="Password"
-               required
-            />
-            <span
-               onClick={() => setShowPassword((prev) => !prev)}
-               className="password-icon"
-            >
-               {showPassword ? <IoEyeOff /> : <IoEye />}
-            </span>
+               <input
+                  className="form-input password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+               />
+               <span
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="password-icon"
+               >
+                  {showPassword ? <IoEyeOff /> : <IoEye />}
+               </span>
             </div>
          </div>
 
@@ -75,20 +87,22 @@ const Login = () => {
          >
             Iniciar sesion
          </button>
-         <h3 className="redirect-text" onClick={() => navigate("/register")}>
-            No tienes una cuenta? <span className="register-link">Registrate!</span>
+         <h3 className="redirect-text" onClick={() => navigate("/login")}>
+            No tienes una cuenta?{" "}
+            <span className="register-link">Registrate!</span>
          </h3>
          <ToastContainer
-            position="bottom-center"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick={false}
             rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="light"
+            theme="colored"
+            transition={Bounce}
          />
       </div>
    );

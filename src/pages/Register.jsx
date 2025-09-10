@@ -1,7 +1,7 @@
 import API from "../service/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
@@ -19,9 +19,13 @@ const Register = () => {
    };
 
    const handleRegister = () => {
-      if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
-          setError("Por favor completa todos los campos");
-          return;
+      if (
+         username.trim() === "" ||
+         email.trim() === "" ||
+         password.trim() === ""
+      ) {
+         setError("Por favor completa todos los campos");
+         return;
       }
       if (!isValidEmail(email)) {
          setError("El email no es valido");
@@ -34,7 +38,6 @@ const Register = () => {
       setError("");
       setRegisterData({ username, email, password });
    };
-
 
    useEffect(() => {
       const token = localStorage.getItem("token");
@@ -58,7 +61,17 @@ const Register = () => {
             })
             .catch((err) => {
                setError(err.response.data.title);
-               toast("Register failed");
+               toast.error("Username ya en uso!", {
+                  position: "bottom-right",
+                  autoClose: 3000,
+                  hideProgressBar: true,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                  transition: Bounce,
+               });
             });
       };
       if (getRegisterData) {
@@ -95,7 +108,6 @@ const Register = () => {
    function isValidEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
    }
-
 
    return (
       <div className="form-container">
@@ -164,28 +176,25 @@ const Register = () => {
             </div>
          </div>
          <span className="err">{error}</span>
-         <button
-            className="submit-btn"
-            type="button"
-            onClick={handleRegister}
-         >
+         <button className="submit-btn" type="button" onClick={handleRegister}>
             Create account
          </button>
          <h3 className="redirect-text" onClick={() => navigate("/register")}>
-            Ya tienes una cuenta? 
+            Ya tienes una cuenta?
             <span className="register-link"> Inicia sesión!</span>
          </h3>
          <ToastContainer
-            position="bottom-center"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick={false}
             rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="light"
+            theme="colored"
+            transition={Bounce}
          />
       </div>
    );
