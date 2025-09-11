@@ -53,9 +53,11 @@
    font-size: 1.3rem;
    margin: 10px 0px 0px 0px;
    cursor: pointer;
+   text-align: center;
 }
 .scroll-card-author {
    font-size: 1.1rem;
    margin: 0px;
    text-decoration: underline;
+   text-align: center;
 }

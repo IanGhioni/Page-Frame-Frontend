@@ -18,6 +18,8 @@ const Navbar = () => {
       navigate("/buscarContenido/" + nombre + "/0");
    };
 
+   
+
    return (
       <>
          <div className="navbar">
@@ -25,6 +27,7 @@ const Navbar = () => {
                className="navbar-logo"
                src={logo}
                alt="Logo"
+               onClick={() => navigate("/")}
             />
             <div className="navbar-search">
                <form className="navbar-searchbar" onSubmit={handleSubmit}>

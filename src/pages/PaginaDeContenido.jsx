@@ -39,7 +39,7 @@ const PaginaDeContenido = () => {
     }, [])
 
     return(
-        <>
+        <div className="container">
         <GoBackButton />
         {error ? (
             <div>
@@ -53,7 +53,7 @@ const PaginaDeContenido = () => {
             <div>
                 
                 <Navbar/>
-                <div className="container">
+                <div className="container-contenido">
                     <div className="container-header">
                         <div className="container-img">
                         <Image 
@@ -113,7 +113,7 @@ const PaginaDeContenido = () => {
             </div>
             : <>Cargando</>
         }
-        </>
+        </div>
     )
 }
 

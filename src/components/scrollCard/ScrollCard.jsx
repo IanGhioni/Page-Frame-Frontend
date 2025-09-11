@@ -10,8 +10,8 @@ const ScrollCard = ({ contenido }) => {
    };
 
 const truncatedTitle =
-    contenido.titulo.length > 50
-        ? contenido.titulo.slice(0, 50) + "..."
+    contenido.titulo.length > 40
+        ? contenido.titulo.slice(0, 40) + "..."
         : contenido.titulo;
 
    return (

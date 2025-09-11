@@ -26,7 +26,7 @@ const Home = () => {
    const loader = useRef(null);
 
    useEffect(() => {
-      API.explorarContenidos(1)
+      API.explorarContenidos(0)
          .then((response) => {
             setPageDTO(response.data);
             setLoading(false);
@@ -57,7 +57,7 @@ const [isFetching, setIsFetching] = useState(false);
    };
 
    return (
-      <div>
+      <div className="container">
          <Navbar />
          {loading ? (
             <div className="loading-container">
