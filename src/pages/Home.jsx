@@ -18,13 +18,6 @@ const Home = () => {
       totalDeElementos: 0,
    });
 
-   const navigate = useNavigate();
-   const goToPage = (page) => {
-      navigate(page);
-   };
-
-   const loader = useRef(null);
-
    useEffect(() => {
       API.explorarContenidos(0)
          .then((response) => {
@@ -35,7 +28,8 @@ const Home = () => {
             console.error("Error al cargar los contenidos");
          });
    }, []);
-const [isFetching, setIsFetching] = useState(false);
+
+   const [isFetching, setIsFetching] = useState(false);
    const fetchData = () => {
       if (pageDTO.numeroDePagina < pageDTO.totalDePaginas ||
          isFetching
