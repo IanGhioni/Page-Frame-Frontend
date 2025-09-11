@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import "./loginandregister.css";
 
 const Login = () => {
    const [showPassword, setShowPassword] = useState(false);
@@ -28,6 +29,14 @@ const Login = () => {
       });
 
    const [error, setError] = useState("");
+   const handleLogin = () => {
+   if (username.trim() === "" || password.trim() === "") {
+      setError("Por favor completa todos los campos");
+      return;
+   }
+   setError("");
+   postLogin(username, password);
+};
 
    function postLogin(username, password) {
       API.loginUser({ username: username, password: password })
@@ -83,13 +92,13 @@ const Login = () => {
          <button
             className="submit-btn"
             type="button"
-            onClick={() => postLogin(username, password)}
+            onClick={handleLogin}
          >
             Iniciar sesion
          </button>
-         <h3 className="redirect-text" onClick={() => navigate("/login")}>
+         <h3 className="redirect-text" onClick={() => navigate("/register")}>
             No tienes una cuenta?{" "}
-            <span className="register-link">Registrate!</span>
+            <span className="redirect-link" onClick={() => navigate("/register")} >Registrate!</span>
          </h3>
          <ToastContainer
             position="bottom-right"

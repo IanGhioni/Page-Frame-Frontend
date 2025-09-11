@@ -179,9 +179,9 @@ const Register = () => {
          <button className="submit-btn" type="button" onClick={handleRegister}>
             Create account
          </button>
-         <h3 className="redirect-text" onClick={() => navigate("/register")}>
+         <h3 className="redirect-text" onClick={() => navigate("/login")}>
             Ya tienes una cuenta?
-            <span className="register-link"> Inicia sesión!</span>
+            <span className="redirect-link" onClick={() => navigate("/login")} > Inicia sesión!</span>
          </h3>
          <ToastContainer
             position="bottom-right"
