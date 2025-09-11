@@ -1,4 +1,3 @@
-
 import { BiMoviePlay } from "react-icons/bi";
 import { TbBooks } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";

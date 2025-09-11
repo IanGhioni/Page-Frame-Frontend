@@ -30,7 +30,6 @@ const Home = () => {
          .then((response) => {
             setPageDTO(response.data);
             setLoading(false);
-            console.log(response.data);
          })
          .catch(() => {
             console.error("Error al cargar los contenidos");

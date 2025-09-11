@@ -78,7 +78,6 @@
 .form-input:focus-visible,
 .form-input-long:focus-visible,
 .form-input-text:focus-visible {
-   outline: none;
    border: 2px solid #7872a8;
 }
 .form-input::placeholder,
@@ -154,4 +153,8 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-input-text {
    border-radius: 30px;
    font-family: "Trebuchet MS", sans-serif;
+}
+
+.password-container {
+   display: flex;
 }

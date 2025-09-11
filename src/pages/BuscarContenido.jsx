@@ -9,6 +9,7 @@ import "./BuscarContenido.css"
 import CardContenido from "../components/cardContenido/CardContenido";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 
+
 const BuscarContenido = () => {
     const params = useParams();
     const [dataPagina, setDataPagina] = useState({});
@@ -46,7 +47,7 @@ const BuscarContenido = () => {
     Despues peleo para ver como acomodar esto debajo de Resultados de buscar "{params.titulo}"
     */
     return (
-        <div>
+        <div className="buscar-contenido-container">
             <GoBackButton />
             <Navbar />
             {loading ? (
