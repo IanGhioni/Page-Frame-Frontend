@@ -18,15 +18,8 @@ const Home = () => {
       totalDeElementos: 0,
    });
 
-   const navigate = useNavigate();
-   const goToPage = (page) => {
-      navigate(page);
-   };
-
-   const loader = useRef(null);
-
    useEffect(() => {
-      API.explorarContenidos(1)
+      API.explorarContenidos(0)
          .then((response) => {
             setPageDTO(response.data);
             setLoading(false);
@@ -35,7 +28,8 @@ const Home = () => {
             console.error("Error al cargar los contenidos");
          });
    }, []);
-const [isFetching, setIsFetching] = useState(false);
+
+   const [isFetching, setIsFetching] = useState(false);
    const fetchData = () => {
       if (pageDTO.numeroDePagina < pageDTO.totalDePaginas ||
          isFetching
@@ -57,7 +51,7 @@ const [isFetching, setIsFetching] = useState(false);
    };
 
    return (
-      <div>
+      <div className="container">
          <Navbar />
          {loading ? (
             <div className="loading-container">
