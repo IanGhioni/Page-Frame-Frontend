@@ -47,7 +47,7 @@ const BuscarContenido = () => {
     Despues peleo para ver como acomodar esto debajo de Resultados de buscar "{params.titulo}"
     */
     return (
-        <div className="buscar-contenido-container">
+        <div className="container">
             <GoBackButton />
             <Navbar />
             {loading ? (
