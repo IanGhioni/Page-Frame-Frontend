@@ -47,7 +47,6 @@
 
 .form-label {
    color: #675fa5;
-   font-family: "Trebuchet MS", sans-serif;
    font-weight: 600;
    font-size: 20px;
    padding-left: 3px;
@@ -70,7 +69,6 @@
 }
 
 .select-option {
-   font-family: "Trebuchet MS", sans-serif;
    font-size: 16px;
    color: #231f20;
 }
@@ -152,9 +150,4 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .form-input-text {
    border-radius: 30px;
-   font-family: "Trebuchet MS", sans-serif;
-}
-
-.password-container {
-   display: flex;
 }

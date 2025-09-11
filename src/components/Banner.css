@@ -1,0 +1,65 @@
+.texturizer-content {
+  padding: 1em;
+}
+
+#ransomizer-n3zcjhub .ts,
+#ransomizer-n3zcjhub .tw,
+#ransomizer-n3zcjhub .tc {
+  display: inline-block;
+}
+
+#ransomizer-n3zcjhub .ts {
+  line-height: normal;
+  word-spacing: 0.7em;
+}
+
+#ransomizer-n3zcjhub .ts .tw .tc div::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#ransomizer-n3zcjhub .tc.mlvx-0  { filter: drop-shadow(1px -1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-0 div::before  { background-image: url(https://i.imgur.com/E5z77Fj.png); background-position: left top; }
+#ransomizer-n3zcjhub .tc.mlvx-0 div { background-color: #57608d; color: #ffffff; font-family: 'Abril Fatface', serif; rotate: -10deg; top: 0.05em; clip-path: polygon(3% 3%,96% 3%,100% 43%,90% 89%,9% 98%,0 40%); font-size: 110%; text-transform: uppercase; margin: 0.1em; padding: 0.1em; text-shadow: 0.03em 0.03em #1a1a1a; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-1  { filter: drop-shadow(-1px 1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-1 div::before  { background-image: url(https://i.imgur.com/6ILZOkO.png); background-position: left bottom; }
+#ransomizer-n3zcjhub .tc.mlvx-1 div { background-color: #be5940; color: #ffffff; font-family: 'Cabin', serif; rotate: -9deg; top: -0.06em; clip-path: polygon(3% 10%,89% 4%,100% 33%,94% 96%,0 95%,0 57%); font-size: 100%; text-transform: lowercase; margin: 0.1em; padding: 0.2em; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-2  { filter: drop-shadow(1px 1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-2 div::before  { background-image: url(https://i.imgur.com/nIRJZjA.png); background-position: left center; }
+#ransomizer-n3zcjhub .tc.mlvx-2 div { background-color: #ac3434; color: #ffffff; font-family: 'Rubik', serif; rotate: -1deg; clip-path: polygon(9% 1%,100% 9%,100% 66%,93% 90%,2% 97%,0 81%); font-size: 110%; font-weight: bold; margin: 0.1em; padding: 0.2em; text-shadow: 0.03em 0.03em #1a1a1a; paint-order: stroke fill; line-height: 75%; padding-bottom: 0.3em; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-3  { filter: drop-shadow(1px 1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-3 div::before  { background-image: url(https://i.imgur.com/1wxqouY.png); background-position: right center; }
+#ransomizer-n3zcjhub .tc.mlvx-3 div { background-color: #59949f; color: #000000; font-family: 'Rubik', serif; rotate: -6deg; top: 0.05em; clip-path: polygon(9% 11%,90% 0,100% 16%,93% 95%,0 97%,0 59%); font-size: 100%; margin: 0.1em; padding: 0.2em; text-shadow: -0.03em 0.03em #e6e6e6; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-4  { filter: drop-shadow(1px 1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-4 div::before  { background-image: url(https://i.imgur.com/b3FJONj.png); background-position: left top; }
+#ransomizer-n3zcjhub .tc.mlvx-4 div { background-color: #c29655; color: #000000; font-family: 'Lobster', serif; rotate: 7deg; top: 0.08em; clip-path: polygon(10% 8%,94% 10%,100% 92%,98% 100%,11% 93%,0 69%); font-size: 100%; font-style: italic; text-transform: uppercase; margin: 0.1em; padding: 0.2em; -webkit-text-stroke: 0.06em #e6e6e6; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-5  { filter: drop-shadow(-1px -1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-5 div::before  { background-image: url(https://i.imgur.com/6ILZOkO.png); background-position: center top; }
+#ransomizer-n3zcjhub .tc.mlvx-5 div { background-color: #d7beab; color: #140e09; font-family: 'Rubik', serif; rotate: -7deg; top: 0.03em; clip-path: polygon(0 11%,91% 9%,100% 73%,92% 96%,9% 100%,0 81%); font-size: 110%; font-weight: bold; text-transform: lowercase; margin: 0.1em; padding: 0.2em; text-shadow: 0.03em 0.03em #f8f4f0; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-6  { filter: drop-shadow(-1px 1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-6 div::before  { background-image: url(https://i.imgur.com/h2wsr9q.png); background-position: left center; }
+#ransomizer-n3zcjhub .tc.mlvx-6 div { background-color: #f4f1ec; color: #4e422d; font-family: 'Germania One', serif; rotate: -9deg; top: -0.08em; clip-path: polygon(0 2%,91% 11%,100% 1%,90% 95%,5% 92%,0 66%); font-size: 110%; font-weight: lighter; text-transform: uppercase; margin: 0.1em; padding: 0.1em; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-7  { filter: drop-shadow(1px -1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-7 div::before  { background-image: url(https://i.imgur.com/b3FJONj.png); background-position: right bottom; }
+#ransomizer-n3zcjhub .tc.mlvx-7 div { background-color: #57608d; color: #ffffff; font-family: 'Crimson Pro', serif; rotate: -1deg; top: 0.07em; clip-path: polygon(5% 3%,99% 9%,100% 49%,95% 95%,4% 91%,0 0); font-size: 100%; margin: 0.1em; padding: 0.2em; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-8  { filter: drop-shadow(1px -1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-8 div::before  { background-image: url(https://i.imgur.com/IcV8Q3G.png); background-position: center top; }
+#ransomizer-n3zcjhub .tc.mlvx-8 div { background-color: #d7beab; color: #140e09; font-family: 'Cabin', serif; rotate: 10deg; top: 0.08em; clip-path: polygon(1% 2%,90% 10%,100% 63%,96% 91%,6% 91%,0 41%); font-size: 110%; text-transform: uppercase; margin: 0.1em; padding: 0.2em; paint-order: stroke fill; line-height: 75%; position: relative; }
+
+#ransomizer-n3zcjhub .tc.mlvx-9  { filter: drop-shadow(1px 1px 1px #666); }
+#ransomizer-n3zcjhub .tc.mlvx-9 div::before  { background-image: url(https://i.imgur.com/nIRJZjA.png); background-position: left center; }
+#ransomizer-n3zcjhub .tc.mlvx-9 div { background-color: #a582b7; color: #000000; font-family: 'Pacifico', serif; rotate: -3deg; top: -0.06em; clip-path: polygon(11% 11%,92% 11%,100% 38%,96% 92%,7% 90%,0 18%); font-size: 100%; font-weight: bold; text-transform: lowercase; margin: 0.1em; padding: 0.2em; paint-order: stroke fill; line-height: 75%; position: relative; }
