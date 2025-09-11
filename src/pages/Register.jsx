@@ -177,7 +177,7 @@ const Register = () => {
          </div>
          <span className="err">{error}</span>
          <button className="submit-btn" type="button" onClick={handleRegister}>
-            Create account
+            Crear cuenta
          </button>
          <h3 className="redirect-text" onClick={() => navigate("/login")}>
             Ya tienes una cuenta?
