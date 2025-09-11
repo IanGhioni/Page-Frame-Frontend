@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url('/src/assets/cardboard.png');
 }
 
 h1 {
@@ -65,4 +66,41 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.heart-pf {
+   background-image: url("/src/assets/heart.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   width: 270px;
+   height: 270px;
+   position: absolute;
+   top: -30px;
+   left: -40px;
+   animation: float 4s ease-in-out infinite;
+}
+
+.star-pf {
+   background-image: url("/src/assets/star.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   width: 450px;
+   height: 450px;
+   position: absolute;
+   bottom: -180px;
+   right: -190px;
+   animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+   0%,
+   100% {
+      rotate: 0deg;
+   }
+   50% {
+      rotate: 15deg;
+   }
 }

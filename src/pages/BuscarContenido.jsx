@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "../components/paginator.css"
 import "./BuscarContenido.css"
 import CardContenido from "../components/cardContenido/CardContenido";
+import GoBackButton from "../components/GoBackButton/GoBackButton";
 
 const BuscarContenido = () => {
     const params = useParams();
@@ -20,7 +21,6 @@ const BuscarContenido = () => {
         try {
             setLoading(true); 
             const res = await buscarPorNombre(params.titulo, params.pagina, rows);
-            console.log("📌 Datos del back:", res);
             setDataPagina(res);
             setFirst(res.numeroDePagina * rows); 
         } catch (err) {
@@ -47,10 +47,11 @@ const BuscarContenido = () => {
     */
     return (
         <div>
+            <GoBackButton />
             <Navbar />
             {loading ? (
             <div className="loading-container">
-                <h2>Cargando resultados</h2>
+                <h2>Cargando resultados...</h2>
             </div>
             ) :
             dataPagina.resultados && dataPagina.resultados.length > 0 ? (

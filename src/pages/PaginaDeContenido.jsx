@@ -7,6 +7,7 @@ import "./PaginaDeContenido.css"
 import bookIcon from "../assets/book-icon.svg"
 import movieIcon from "../assets/movie-icon-small.svg"
 import RatingReadOnly from "../components/rating/RatingReadOnly";
+import GoBackButton from "../components/GoBackButton/GoBackButton";
 
 
 const PaginaDeContenido = () => {
@@ -39,6 +40,7 @@ const PaginaDeContenido = () => {
 
     return(
         <>
+        <GoBackButton />
         {error ? (
             <div>
                 <Navbar/>

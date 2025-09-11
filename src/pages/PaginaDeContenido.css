@@ -14,7 +14,8 @@
     gap: 10px;
     align-self: flex-start;
     justify-content: space-around;
-    padding-top: 80px;
+    padding: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/002/743/214/non_2x/realistic-crumpled-paper-texture-background-free-vector.jpg");
 }
 
 .container-img {

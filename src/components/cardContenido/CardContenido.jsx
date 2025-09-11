@@ -2,7 +2,6 @@ import "./contenido.css"
 import bookIcon from "../../assets/book-icon.svg"
 import movieIcon from "../../assets/movie-icon-small.svg"
 import { useNavigate } from "react-router-dom";
-import Rating from '@mui/material/Rating';
 import RatingReadOnly from "../rating/RatingReadOnly";
 
 const CardContenido = ({contenido}) => {

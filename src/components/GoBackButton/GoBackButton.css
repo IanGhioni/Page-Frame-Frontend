@@ -1,0 +1,10 @@
+.goBack {
+   padding: 10px;
+   border: none;
+   cursor: pointer;
+   font-size: 40px;
+   position: absolute;
+   top: 70px;
+   left: 0px;
+   z-index: 1;
+}
