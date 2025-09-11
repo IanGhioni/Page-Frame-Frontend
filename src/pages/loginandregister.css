@@ -69,10 +69,11 @@
    justify-content: left;
    text-align: left;
    position: absolute;
-   padding: 10px;
+   padding: 14px;
    border-radius: 30px;
    box-sizing: border-box;
-   bottom: 110px;
+   bottom: 68px;
+   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .password-requirements {
    color: rgb(3, 0, 0);
