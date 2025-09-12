@@ -76,7 +76,7 @@ const Register = () => {
             })
             .catch((err) => {
                setError(err.response.data.title);
-               toast.error("Username ya en uso!", {
+               toast.error("Username o email ya en uso!", {
                   position: "bottom-right",
                   autoClose: 3000,
                   hideProgressBar: true,
