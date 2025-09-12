@@ -29,6 +29,7 @@ body {
    min-width: 320px;
    min-height: 100vh;
    background-image: url("/src/assets/cardboard.png");
+   font-family: "Trebuchet MS", sans-serif;
 }
 
 h1 {
@@ -112,4 +113,5 @@ button:hover {
    align-items: center;
    justify-content: center;
    box-sizing: border-box;
+   text-align: center;
 }

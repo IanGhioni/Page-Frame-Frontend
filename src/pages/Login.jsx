@@ -1,10 +1,11 @@
 import API from "../service/api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import "./loginandregister.css";
+import PageAndFrameBanner from "../components/PageAndFrameBanner";
 
 const Login = () => {
    const [showPassword, setShowPassword] = useState(false);
@@ -30,13 +31,13 @@ const Login = () => {
 
    const [error, setError] = useState("");
    const handleLogin = () => {
-   if (username.trim() === "" || password.trim() === "") {
-      setError("Por favor completa todos los campos");
-      return;
-   }
-   setError("");
-   postLogin(username, password);
-};
+      if (username.trim() === "" || password.trim() === "") {
+         setError("Por favor completa todos los campos");
+         return;
+      }
+      setError("");
+      postLogin(username, password);
+   };
 
    function postLogin(username, password) {
       API.loginUser({ username: username, password: password })
@@ -52,67 +53,83 @@ const Login = () => {
    }
 
    return (
-      <div className="form-container">
-         <h1 className="form-title">Login</h1>
-         <div className="form-group">
-            <label className="form-label">Username</label>
-            <input
-               className="form-input"
-               type="username"
-               name="username"
-               value={username}
-               onChange={(e) => setUsername(e.target.value)}
-               placeholder="Username"
-               required
-            />
-         </div>
+      <div className="background-pf">
+         <div className="heart-pf"></div>
+         <div className="star-pf"></div>
+         <div className="container">
+            <PageAndFrameBanner />
+            <div className="form-container login-register">
+               <h1 className="form-title">Login</h1>
+               <div className="all-inputs">
+               <div className="form-group">
+                  <label className="form-label">Username</label>
+                  <input
+                     className="form-input"
+                     type="username"
+                     name="username"
+                     value={username}
+                     onChange={(e) => setUsername(e.target.value)}
+                     placeholder="Username"
+                     required
+                  />
+               </div>
 
-         <div className="form-group">
-            <label className="form-label">Password</label>
-            <div className="password-container">
-               <input
-                  className="form-input password"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  required
-               />
-               <span
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  className="password-icon"
+               <div className="form-group">
+                  <label className="form-label">Password</label>
+                  <div className="password-container">
+                     <input
+                        className="form-input password"
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        required
+                     />
+                     <span
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="password-icon"
+                     >
+                        {showPassword ? <IoEyeOff  className="icon-eye"/> : <IoEye className="icon-eye"/>}
+                     </span>
+                  </div>
+               </div>
+               </div>
+               <span className="err">{error}</span>
+               <button
+                  className="login-register-btn"
+                  type="button"
+                  onClick={handleLogin}
                >
-                  {showPassword ? <IoEyeOff /> : <IoEye />}
-               </span>
+                  Iniciar sesion
+               </button>
+               <h3
+                  className="redirect-text"
+                  onClick={() => navigate("/register")}
+               >
+                  No tienes una cuenta?{" "}
+                  <span
+                     className="redirect-link"
+                     onClick={() => navigate("/register")}
+                  >
+                     Registrate!
+                  </span>
+               </h3>
+               <ToastContainer
+                  position="bottom-right"
+                  autoClose={3000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick={false}
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+                  transition={Bounce}
+               />
             </div>
          </div>
-
-         <span className="err">{error}</span>
-         <button
-            className="submit-btn"
-            type="button"
-            onClick={handleLogin}
-         >
-            Iniciar sesion
-         </button>
-         <h3 className="redirect-text" onClick={() => navigate("/register")}>
-            No tienes una cuenta?{" "}
-            <span className="redirect-link" onClick={() => navigate("/register")} >Registrate!</span>
-         </h3>
-         <ToastContainer
-            position="bottom-right"
-            autoClose={3000}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-            transition={Bounce}
-         />
       </div>
    );
 };

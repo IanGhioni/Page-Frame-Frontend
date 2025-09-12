@@ -5,6 +5,7 @@ import "../pages/CargarContenido.css";
 import "../pages/form.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GoBackButton from "../components/GoBackButton/GoBackButton";
 
 const CargarContenido = () => {
    const [formData, setFormData] = useState({
@@ -93,6 +94,7 @@ const CargarContenido = () => {
 
    return (
       <div className="background-pf">
+         <GoBackButton />
          <div className="heart-pf"></div>
          <div className="star-pf"></div>
          <div className="form-container">
