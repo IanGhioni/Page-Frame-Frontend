@@ -68,6 +68,11 @@ const Register = () => {
             .then((response) => {
                localStorage.setItem("token", response.data.token);
                localStorage.setItem("username", username);
+               API.getPorUsername(
+                              localStorage.getItem("username"),
+                           ).then((res) => {
+                              localStorage.setItem("id", res.data.id);
+                           });
                setError("");
                toast("Register completed");
                setTimeout(() => {
