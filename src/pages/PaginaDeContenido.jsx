@@ -21,7 +21,6 @@ const PaginaDeContenido = () => {
         try {
             const c = await buscarPorId(params.id)
             setContenido(c)
-            console.log(c)
         } catch (error) {
             setError(true)
         }
