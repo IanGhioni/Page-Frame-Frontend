@@ -19,19 +19,10 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
       API.getUsuarioPorId(idUsuario)
          .then((response) => {
             // Busca el contenido por id
-            console.log("Respuesta de API: 👮‍♀️", response.data);
             const contenido = response.data.contenidos.find(
                (c) => String(c.contenidoId) === String(idContenido)
             );
             setListaActual(contenido ? contenido.estado : null);
-            console.log(
-               "Contenido encontrado post setear en null: 😛",
-               contenido
-            );
-            console.log(
-               "Estado actual del contenido: 😎",
-               contenido ? contenido.estado : null
-            );
          })
          .catch((err) => {
             console.error("Error al obtener contenidos del usuario:", err);
@@ -44,7 +35,6 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
          .then(() => {
             setListaActual(nombreLista);
             setShowPopup(false);
-            console.log("Agregado a la lista: 👼", nombreLista);
          })
          .catch(() => alert("Error al agregar a la lista"));
    };
@@ -68,10 +58,7 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
          </button>
          {showPopup && (
             <div className="popup-agregarALista">
-               <h1
-                  onClick={handleClosePopup}
-                  className="popup-cancel-button"
-               >
+               <h1 onClick={handleClosePopup} className="popup-cancel-button">
                   x
                </h1>
                <h1 className="popup-title">Selecciona una lista:</h1>
@@ -94,7 +81,6 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
                      Quitar de lista
                   </button>
                )}
-               
             </div>
          )}
       </>
