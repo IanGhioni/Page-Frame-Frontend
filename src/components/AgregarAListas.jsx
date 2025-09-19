@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import API from "../service/api";
 import "./AgregarALista.css";
+import { useNavigate } from "react-router-dom";
 
 const listaOpcionesLibro = ["LEIDO", "QUIERO LEER"];
 const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
@@ -11,6 +12,8 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
 
    const handleAgregarClick = () => setShowPopup(true);
    const handleClosePopup = () => setShowPopup(false);
+   const navigate = useNavigate();
+   const goToLogin = () => navigate("/login");
 
    useEffect(() => {
       const idUsuario = localStorage.getItem("id");
@@ -25,7 +28,6 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
             setListaActual(contenido ? contenido.estado : null);
          })
          .catch((err) => {
-            console.error("Error al obtener contenidos del usuario:", err);
             setListaActual(null);
          });
    }, [idContenido]);
@@ -36,7 +38,7 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
             setListaActual(nombreLista);
             setShowPopup(false);
          })
-         .catch(() => alert("Error al agregar a la lista"));
+         .catch(goToLogin());
    };
 
    const handleQuitarDeLista = () => {
