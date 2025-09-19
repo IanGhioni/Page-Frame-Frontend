@@ -10,6 +10,7 @@ const getPorUsername = (username) => axios.get(`${base_url}/usuario/${username}`
 const getUsuarioPorId = (id) => axios.get(`${base_url}/usuario/id/${id}`)
 const eliminarContenidoDeLista = (idUser, idContenido) => axios.delete(`${base_url}/usuario/${idUser}/eliminarDeLista/${idContenido}`)
 const verLista = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/lista/${nombreLista}`)
+const valorarContenido = (idContenido, rating, idUser) => axios.post(`${base_url}/contenido/${idContenido}/valorar/${rating}/${idUser}`)
 
 export default {
     explorarContenidos,
@@ -19,5 +20,6 @@ export default {
     getPorUsername,
     getUsuarioPorId,
     eliminarContenidoDeLista,
-    verLista
+    verLista,
+    valorarContenido
 }

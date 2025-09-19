@@ -38,7 +38,7 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
             setListaActual(nombreLista);
             setShowPopup(false);
          })
-         .catch(goToLogin());
+         .catch(() => goToLogin());
    };
 
    const handleQuitarDeLista = () => {
