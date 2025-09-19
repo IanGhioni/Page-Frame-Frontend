@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Error404 from './pages/Error404';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Lista from './pages/Lista';
 
 
 import PaginaDeContenido from './pages/PaginaDeContenido';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<User />} />
+        <Route path="/user/lista/:nombreLista" element={<Lista />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>

@@ -1,25 +1,40 @@
 import { useNavigate } from "react-router-dom";
 import "./user.css";
 import Navbar from "../components/navBar/NavBar";
-import { useEffect } from "react";
-import API from "../service/api";
 
 const User = () => {
-    const navigate = useNavigate();
+   const navigate = useNavigate();
 
-    const logout = () => {
-        localStorage.clear();
-        navigate("/");
-    }
+   const logout = () => {
+      localStorage.clear();
+      navigate("/");
+   };
 
-  return (
-    <div>
-        <Navbar/>
-        <img className="profile-pic" src="src\assets\panda-pp.png" alt="Profile" />
-        <h2>holis {localStorage.getItem("username")}</h2>
-      <button onClick={logout}>Logout</button>
-    </div>
-  );
+   const irALista = (nombreLista) => {
+      navigate(`/user/lista/${nombreLista}`);
+   };
+
+   return (
+      <div>
+         <Navbar />
+         <img
+            className="profile-pic"
+            src="src\assets\panda-pp.png"
+            alt="Profile"
+         />
+         <h2>holis {localStorage.getItem("username")}</h2>
+         <button
+            onClick={logout}
+            style={{ backgroundColor: "skyblue", color: "black" }}
+         >
+            Logout
+         </button>
+         <button onClick={() => irALista("VISTO")}>VISTO</button>
+         <button onClick={() => irALista("QUIERO VER")}>QUIERO VER</button>
+         <button onClick={() => irALista("LEIDO")}>LEIDO</button>
+         <button onClick={() => irALista("QUIERO LEER")}>QUIERO LEER</button>
+      </div>
+   );
 };
 
 export default User;
