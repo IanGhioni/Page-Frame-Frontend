@@ -8,7 +8,7 @@ import bookIcon from "../assets/book-icon.svg"
 import movieIcon from "../assets/movie-icon-small.svg"
 import RatingReadOnly from "../components/rating/RatingReadOnly";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
-import API from "../service/api";
+import AgregarAListas from "../components/AgregarAListas";
 
 
 const PaginaDeContenido = () => {
@@ -37,25 +37,6 @@ const PaginaDeContenido = () => {
     useEffect(() => {
         fetchData()
     }, [])
-
-const agregarALista = (idContenido) => {
-    if (!localStorage.getItem("token")) {
-        alert("Debes iniciar sesión para agregar a tu lista");
-        return;
-    }
-    API.agregarALista(
-        localStorage.getItem("id"),
-        idContenido,
-        "LEIDO"
-    )
-    .then(() => {
-        alert("Contenido agregado a la lista LEIDO");
-    })
-    .catch((error) => {
-        console.error("Error al agregar a la lista:", error);
-        alert("Error al agregar a la lista");
-    });
-};
 
     return(
         <div className="container">
@@ -90,10 +71,10 @@ const agregarALista = (idContenido) => {
                                 }
                             }}    
                         />
-                        <button className="button-options" onClick={() =>agregarALista(contenido.id)}>Añadir a LEIDO</button>
-                        <button className="button-options" disabled>Marcar como visto</button>
+                        <AgregarAListas idContenido={contenido.id} esPelicula={contenido.isbn == ""} />
+                        {/* <button className="button-options" disabled>Marcar como visto</button>
                         <button className="button-options" disabled>Escribir review</button>
-                        <button className="button-options" disabled>Calificar ★</button>
+                        <button className="button-options" disabled>Calificar ★</button> */}
                         </div>
 
                         <div>
