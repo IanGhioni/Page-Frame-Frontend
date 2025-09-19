@@ -51,10 +51,7 @@ const Lista = () => {
             </>
          ) : (
             <div>
-               <h2>No se encontraron resultados</h2>
-               <button onClick={() => navigate("/cargarContenido")}>
-                  Cargar contenido
-               </button>
+               <h1>Esta lista está vacía :(</h1>
             </div>
          )}
       </div>
