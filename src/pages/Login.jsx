@@ -42,8 +42,13 @@ const Login = () => {
    function postLogin(username, password) {
       API.loginUser({ username: username, password: password })
          .then((response) => {
-            localStorage.setItem("token", response.headers.authorization);
+            localStorage.setItem("token", "Bearer " + response.data.token);
             localStorage.setItem("username", username);
+            API.getPorUsername(
+               localStorage.getItem("username"),
+            ).then((res) => {
+               localStorage.setItem("id", res.data.id);
+            });
             navigate("/");
          })
          .catch((err) => {

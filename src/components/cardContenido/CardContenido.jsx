@@ -3,6 +3,7 @@ import bookIcon from "../../assets/book-icon.svg"
 import movieIcon from "../../assets/movie-icon-small.svg"
 import { useNavigate } from "react-router-dom";
 import RatingReadOnly from "../rating/RatingReadOnly";
+import AgregarAListas from "../AgregarAListas";
 
 const CardContenido = ({contenido}) => {
     const navigate = useNavigate()
@@ -48,6 +49,7 @@ const CardContenido = ({contenido}) => {
             <p className="contenido-publicacion">
             Publicado en {contenido.publicacion}
             </p>
+            <AgregarAListas idContenido={contenido.id} esPelicula={contenido.isbn == ""} />
         </div>
         <div className="icon-imagen">
             <img

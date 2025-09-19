@@ -8,6 +8,7 @@ import bookIcon from "../assets/book-icon.svg"
 import movieIcon from "../assets/movie-icon-small.svg"
 import RatingReadOnly from "../components/rating/RatingReadOnly";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
+import AgregarAListas from "../components/AgregarAListas";
 
 
 const PaginaDeContenido = () => {
@@ -20,7 +21,6 @@ const PaginaDeContenido = () => {
         try {
             const c = await buscarPorId(params.id)
             setContenido(c)
-            console.log(c)
         } catch (error) {
             setError(true)
         }
@@ -71,10 +71,10 @@ const PaginaDeContenido = () => {
                                 }
                             }}    
                         />
-                        <button className="button-options" disabled>Añadir a lista</button>
-                        <button className="button-options" disabled>Marcar como visto</button>
+                        <AgregarAListas idContenido={contenido.id} esPelicula={contenido.isbn == ""} />
+                        {/* <button className="button-options" disabled>Marcar como visto</button>
                         <button className="button-options" disabled>Escribir review</button>
-                        <button className="button-options" disabled>Calificar ★</button>
+                        <button className="button-options" disabled>Calificar ★</button> */}
                         </div>
 
                         <div>
