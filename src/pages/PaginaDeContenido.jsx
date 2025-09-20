@@ -9,9 +9,9 @@ import movieIcon from "../assets/movie-icon-small.svg";
 import RatingReadOnly from "../components/rating/RatingReadOnly";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import AgregarAListas from "../components/AgregarAListas";
-import { Rating } from "@mui/material";
 import API from "../service/api";
 import { useNavigate } from "react-router-dom";
+import ReviewGenerator from "../components/ReviewGenerator";
 
 const PaginaDeContenido = () => {
    const params = useParams();
@@ -124,77 +124,56 @@ const PaginaDeContenido = () => {
                            idContenido={contenido.id}
                            esPelicula={contenido.isbn == ""}
                         />
-                        <Rating
-                           name="simple-controlled"
-                           value={value}
-                           precision={0.5}
-                           onChange={(event, newValue) => {
-                              newValue === null
-                                 ? setValue(value)
-                                 : setValue(newValue);
-                              setShouldSendReview(true);
-                           }}
-                           size="large"
+                        <ReviewGenerator
+                           contenidoId={contenido.id}
+                           reviews={contenido.reviews}
+                           token={token}
+                           goToLogin={goToLogin}
                         />
-                        {token && value !== 0 && (
-                           <button
-                              onClick={() => {
-                                 setValue(0);
-                                 setShouldSendReview(true);
-                              }}
-                              style={{
-                                 backgroundColor: "#ff4d4d",
-                                 color: "white",
-                              }}
-                           >
-                              eliminar reseña
-                           </button>
-                        )}
                      </div>
-
                      <div>
                         <div className="container-header-titulo-icon">
                            <div className="container-header-central">
-                              <text className="header-titulo">
+                              <p className="header-titulo">
                                  {contenido.titulo}
-                              </text>
-                              <text className="header-autores">
+                              </p>
+                              <p className="header-autores">
                                  de {contenido.autores}
-                              </text>
-                              <text className="header-generos">
+                              </p>
+                              <p className="header-generos">
                                  Géneros: {contenido.categoria}
-                              </text>
+                              </p>
                               <div className="container-puntaje">
                                  <RatingReadOnly
                                     value={contenido.ratingAverage}
                                  />
-                                 <text className="header-puntaje">
+                                 <p className="header-puntaje">
                                     {contenido.ratingAverage}
-                                 </text>
-                                 <text className="header-reseñas">
+                                 </p>
+                                 <p className="header-reseñas">
                                     {" "}
                                     de {contenido.ratingCount} reseñas
-                                 </text>
+                                 </p>
                               </div>
-                              <text className="header-publicacion">
+                              <p className="header-publicacion">
                                  Publicado en el año {contenido.publicacion}
-                              </text>
+                              </p>
                               {contenido.isbn === "" ? (
-                                 <text className="header-largo">
+                                 <p className="header-largo">
                                     {" "}
                                     Duracion: {contenido.largo} minutos
-                                 </text>
+                                 </p>
                               ) : (
-                                 <text className="header-largo">
+                                 <p className="header-largo">
                                     {contenido.largo} paginas
-                                 </text>
+                                 </p>
                               )}
                            </div>
                            <img src={icon()} className="icon" />
                         </div>
                         <div className="div-descripcion">
                            <h4 className="titulo-descripcion">Descripcion:</h4>
-                           <t>{contenido.descripcion}</t>
+                           <p>{contenido.descripcion}</p>
                         </div>
                      </div>
                   </div>
