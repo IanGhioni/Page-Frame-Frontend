@@ -18,8 +18,11 @@ const PaginaDeContenido = () => {
    const [contenido, setContenido] = useState(null);
    const [error, setError] = useState(false);
    const [value, setValue] = useState(0);
+   const [shouldSendReview, setShouldSendReview] = useState(false);
+
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
+   const token = localStorage.getItem("token");
 
    const icon = () => {
       if (contenido.isbn == "") {
@@ -39,16 +42,17 @@ const PaginaDeContenido = () => {
    };
 
    const setValoracionUsuario = () => {
-   if (localStorage.getItem("token") !== null && contenido) {
-      // Filtra todas las reviews del usuario actual
-      const userReviews = contenido.reviews.filter(
-         (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
-      );
-      // Toma la última review (puedes cambiar la lógica si necesitas la más alta, etc.)
-      const lastReview = userReviews.length > 0 ? userReviews[userReviews.length - 1] : null;
-      setValue(lastReview ? lastReview.valoracion : 0);
-   }
-};
+      if (token !== null && contenido) {
+         // Filtra todas las reviews del usuario actual
+         const userReviews = contenido.reviews.filter(
+            (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
+         );
+         // Toma la última review (puedes cambiar la lógica si necesitas la más alta, etc.)
+         const lastReview =
+            userReviews.length > 0 ? userReviews[userReviews.length - 1] : null;
+         setValue(lastReview ? lastReview.valoracion : 0);
+      }
+   };
 
    useEffect(() => {
       fetchData();
@@ -59,21 +63,24 @@ const PaginaDeContenido = () => {
    }, [contenido]);
 
    useEffect(() => {
-      if (localStorage.getItem("token") !== null) {
-         if (value !== 0) {
-            console.log("Enviar reseña:  ✨✨✨", value);
-            API.valorarContenido(params.id, value, localStorage.getItem("id"))
-               .then(() => {
-                  console.log("Reseña enviada con éxito 🐱‍🏍");
-               })
-               .catch(() => {
-                  console.error("Error al enviar la reseña ☠");
-               });
+      if (shouldSendReview) {
+         if (token == null) {
+            goToLogin();
+            setShouldSendReview(false);
+            return;
          }
-      } else {
-         goToLogin();
+         // Solo envía si el usuario lo pidió
+         console.log("Enviar reseña:  ✨✨✨", value);
+         API.valorarContenido(params.id, value, localStorage.getItem("id"))
+            .then(() => {
+               console.log("Reseña enviada con éxito 🐱‍🏍");
+            })
+            .catch(() => {
+               console.error("Error al enviar la reseña ☠");
+            });
+         setShouldSendReview(false); // Resetea el flag
       }
-   }, [value]);
+   }, [shouldSendReview, value, token]);
 
    return (
       <div className="container">
@@ -122,10 +129,27 @@ const PaginaDeContenido = () => {
                            value={value}
                            precision={0.5}
                            onChange={(event, newValue) => {
-                              setValue(newValue);
+                              newValue === null
+                                 ? setValue(value)
+                                 : setValue(newValue);
+                              setShouldSendReview(true);
                            }}
                            size="large"
                         />
+                        {token && value !== 0 && (
+                           <button
+                              onClick={() => {
+                                 setValue(0);
+                                 setShouldSendReview(true);
+                              }}
+                              style={{
+                                 backgroundColor: "#ff4d4d",
+                                 color: "white",
+                              }}
+                           >
+                              eliminar reseña
+                           </button>
+                        )}
                      </div>
 
                      <div>
