@@ -61,7 +61,7 @@ const PaginaDeContenido = () => {
 
    useEffect(() => {
       setValoracionUsuario();
-   }, [contenido]);
+   }, [contenido, onRefresh]);
 
    useEffect(() => {
       if (shouldSendReview) {

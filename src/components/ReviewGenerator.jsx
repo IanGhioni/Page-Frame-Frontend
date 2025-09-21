@@ -35,12 +35,13 @@ const ReviewGenerator = ({
          API.valorarContenido(contenidoId, value, localStorage.getItem("id"))
             .then(() => {
                console.log("Reseña de " + value + " enviada con éxito 🐱‍🏍");
+               setOnRefresh(!onRefresh);
             })
             .catch(() => {
                console.error("Error al enviar la reseña ☠");
             });
          setShouldSendReview(false);
-         setOnRefresh(!onRefresh);
+         
          if (!consumido) {
             const nombreLista = esPelicula ? 'VISTO' : 'LEIDO';
             API.agregarALista(localStorage.getItem("id"), contenidoId, nombreLista)
@@ -59,6 +60,7 @@ const ReviewGenerator = ({
       }
       API.eliminarReview(contenidoId, localStorage.getItem("id"))
          .then(() => {
+            setOnRefresh(!onRefresh);
             console.log("Reseña eliminada 🗑🗑");
          })
          .catch(() => {
