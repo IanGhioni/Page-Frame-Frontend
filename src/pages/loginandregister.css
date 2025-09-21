@@ -99,3 +99,116 @@
    font-size: 1.1rem;
    margin-top: 0px;
 }
+
+/* Estilos de foto de perfil */
+.foto-perfil-selector-container {
+   position: relative;
+   max-width: 550px;
+   width: 100%;
+   margin: 20px auto 0 auto;
+   padding: 10px 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.foto-perfil-scroll {
+   display: flex;
+   overflow-x: auto;
+   gap: 32px;
+   padding: 8px 0;
+   scrollbar-width: thin;
+   scroll-behavior: smooth;
+   width: 100%;
+   max-width: 470px;
+}
+
+.foto-perfil-option {
+   position: relative;
+   width: 90px;
+   height: 110px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   cursor: pointer;
+   transition: transform 0.3s;
+}
+
+.foto-perfil-img {
+   width: 80px;
+   height: 80px;
+   object-fit: contain;
+   border-radius: 50%;
+   position: relative;
+   z-index: 2;
+   transition: scale 0.3s, box-shadow 0.3s;
+   box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+.foto-perfil-shadow {
+   position: absolute;
+   left: 50%;
+   top: 80px;
+   transform: translateX(-50%);
+   width: 54px;
+   height: 18px;
+   border-radius: 50%;
+   background: rgba(0,0,0,0.22);
+   filter: blur(2.5px);
+   z-index: 1;
+   box-shadow: 0 4px 12px 0 rgba(0,0,0,0.25);
+   opacity: 1;
+   pointer-events: none;
+}
+
+.foto-perfil-label {
+   margin-top: 8px;
+   font-size: 1rem;
+   color: #333;
+   font-weight: 500;
+   text-align: center;
+}
+
+.foto-perfil-option.selected .foto-perfil-img {
+   scale: 1.18;
+   box-shadow: 0 4px 24px rgba(87, 132, 182, 0.25);
+}
+
+.foto-perfil-option:not(.selected) .foto-perfil-img {
+   filter: grayscale(30%) brightness(0.6);
+   scale: 0.93;
+   transition: scale 0.3s, filter 0.3s;
+}
+
+.scroll-button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background: rgba(255,255,255,0.85);
+   border: none;
+   border-radius: 50%;
+   width: 36px;
+   height: 36px;
+   font-size: 1.7rem;
+   color: #5684b6;
+   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+   cursor: pointer;
+   z-index: 10;
+   transition: background 0.2s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.scroll-button.left {
+   left: 0;
+}
+
+.scroll-button.right {
+   right: 0;
+}
+
+.scroll-button:hover {
+   background: #e3e8f0;
+}

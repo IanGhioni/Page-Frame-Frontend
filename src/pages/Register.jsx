@@ -1,11 +1,18 @@
 import API from "../service/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import PageAndFrameBanner from "../components/PageAndFrameBanner";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import rana from "../assets/fotos_perfil/rana.png";
+import gato from "../assets/fotos_perfil/gato.png";
+import panda from "../assets/fotos_perfil/panda.png";
+import mariposa from "../assets/fotos_perfil/mariposa.png";
+import vaquita from "../assets/fotos_perfil/vaquita.png";
+import perro from "../assets/fotos_perfil/perro.png";
+import ballena from "../assets/fotos_perfil/ballena.png";
 
 import "./loginandregister.css";
 
@@ -14,6 +21,7 @@ const Register = () => {
    const [username, setUsername] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+   const [fotoPerfil, setFotoPerfil] = useState("panda");
    const navigate = useNavigate();
    const [getRegisterData, setRegisterData] = useState(null);
    const [error, setError] = useState("");
@@ -51,7 +59,7 @@ const Register = () => {
          return;
       }
       setError("");
-      setRegisterData({ username, email, password });
+      setRegisterData({ username, email, password, fotoPerfil });
    };
 
    useEffect(() => {
@@ -59,20 +67,22 @@ const Register = () => {
       if (token != null) {
          navigate("/");
       }
-      const registerUser = (username, email, password) => {
+      const registerUser = (username, email, password, fotoPerfil) => {
          API.registerUser({
             username: username,
             email: email,
             password: password,
+            fotoPerfil: fotoPerfil,
          })
             .then((response) => {
                localStorage.setItem("token", response.data.token);
                localStorage.setItem("username", username);
-               API.getPorUsername(
-                              localStorage.getItem("username"),
-                           ).then((res) => {
-                              localStorage.setItem("id", res.data.id);
-                           });
+               localStorage.setItem("fotoPerfil", fotoPerfil);
+               API.getPorUsername(localStorage.getItem("username")).then(
+                  (res) => {
+                     localStorage.setItem("id", res.data.id);
+                  }
+               );
                setError("");
                toast("Register completed");
                setTimeout(() => {
@@ -95,7 +105,7 @@ const Register = () => {
             });
       };
       if (getRegisterData) {
-         registerUser(username, email, password);
+         registerUser(username, email, password, fotoPerfil);
       }
 
       setRegisterData();
@@ -131,10 +141,13 @@ const Register = () => {
    }
 
    useEffect(() => {
-   if (error === "La contraseña no es lo suficientemente segura" && isPasswordSecure(password)) {
-      setError("");
-   }
-}, [password, error]);
+      if (
+         error === "La contraseña no es lo suficientemente segura" &&
+         isPasswordSecure(password)
+      ) {
+         setError("");
+      }
+   }, [password, error]);
 
    return (
       <div className="background-pf">
@@ -244,6 +257,10 @@ const Register = () => {
                            </div>
                         </div>
                      )}
+                     <FotoPerfilSelector
+                        fotoPerfil={fotoPerfil}
+                        setFotoPerfil={setFotoPerfil}
+                     />
                   </div>
                </div>
                <span className="err">{error}</span>
@@ -260,7 +277,6 @@ const Register = () => {
                      className="redirect-link"
                      onClick={() => navigate("/login")}
                   >
-                     
                      Inicia sesión!
                   </span>
                </h3>
@@ -279,6 +295,55 @@ const Register = () => {
                />
             </div>
          </div>
+      </div>
+   );
+};
+
+const perfilOptions = [
+   { value: "panda", img: panda },
+   { value: "perro", img: perro },
+   { value: "gato", img: gato },
+   { value: "mariposa", img: mariposa },
+   { value: "rana", img: rana },
+   { value: "vaquita", img: vaquita },
+   { value: "ballena", img: ballena },
+];
+const FotoPerfilSelector = ({ fotoPerfil, setFotoPerfil }) => {
+   const scrollRef = useRef();
+
+   const scroll = (direction) => {
+      const container = scrollRef.current;
+      const scrollAmount = 160; // Más grande para que se note el cambio
+      container.scrollBy({
+         left: scrollAmount * direction,
+         behavior: "smooth",
+      });
+   };
+
+   return (
+      <div className="foto-perfil-selector-container">
+         <button className="scroll-button left" onClick={() => scroll(-1)}>
+            &#10094;
+         </button>
+         <div className="foto-perfil-scroll" ref={scrollRef}>
+            {perfilOptions.map((option) => (
+               <div
+                  key={option.value}
+                  className={`foto-perfil-option${fotoPerfil === option.value ? " selected" : ""}`}
+                  onClick={() => setFotoPerfil(option.value)}
+               >
+                  <div className="foto-perfil-shadow"></div>
+                  <img
+                     src={option.img}
+                     alt={option.value}
+                     className="foto-perfil-img"
+                  />
+               </div>
+            ))}
+         </div>
+         <button className="scroll-button right" onClick={() => scroll(1)}>
+            &#10095;
+         </button>
       </div>
    );
 };

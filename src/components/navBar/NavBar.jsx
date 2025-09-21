@@ -3,11 +3,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import logo from "../../assets/mini-logo.png";
-import profile from "../../assets/panda-pp.png";
+import { getFotoPerfil } from "../../FotoPerfilMapper";
 
 const Navbar = () => {
    const [nombre, setNombre] = useState("");
    const navigate = useNavigate();
+
+   const fotoPerfil = getFotoPerfil(localStorage.getItem("fotoPerfil"));
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -19,7 +21,6 @@ const Navbar = () => {
    };
 
    
-
    return (
       <>
          <div className="navbar">
@@ -55,7 +56,7 @@ const Navbar = () => {
                   <img
                      className="navbar-pic"
                      onClick={() => navigate("/user")}
-                     src={profile}
+                     src={fotoPerfil}
                      alt="Profile"
                   />
                </div>
