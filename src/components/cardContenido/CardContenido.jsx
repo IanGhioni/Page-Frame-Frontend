@@ -1,63 +1,88 @@
-import "./contenido.css"
-import bookIcon from "../../assets/book-icon.svg"
-import movieIcon from "../../assets/movie-icon-small.svg"
+import "./contenido.css";
+import bookIcon from "../../assets/book-icon.svg";
+import movieIcon from "../../assets/movie-icon-small.svg";
 import { useNavigate } from "react-router-dom";
 import RatingReadOnly from "../rating/RatingReadOnly";
 import AgregarAListas from "../AgregarAListas";
+import { useEffect, useState } from "react";
 
-const CardContenido = ({contenido}) => {
-    const navigate = useNavigate()
-    
-    const icon = () => {
-        if (contenido.isbn == "") {
-            return movieIcon
-        } else {
-            return bookIcon
-        }
-    }
+const CardContenido = ({ contenido }) => {
+   const navigate = useNavigate();
 
-    return (
-        <div className="contenido-card">
-        <div className="contenido-imagen">
+   const icon = () => {
+      if (contenido.isbn == "") {
+         return movieIcon;
+      } else {
+         return bookIcon;
+      }
+   };
+
+   const [onRefresh, setOnRefresh] = useState(false);
+   const [userReview, setUserReview] = useState(false);
+
+   useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token !== null && contenido) {
+         const userReviews = contenido.reviews.filter(
+            (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
+         );
+         setUserReview(userReviews ? userReviews.length > 0 : false);
+      }
+   }, [contenido]);
+
+
+   return (
+      <div className="contenido-card">
+         <div className="contenido-imagen">
             <img
-            onClick={() => navigate(`/contenido/${contenido.id}`)}
-            src={contenido.imagen}
-            onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
-            }}
-            onLoad={(e) => {
-                const img = e.target;
-                if (img.naturalWidth <= 90 || img.naturalHeight <= 90) {
-                    img.src = "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
-                }
-            }}
+               onClick={() => navigate(`/contenido/${contenido.id}`)}
+               src={contenido.imagen}
+               onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src =
+                     "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+               }}
+               onLoad={(e) => {
+                  const img = e.target;
+                  if (img.naturalWidth <= 90 || img.naturalHeight <= 90) {
+                     img.src =
+                        "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
+                  }
+               }}
             />
-        </div>
-        <div className="contenido-info">
-            <h2 className="contenido-titulo" onClick={() => navigate(`/contenido/${contenido.id}`)}>{contenido.titulo}</h2>
+         </div>
+         <div className="contenido-info">
+            <h2
+               className="contenido-titulo"
+               onClick={() => navigate(`/contenido/${contenido.id}`)}
+            >
+               {contenido.titulo}
+            </h2>
             <p className="contenido-autor">de {contenido.autores}</p>
-            
+
             <div className="contenido-rating">
-            <RatingReadOnly value={contenido.ratingAverage}/>
-            <span className="contenido-rating-text">
-                {contenido.ratingAverage} -{" "}
-                {contenido.ratingCount} reseñas
-            </span>
-            
+               <RatingReadOnly value={contenido.ratingAverage} />
+               <span className="contenido-rating-text">
+                  {contenido.ratingAverage.toFixed(2)} - {contenido.ratingCount}{" "}
+                  reseñas
+               </span>
             </div>
             <p className="contenido-publicacion">
-            Publicado en {contenido.publicacion}
+               Publicado en {contenido.publicacion}
             </p>
-            <AgregarAListas idContenido={contenido.id} esPelicula={contenido.isbn == ""} />
-        </div>
-        <div className="icon-imagen">
-            <img
-            src={icon()}>
-            </img>
-        </div>
-        </div>
-    );
-    };
+            <AgregarAListas
+               idContenido={contenido.id}
+               esPelicula={contenido.isbn == ""}
+               onRefresh={onRefresh}
+               setOnRefresh={setOnRefresh}
+               tieneReview={userReview}
+            />
+         </div>
+         <div className="icon-imagen">
+            <img src={icon()}></img>
+         </div>
+      </div>
+   );
+};
 
-export default CardContenido
+export default CardContenido;
