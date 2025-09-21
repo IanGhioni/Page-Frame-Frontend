@@ -15,6 +15,7 @@ const Login = () => {
    const [password, setPassword] = useState(
       localStorage.getItem("password") || ""
    );
+
    const navigate = useNavigate();
    const failToLogin = () =>
       toast.error("Usuario o contraseña invalidos", {
@@ -48,6 +49,7 @@ const Login = () => {
                localStorage.getItem("username"),
             ).then((res) => {
                localStorage.setItem("id", res.data.id);
+               localStorage.setItem("fotoPerfil", res.data.fotoPerfil);
             });
             navigate("/");
          })

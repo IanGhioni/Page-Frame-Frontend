@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./user.css";
 import Navbar from "../components/navBar/NavBar";
+import { getFotoPerfil } from "../FotoPerfilMapper";
 
 const User = () => {
    const navigate = useNavigate();
@@ -14,12 +15,14 @@ const User = () => {
       navigate(`/user/lista/${nombreLista}`);
    };
 
+   const fotoPerfil = getFotoPerfil(localStorage.getItem("fotoPerfil"));
+
    return (
       <div>
          <Navbar />
          <img
             className="profile-pic"
-            src="src\assets\panda-pp.png"
+            src={fotoPerfil}
             alt="Profile"
          />
          <h2>holis {localStorage.getItem("username")}</h2>
