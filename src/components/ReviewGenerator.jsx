@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
 import API from "../service/api";
 
-const ReviewGenerator = ({ contenidoId, reviews, token, goToLogin }) => {
+const ReviewGenerator = ({
+   contenidoId,
+   reviews,
+   token,
+   goToLogin,
+   onRefresh,
+   setOnRefresh,
+   esPelicula
+}) => {
    const [value, setValue] = useState(0);
    const [shouldSendReview, setShouldSendReview] = useState(false);
 
@@ -32,6 +40,15 @@ const ReviewGenerator = ({ contenidoId, reviews, token, goToLogin }) => {
                console.error("Error al enviar la reseña ☠");
             });
          setShouldSendReview(false);
+         setOnRefresh(!onRefresh);
+         if (!consumido) {
+            const nombreLista = esPelicula ? 'VISTO' : 'LEIDO';
+            API.agregarALista(localStorage.getItem("id"), contenidoId, nombreLista)
+                     .then(() => {
+                        setOnRefresh(!onRefresh);
+                     })
+                     .catch(() => goToLogin());
+         }
       }
    }, [shouldSendReview, value, token, contenidoId, goToLogin]);
 
@@ -48,6 +65,25 @@ const ReviewGenerator = ({ contenidoId, reviews, token, goToLogin }) => {
             console.error("☠ Error al eliminar la reseña ☠");
          });
    };
+
+   const [consumido, setConsumido] = useState(false);
+
+   useEffect(() => {
+      const idUsuario = localStorage.getItem("id");
+      if (!idUsuario) return;
+      API.getUsuarioPorId(idUsuario)
+         .then((response) => {
+            const contenido = response.data.contenidos.find(
+               (c) => String(c.contenidoId) === String(contenidoId)
+            );
+            setConsumido(
+               contenido
+                  ? contenido.estado === "LEIDO" || contenido.estado === "VISTO"
+                  : false
+            );
+         })
+         .catch(() => setConsumido(false));
+   }, [contenidoId, onRefresh]);
 
    return (
       <>

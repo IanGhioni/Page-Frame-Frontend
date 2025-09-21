@@ -41,7 +41,7 @@ const CardContenido = ({contenido}) => {
             <div className="contenido-rating">
             <RatingReadOnly value={contenido.ratingAverage}/>
             <span className="contenido-rating-text">
-                {contenido.ratingAverage} -{" "}
+                {contenido.ratingAverage.toFixed(2)} -{" "}
                 {contenido.ratingCount} reseñas
             </span>
             

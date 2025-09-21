@@ -19,6 +19,8 @@ const PaginaDeContenido = () => {
    const [error, setError] = useState(false);
    const [value, setValue] = useState(0);
    const [shouldSendReview, setShouldSendReview] = useState(false);
+   const [onRefresh, setOnRefresh] = useState(false);
+   const [userReview, setUserReview] = useState(false);
 
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
@@ -43,11 +45,10 @@ const PaginaDeContenido = () => {
 
    const setValoracionUsuario = () => {
       if (token !== null && contenido) {
-         // Filtra todas las reviews del usuario actual
          const userReviews = contenido.reviews.filter(
             (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
          );
-         // Toma la última review (puedes cambiar la lógica si necesitas la más alta, etc.)
+         setUserReview(userReviews ? userReviews.length > 0 : false);
          const lastReview =
             userReviews.length > 0 ? userReviews[userReviews.length - 1] : null;
          setValue(lastReview ? lastReview.valoracion : 0);
@@ -56,7 +57,7 @@ const PaginaDeContenido = () => {
 
    useEffect(() => {
       fetchData();
-   }, []);
+   }, [onRefresh]);
 
    useEffect(() => {
       setValoracionUsuario();
@@ -69,7 +70,6 @@ const PaginaDeContenido = () => {
             setShouldSendReview(false);
             return;
          }
-         // Solo envía si el usuario lo pidió
          console.log("Enviar reseña:  ✨✨✨", value);
          API.valorarContenido(params.id, value, localStorage.getItem("id"))
             .then(() => {
@@ -78,7 +78,7 @@ const PaginaDeContenido = () => {
             .catch(() => {
                console.error("Error al enviar la reseña ☠");
             });
-         setShouldSendReview(false); // Resetea el flag
+         setShouldSendReview(false);
       }
    }, [shouldSendReview, value, token]);
 
@@ -123,12 +123,18 @@ const PaginaDeContenido = () => {
                         <AgregarAListas
                            idContenido={contenido.id}
                            esPelicula={contenido.isbn == ""}
+                           onRefresh={onRefresh}
+                           setOnRefresh={setOnRefresh}
+                           tieneReview={userReview}
                         />
                         <ReviewGenerator
                            contenidoId={contenido.id}
                            reviews={contenido.reviews}
                            token={token}
                            goToLogin={goToLogin}
+                           onRefresh={onRefresh}
+                           setOnRefresh={setOnRefresh}
+                           esPelicula={contenido.isbn == ""}
                         />
                      </div>
                      <div>
@@ -148,7 +154,7 @@ const PaginaDeContenido = () => {
                                     value={contenido.ratingAverage}
                                  />
                                  <p className="header-puntaje">
-                                    {contenido.ratingAverage}
+                                    {contenido.ratingAverage.toFixed(2)}
                                  </p>
                                  <p className="header-reseñas">
                                     {" "}

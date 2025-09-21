@@ -3,10 +3,15 @@ import API from "../service/api";
 import "./AgregarALista.css";
 import { useNavigate } from "react-router-dom";
 
-const listaOpcionesLibro = ["LEIDO", "QUIERO LEER"];
-const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
-
-const AgregarAListas = ({ idContenido, esPelicula }) => {
+const AgregarAListas = ({
+   idContenido,
+   esPelicula,
+   onRefresh,
+   setOnRefresh,
+   tieneReview
+}) => {
+   const listaOpcionesLibro = ["LEIDO", "QUIERO LEER"];
+   const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
    const [showPopup, setShowPopup] = useState(false);
    const [listaActual, setListaActual] = useState(null);
 
@@ -30,23 +35,28 @@ const AgregarAListas = ({ idContenido, esPelicula }) => {
          .catch((err) => {
             setListaActual(null);
          });
-   }, [idContenido]);
+         
+   }, [idContenido, onRefresh]);
 
    const handleAgregarALista = (nombreLista) => {
       API.agregarALista(localStorage.getItem("id"), idContenido, nombreLista)
          .then(() => {
             setListaActual(nombreLista);
             setShowPopup(false);
+            setOnRefresh(!onRefresh);
          })
          .catch(() => goToLogin());
    };
 
    const handleQuitarDeLista = () => {
+      tieneReview && alert("No puedes quitar el contenido de la lista si ya has dejado una reseña");
+      if (tieneReview) return;
       API.eliminarContenidoDeLista(localStorage.getItem("id"), idContenido)
          .then(() => {
             setListaActual(null);
             setShowPopup(false);
             console.log("Contenido eliminado de la lista: 🗑️", idContenido);
+            setOnRefresh(!onRefresh);
          })
          .catch(() => alert("Error al quitar el contenido de la lista "));
    };
