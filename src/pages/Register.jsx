@@ -21,7 +21,7 @@ const Register = () => {
    const [username, setUsername] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-   const [fotoPerfil, setFotoPerfil] = useState("panda");
+   const [fotoPerfil, setFotoPerfil] = useState("rana");
    const navigate = useNavigate();
    const [getRegisterData, setRegisterData] = useState(null);
    const [error, setError] = useState("");
@@ -155,7 +155,7 @@ const Register = () => {
             <div className="heart-pf"></div>
             <div className="star-pf"></div>
             <PageAndFrameBanner />
-            <div className="form-container login-register">
+            <div className="form-container login-register register">
                <h1 className="form-title">Register</h1>
                <div className="all-inputs">
                   <div className="form-group">
@@ -300,12 +300,12 @@ const Register = () => {
 };
 
 const perfilOptions = [
-   { value: "panda", img: panda },
-   { value: "perro", img: perro },
-   { value: "gato", img: gato },
-   { value: "mariposa", img: mariposa },
    { value: "rana", img: rana },
+   { value: "gato", img: gato },
+   { value: "panda", img: panda },
+   { value: "mariposa", img: mariposa },
    { value: "vaquita", img: vaquita },
+   { value: "perro", img: perro },
    { value: "ballena", img: ballena },
 ];
 const FotoPerfilSelector = ({ fotoPerfil, setFotoPerfil }) => {
@@ -313,7 +313,7 @@ const FotoPerfilSelector = ({ fotoPerfil, setFotoPerfil }) => {
 
    const scroll = (direction) => {
       const container = scrollRef.current;
-      const scrollAmount = 160; // Más grande para que se note el cambio
+      const scrollAmount = 220;
       container.scrollBy({
          left: scrollAmount * direction,
          behavior: "smooth",
@@ -329,7 +329,9 @@ const FotoPerfilSelector = ({ fotoPerfil, setFotoPerfil }) => {
             {perfilOptions.map((option) => (
                <div
                   key={option.value}
-                  className={`foto-perfil-option${fotoPerfil === option.value ? " selected" : ""}`}
+                  className={`foto-perfil-option${
+                     fotoPerfil === option.value ? " selected" : ""
+                  }`}
                   onClick={() => setFotoPerfil(option.value)}
                >
                   <div className="foto-perfil-shadow"></div>
