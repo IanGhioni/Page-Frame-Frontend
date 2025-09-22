@@ -1,0 +1,21 @@
+.submit-btn {
+   margin-left: auto;
+   padding: 12px 20px;
+   border: none;
+   background-color: #7b769e;
+   color: white;
+   font-weight: bold;
+   border-radius: 100px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+   margin-top: 10px;
+}
+
+.submit-btn:hover {
+   background-color: rgb(95, 88, 145);
+   outline: none;
+}
+
+.submit-btn:disabled {
+   background-color: #7b769e80;
+}

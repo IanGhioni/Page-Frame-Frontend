@@ -1,0 +1,112 @@
+.p-image-preview-indicator:hover {
+    opacity: 50%;
+    border-radius: 0%;
+}
+
+.p-image-mask {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container-contenido {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: flex-start;
+    justify-content: space-around;
+    padding: 50px;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/002/743/214/non_2x/realistic-crumpled-paper-texture-background-free-vector.jpg");
+}
+
+.container-img {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-options {
+    margin: 4%;
+}
+
+.button-options:disabled:hover {
+    cursor: not-allowed;
+    border-color: rgb(192, 4, 4);
+}
+
+.container-header-titulo-icon {
+    display: flex;
+    align-items: baseline;
+}
+
+.container-header {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.container-header-central {
+    margin-left: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.header-titulo {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: left;
+    width: 600px;
+}
+
+.header-autores {
+    font-size: 1.5rem;
+}
+
+.header-generos {
+    font-size: 1.2rem;
+}
+
+.container-puntaje {
+    display: flex;
+    align-items: center;
+    width: 400px;
+}
+
+.header-puntaje {
+    margin-left: 10px;
+    font-size: 1.6rem;
+    align-self: center;
+}
+
+.header-reseñas {
+    margin-left: 1%;
+    font-size: 1.2rem;
+}
+
+.header-publicacion {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.header-largo {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+    align-self: normal;
+    margin-left: 7%;
+}
+
+.div-descripcion {
+    margin-left: 1%;
+    text-align: left;
+}
+
+.titulo-descripcion {
+    margin-top: 4%;
+    margin-bottom: 0%;
+    font-size: large;
+    font-style: oblique;
+}

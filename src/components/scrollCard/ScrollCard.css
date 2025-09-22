@@ -1,0 +1,63 @@
+.scroll-container {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: flex-start;
+    gap: 50px;
+    width: 60vw;
+}
+
+.scroll-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+}
+
+.scroll-card-back {
+   background-image: url("../../assets/card-scroll.png");
+   background-size: cover;
+   box-sizing: border-box;
+   width: 175px;
+   height: 250px;
+   position: relative;
+   padding: 25px 25px 15px 15px;
+}
+
+.scroll-card-img {
+   object-fit: cover;
+   width: 125px;
+   cursor: pointer;
+}
+
+.scroll-card-cutout{
+   background-image: url("../../assets/card-scroll-esquina.png");
+   background-size: cover;
+   position: absolute;
+   top: -1px;
+   right: 13px;
+   width: 51px;
+   height: 57px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.scroll-card-icon {
+   width: 30px;
+   height: 30px;
+}
+.scroll-card-title {
+   font-size: 1.3rem;
+   margin: 10px 0px 0px 0px;
+   cursor: pointer;
+   text-align: center;
+}
+.scroll-card-author {
+   font-size: 1.1rem;
+   margin: 0px;
+   text-decoration: underline;
+   text-align: center;
+}
