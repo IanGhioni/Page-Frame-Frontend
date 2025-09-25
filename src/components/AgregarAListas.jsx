@@ -14,11 +14,25 @@ const AgregarAListas = ({
    const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
    const [showPopup, setShowPopup] = useState(false);
    const [listaActual, setListaActual] = useState(null);
+   const [listasPersonalizadas, setListasPersonalizadas] = useState([]);
 
-   const handleAgregarClick = () => setShowPopup(true);
+   const handleAgregarClick = () => {
+      setShowPopup(true);
+      cargarListasPersonalizadas();
+   };   
    const handleClosePopup = () => setShowPopup(false);
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
+
+   const cargarListasPersonalizadas = () => {
+      const idUsuario = localStorage.getItem("id");
+      if (!idUsuario) return;
+      API.getListasPersonalizadas(idUsuario)
+         .then((response) => {
+            setListasPersonalizadas(response.data); 
+         })
+         .catch(() => setListasPersonalizadas([]));
+   };
 
    useEffect(() => {
       const idUsuario = localStorage.getItem("id");
@@ -85,6 +99,27 @@ const AgregarAListas = ({
                      </button>
                   ))}
                </div>
+               {listasPersonalizadas.length > 0 && (
+                  <>
+                     <h2 className="popup-subtitle">Tus listas:</h2>
+                     <div className="popup-options">
+                        {listasPersonalizadas.map((lista) => (
+                           <button
+                              key={lista.id}
+                              onClick={() => handleAgregarALista(lista.nombre)}
+                              className="popup-button"
+                           >
+                              {lista.nombre}
+                           </button>
+                        ))}
+                     </div>
+                  </>
+               )}
+               <button
+                  onClick={() => navigate("/crearLista")}
+                  className="popup-button popup-crear-button"
+               > + Crear lista
+               </button>
                {listaActual && (
                   <button
                      onClick={handleQuitarDeLista}
