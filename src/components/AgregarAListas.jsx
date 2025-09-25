@@ -46,7 +46,7 @@ const AgregarAListas = ({
             );
             setListaActual(contenido ? contenido.estado : null);
          })
-         .catch((err) => {
+         .catch(() => {
             setListaActual(null);
          });
          
@@ -100,23 +100,20 @@ const AgregarAListas = ({
                   ))}
                </div>
                {listasPersonalizadas.length > 0 && (
-                  <>
-                     <h2 className="popup-subtitle">Tus listas:</h2>
-                     <div className="popup-options">
-                        {listasPersonalizadas.map((lista) => (
-                           <button
-                              key={lista.id}
-                              onClick={() => handleAgregarALista(lista.nombre)}
-                              className="popup-button"
-                           >
-                              {lista.nombre}
-                           </button>
-                        ))}
-                     </div>
-                  </>
+                  <div className="popup-options">
+                     {listasPersonalizadas.map((lista) => (
+                        <button
+                           key={lista.id}
+                           onClick={() => handleAgregarALista(lista.nombre)}
+                           className="popup-button"
+                        >
+                           {lista.nombre}
+                        </button>
+                     ))}
+                  </div>
                )}
                <button
-                  onClick={() => navigate("/crearLista")}
+                  onClick={() => localStorage.getItem("id") ? navigate("/crearLista", { state: { contenido: idContenido } }) : goToLogin()}
                   className="popup-button popup-crear-button"
                > + Crear lista
                </button>

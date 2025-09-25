@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import "./crearLista.css";
-import API from "../service/api";
+import api from "../service/axiosInstance";
 
 const CrearLista = () => {
-    const [formData, setFormData] = useState({
-      nombre: "",
-      descripcion: ""
-   });
     const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        contenidos: [],
+        nombre: "",
+        descripcion: ""
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,10 +22,10 @@ const CrearLista = () => {
     const handleChange = (e) => {
       const { name, value } = e.target;
 
-      setFormData((prev) => ({
-         ...prev,
-         [name]: value,
-      }));
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
     const validarData = () => {
@@ -38,18 +39,18 @@ const CrearLista = () => {
       return true;
    };
 
-   const handleCrearLista = () => {
-    const idUsuario = localStorage.getItem("id");
-        API.crearLista(idUsuario, formData.nombre, formData.descripcion)
-        .then(() => {
+    const handleCrearLista = async () => {
+        const idUsuario = localStorage.getItem("id");
+        try {
+            await api
+                .post(`/usuario/${idUsuario}/crearLista`, formData)
+                .then(() => navigate("/user/lista/" + formData.nombre));
             toast.success("Lista creada con éxito");
-            navigate("/user/lista/" + formData.nombre);
-        }) 
-        .catch((error) => {
-            console.error("Error al crear la lista:", error);
+        } catch (e) {
+            console.error(e);
             toast.error("Error al crear la lista");
-        });
-   };
+        }
+    };
 
     return (
     <div className="background-pf">

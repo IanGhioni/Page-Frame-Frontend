@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../service/api";
 import Navbar from "../components/navBar/NavBar";
-import { useNavigate } from "react-router-dom";
 import CardContenido from "../components/cardContenido/CardContenido";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 
 const Lista = () => {
-   const navigate = useNavigate();
-   const [loading, setLoading] = useState(false);
+   const [loading] = useState(false);
    const { nombreLista } = useParams();
    const idUser = localStorage.getItem("id");
    const [contenidos, setContenidos] = useState([]);
@@ -18,12 +16,12 @@ const Lista = () => {
       const idUser = localStorage.getItem("id");
       API.verLista(idUser, nombreLista)
          .then((response) => {
-            console.log(`Lista ${nombreLista}:`, response.data);
+            console.log(`Lista ${nombreLista}:`, response);
             setContenidos(response.data);
          })
          .catch((error) => {
             console.error(`Error al obtener la lista ${nombreLista}:`, error);
-         });
+      });
    }, [nombreLista, idUser]);
 
    return (
