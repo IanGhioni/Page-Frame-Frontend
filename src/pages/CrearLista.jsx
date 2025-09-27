@@ -16,6 +16,10 @@ const CrearLista = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validarData()) return;
+        if (checkNombre()) {
+            toast.error("Ya existe una lista con ese nombre");
+            return;
+        }
         handleCrearLista();
     };
 
@@ -37,7 +41,14 @@ const CrearLista = () => {
         return false;
       }
       return true;
-   };
+    };
+
+    const checkNombre = () => {
+        const nombresInvalidos = ["Visto", "Leido", "Leído", "Quiero Ver", "Quiero Leer"];
+        return (nombresInvalidos.includes(formData.nombre.trim())
+            || nombresInvalidos.includes(formData.nombre.trim().toLowerCase())
+            || nombresInvalidos.includes(formData.nombre.trim().toUpperCase()));
+    }
 
     const handleCrearLista = async () => {
         const idUsuario = localStorage.getItem("id");
@@ -47,10 +58,19 @@ const CrearLista = () => {
                 .then(() => navigate("/user/lista/" + formData.nombre));
             toast.success("Lista creada con éxito");
         } catch (e) {
-            console.error(e);
-            toast.error("Error al crear la lista");
+            handleError(e);
         }
     };
+
+    const handleError = (error) => {
+        switch (error.status) {
+            case 400:
+                toast.error("Ya existe una lista con ese nombre");
+                break;
+            default:
+                toast.error("Error al crear la lista");
+        }
+    }
 
     return (
     <div className="background-pf">

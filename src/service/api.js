@@ -15,6 +15,8 @@ const eliminarReview = (idContenido, idUser) => axios.delete(`${base_url}/conten
 const getListasPersonalizadas = (idUser) => axios.get(`${base_url}/usuario/${idUser}/listas`)
 const agregarAListaPersonalizada = (idUser, idContenido, nombreLista) => axios.post(`${base_url}/usuario/${idUser}/agregar/${idContenido}/aListaPersonalizada/${nombreLista}`)
 const getContenidosDeListaPersonalizada = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/getContenidoDeListaPersonalizada/${nombreLista}`)
+const eliminarListaPersonalizada = (idUser, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/listaPersonalizada/${nombreLista}`)
+const eliminarContenidoDeListaPersonalizada = (idUser, idContenido, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/${idContenido}/DeListaPersonalizada/${nombreLista}`)
 
 export default {
     explorarContenidos,
@@ -29,5 +31,7 @@ export default {
     eliminarReview,
     getListasPersonalizadas,
     agregarAListaPersonalizada,
-    getContenidosDeListaPersonalizada
+    getContenidosDeListaPersonalizada,
+    eliminarListaPersonalizada,
+    eliminarContenidoDeListaPersonalizada
 }
