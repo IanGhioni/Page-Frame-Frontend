@@ -14,11 +14,25 @@ const AgregarAListas = ({
    const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
    const [showPopup, setShowPopup] = useState(false);
    const [listaActual, setListaActual] = useState(null);
+   const [listasPersonalizadas, setListasPersonalizadas] = useState([]);
 
-   const handleAgregarClick = () => setShowPopup(true);
+   const handleAgregarClick = () => {
+      setShowPopup(true);
+      cargarListasPersonalizadas();
+   };   
    const handleClosePopup = () => setShowPopup(false);
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
+
+   const cargarListasPersonalizadas = () => {
+      const idUsuario = localStorage.getItem("id");
+      if (!idUsuario) return;
+      API.getListasPersonalizadas(idUsuario)
+         .then((response) => {
+            setListasPersonalizadas(response.data); 
+         })
+         .catch(() => setListasPersonalizadas([]));
+   };
 
    useEffect(() => {
       const idUsuario = localStorage.getItem("id");
@@ -26,20 +40,35 @@ const AgregarAListas = ({
 
       API.getUsuarioPorId(idUsuario)
          .then((response) => {
-            // Busca el contenido por id
+            // Busca el contenido por id en listas comunes (NO personalizadas!!!!)
+            console.log(response.data)
             const contenido = response.data.contenidos.find(
                (c) => String(c.contenidoId) === String(idContenido)
             );
-            setListaActual(contenido ? contenido.estado : null);
+            console.log(response.data.contenidoPersonalizado)
+            const contenidoP = response.data.contenidoPersonalizado.find(
+               (l) => l.contenidos.find((c) => String(c.id) === String(idContenido))
+            );
+            setListaActual(contenido ? contenido.estado : (contenidoP ? "Personalizada" : null));
+            console.log(contenidoP + "🙌")
          })
-         .catch((err) => {
+         .catch(() => {
             setListaActual(null);
          });
-         
    }, [idContenido, onRefresh]);
 
    const handleAgregarALista = (nombreLista) => {
       API.agregarALista(localStorage.getItem("id"), idContenido, nombreLista)
+         .then(() => {
+            setListaActual(nombreLista);
+            setShowPopup(false);
+            setOnRefresh(!onRefresh);
+         })
+         .catch(() => goToLogin());
+   };
+
+      const handleAgregarAListaPersonalizada = (nombreLista) => {
+      API.agregarAListaPersonalizada(localStorage.getItem("id"), idContenido, nombreLista)
          .then(() => {
             setListaActual(nombreLista);
             setShowPopup(false);
@@ -85,6 +114,24 @@ const AgregarAListas = ({
                      </button>
                   ))}
                </div>
+               {listasPersonalizadas.length > 0 && (
+                  <div className="popup-options">
+                     {listasPersonalizadas.map((lista) => (
+                        <button
+                           key={lista.id}
+                           onClick={() => handleAgregarAListaPersonalizada(lista.nombre)}
+                           className="popup-button"
+                        >
+                           {lista.nombre}
+                        </button>
+                     ))}
+                  </div>
+               )}
+               <button
+                  onClick={() => localStorage.getItem("id") ? navigate("/crearLista", { state: { contenido: idContenido } }) : goToLogin()}
+                  className="popup-button popup-crear-button"
+               > + Crear lista
+               </button>
                {listaActual && (
                   <button
                      onClick={handleQuitarDeLista}

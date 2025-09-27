@@ -1,0 +1,77 @@
+.paper-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: url("/src/assets/paper.png") no-repeat center/cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.form-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #3b2f82;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #3f3ca5;
+}
+
+.form-input {
+  width: 100%;
+  border: 2px solid #444;
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.2s ease;
+  background-color: transparent;
+}
+
+textarea.form-input {
+  min-height: 120px;
+  resize: none;
+}
+
+.form-input:focus {
+  border-color: #3f3ca5;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.submit-btn {
+  background-color: #6a63d7;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #554bbf;
+}

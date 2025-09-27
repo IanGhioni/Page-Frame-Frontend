@@ -38,7 +38,7 @@ const PaginaDeContenido = () => {
       try {
          const c = await buscarPorId(params.id);
          setContenido(c);
-      } catch (error) {
+      } catch {
          setError(true);
       }
    };

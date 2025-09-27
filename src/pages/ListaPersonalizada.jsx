@@ -1,0 +1,151 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import API from "../service/api";
+import Navbar from "../components/navBar/NavBar";
+import CardContenido from "../components/cardContenido/CardContenido";
+import GoBackButton from "../components/GoBackButton/GoBackButton";
+import "./ListaPersonalizada.css";
+
+const ListaPersonalizada = () => {
+   const [loading] = useState(false);
+   const { nombreLista } = useParams();
+   const idUser = localStorage.getItem("id");
+   const [contenidos, setContenidos] = useState([]);
+   const [showModalContenido, setShowModalContenido] = useState(false);
+   const [contenidoAEliminar, setContenidoAEliminar] = useState(null);
+
+   const [showModalLista, setShowModalLista] = useState(false); // 👈 nuevo estado para lista
+
+   const navigate = useNavigate();
+
+   useEffect(() => {
+      console.log("Ver lista:", nombreLista);
+      const idUser = localStorage.getItem("id");
+      API.getContenidosDeListaPersonalizada(idUser, nombreLista)
+         .then((response) => {
+            console.log(`Lista ${nombreLista}:`, response);
+            setContenidos(response.data);
+         })
+         .catch((error) => {
+            console.error(`Error al obtener la lista ${nombreLista}:`, error);
+         });
+   }, [nombreLista, idUser]);
+
+   // Confirmar eliminar lista
+   const confirmarEliminarLista = () => {
+      setShowModalLista(true);
+   };
+
+   const handleEliminarLista = () => {
+      API.eliminarListaPersonalizada(idUser, nombreLista)
+         .then((response) => {
+            console.log(`Lista ${nombreLista} eliminada:`, response);
+            navigate("/user");
+         })
+         .catch((error) => {
+            toast.error("Error al eliminar la lista.");
+            console.error(`Error al eliminar la lista ${nombreLista}:`, error);
+         });
+   };
+
+   // Confirmar eliminar contenido
+   const confirmarEliminarContenido = (idContenido) => {
+      setContenidoAEliminar(idContenido);
+      setShowModalContenido(true);
+   };
+
+   const handleEliminarContenido = () => {
+      if (!contenidoAEliminar) return;
+      API.eliminarContenidoDeListaPersonalizada(idUser, contenidoAEliminar, nombreLista)
+         .then(() => {
+            setContenidos((prev) => prev.filter(c => c.id !== contenidoAEliminar));
+            setShowModalContenido(false);
+            setContenidoAEliminar(null);
+         })
+         .catch((error) => {
+            toast.error("Error al eliminar el contenido de la lista.");
+            console.error(`Error al eliminar el contenido ${contenidoAEliminar} de la lista ${nombreLista}:`, error);
+         });
+   };
+
+   return (
+      <div className="container">
+         <GoBackButton />
+         <Navbar />
+         {loading ? (
+            <div className="loading-container">
+               <h2>Cargando resultados...</h2>
+            </div>
+         ) : contenidos && contenidos.length > 0 ? (
+            <>
+               <div>
+                  <div className="container-titulo">
+                     <h2 className="buscador-titulo">
+                        Lista de "{nombreLista}"
+                     </h2>
+                     <button onClick={confirmarEliminarLista}>Eliminar lista</button>
+                  </div>
+                  {contenidos.map((contenido) => (
+                     <div key={contenido.id} className="card-contenido-container">
+                        <CardContenido contenido={contenido} />
+                        <button 
+                           onClick={() => confirmarEliminarContenido(contenido.id)} 
+                           className="btn-eliminar"
+                        >
+                           x
+                        </button>
+                     </div>
+                  ))}
+               </div>
+               {showModalContenido && (
+                  <div className="modal-overlay">
+                     <div className="modal">
+                        <h3>¿Seguro que quieres eliminar este contenido?</h3>
+                        <div className="modal-buttons">
+                           <button onClick={() => setShowModalContenido(false)}>Cancelar</button>
+                           <button onClick={handleEliminarContenido} className="btn-aceptar">
+                              Aceptar
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               )}
+               {showModalLista && (
+                  <div className="modal-overlay">
+                     <div className="modal">
+                        <h3>¿Seguro que quieres eliminar la lista "{nombreLista}"?</h3>
+                        <div className="modal-buttons">
+                           <button onClick={() => setShowModalLista(false)}>Cancelar</button>
+                           <button onClick={handleEliminarLista} className="btn-aceptar">
+                              Aceptar
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               )}
+            </>
+         ) : (
+            <div>
+               <h1>Esta lista está vacía :(</h1>
+               <button onClick={confirmarEliminarLista}>Eliminar lista</button>
+               {showModalLista && (
+                  <div className="modal-overlay">
+                     <div className="modal">
+                        <h3>¿Seguro que quieres eliminar la lista "{nombreLista}"?</h3>
+                        <div className="modal-buttons">
+                           <button onClick={() => setShowModalLista(false)}>Cancelar</button>
+                           <button onClick={handleEliminarLista} className="btn-aceptar">
+                              Aceptar
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               )}
+            </div>
+         )}
+      </div>
+   );
+};
+
+export default ListaPersonalizada;
