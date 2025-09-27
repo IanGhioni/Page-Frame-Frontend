@@ -40,20 +40,35 @@ const AgregarAListas = ({
 
       API.getUsuarioPorId(idUsuario)
          .then((response) => {
-            // Busca el contenido por id
+            // Busca el contenido por id en listas comunes (NO personalizadas!!!!)
+            console.log(response.data)
             const contenido = response.data.contenidos.find(
                (c) => String(c.contenidoId) === String(idContenido)
             );
-            setListaActual(contenido ? contenido.estado : null);
+            console.log(response.data.contenidoPersonalizado)
+            const contenidoP = response.data.contenidoPersonalizado.find(
+               (l) => l.contenidos.find((c) => String(c.id) === String(idContenido))
+            );
+            setListaActual(contenido ? contenido.estado : (contenidoP ? "Personalizada" : null));
+            console.log(contenidoP + "🙌")
          })
          .catch(() => {
             setListaActual(null);
          });
-         
    }, [idContenido, onRefresh]);
 
    const handleAgregarALista = (nombreLista) => {
       API.agregarALista(localStorage.getItem("id"), idContenido, nombreLista)
+         .then(() => {
+            setListaActual(nombreLista);
+            setShowPopup(false);
+            setOnRefresh(!onRefresh);
+         })
+         .catch(() => goToLogin());
+   };
+
+      const handleAgregarAListaPersonalizada = (nombreLista) => {
+      API.agregarAListaPersonalizada(localStorage.getItem("id"), idContenido, nombreLista)
          .then(() => {
             setListaActual(nombreLista);
             setShowPopup(false);
@@ -104,7 +119,7 @@ const AgregarAListas = ({
                      {listasPersonalizadas.map((lista) => (
                         <button
                            key={lista.id}
-                           onClick={() => handleAgregarALista(lista.nombre)}
+                           onClick={() => handleAgregarAListaPersonalizada(lista.nombre)}
                            className="popup-button"
                         >
                            {lista.nombre}

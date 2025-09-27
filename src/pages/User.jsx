@@ -5,8 +5,10 @@ import Navbar from "../components/navBar/NavBar";
 import { getFotoPerfil } from "../FotoPerfilMapper";
 import API from "../service/api";
 
+
 const User = () => {
    const navigate = useNavigate();
+   const goToLogin = () => navigate("/login");
 
    const logout = () => {
       localStorage.clear();
@@ -15,6 +17,10 @@ const User = () => {
 
    const irALista = (nombreLista) => {
       navigate(`/user/lista/${nombreLista}`);
+   };
+
+   const irAListaPersonalizada = (nombreLista) => {
+      navigate(`/user/listaPersonalizada/${nombreLista}`);
    };
 
    const [listasPersonalizadas, setListasPersonalizadas] = useState([]);
@@ -50,13 +56,17 @@ const User = () => {
          >
             Logout
          </button>
+         <button
+                  onClick={() => navigate("/crearLista")}
+               className="popup-button popup-crear-button"> + Crear lista
+               </button>
          <button onClick={() => irALista("VISTO")}>VISTO</button>
          <button onClick={() => irALista("QUIERO VER")}>QUIERO VER</button>
          <button onClick={() => irALista("LEIDO")}>LEIDO</button>
          <button onClick={() => irALista("QUIERO LEER")}>QUIERO LEER</button>
 
          {listasPersonalizadas.length > 0 && listasPersonalizadas.map((lista, index) => (
-            <button key={index} onClick={() => irALista(lista.nombre)}>
+            <button key={index} onClick={() => irAListaPersonalizada(lista.nombre)}>
                {lista.nombre}
             </button>
          ))}

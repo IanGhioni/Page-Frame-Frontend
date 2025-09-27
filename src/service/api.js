@@ -13,6 +13,8 @@ const verLista = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUse
 const valorarContenido = (idContenido, rating, idUser) => axios.post(`${base_url}/contenido/${idContenido}/valorar/${rating}/${idUser}`)
 const eliminarReview = (idContenido, idUser) => axios.delete(`${base_url}/contenido/${idContenido}/eliminarValoracion/${idUser}`)
 const getListasPersonalizadas = (idUser) => axios.get(`${base_url}/usuario/${idUser}/listas`)
+const agregarAListaPersonalizada = (idUser, idContenido, nombreLista) => axios.post(`${base_url}/usuario/${idUser}/agregar/${idContenido}/aListaPersonalizada/${nombreLista}`)
+const getContenidosDeListaPersonalizada = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/getContenidoDeListaPersonalizada/${nombreLista}`)
 
 export default {
     explorarContenidos,
@@ -25,5 +27,7 @@ export default {
     verLista,
     valorarContenido,
     eliminarReview,
-    getListasPersonalizadas
+    getListasPersonalizadas,
+    agregarAListaPersonalizada,
+    getContenidosDeListaPersonalizada
 }

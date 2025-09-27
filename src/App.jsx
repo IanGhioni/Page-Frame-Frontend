@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Lista from './pages/Lista';
 import CrearLista from './pages/CrearLista';
+import ListaPersonalizada from './pages/ListaPersonalizada';
 
 import PaginaDeContenido from './pages/PaginaDeContenido';
 import User from './pages/User';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<User />} />
         <Route path="/user/lista/:nombreLista" element={<Lista />} />
+        <Route path="/user/listaPersonalizada/:nombreLista" element={<ListaPersonalizada />} />
         <Route path="/crearLista" element={<CrearLista />}/>
         <Route path="*" element={<Error404 />} />
       </Routes>
