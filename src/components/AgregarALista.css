@@ -1,3 +1,14 @@
+.overlay {
+   background-color: rgba(175, 152, 189, 0.205);
+   backdrop-filter: blur(5px);
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+}
+
 .button-agregarALista {
    background-color: #938eb6;
    border-radius: 100px;
