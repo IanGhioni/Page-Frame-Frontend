@@ -3,6 +3,8 @@ import API from "../service/api";
 import "./AgregarALista.css";
 import { useNavigate } from "react-router-dom";
 import { FaSortDown } from "react-icons/fa6";
+import { IoIosClose } from "react-icons/io";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const AgregarAListas = ({
    idContenido,
@@ -147,59 +149,63 @@ const PopUpAgregarALista = ({
    handleQuitarDeLista,
 }) => {
    return (
-      <div className="overlay">
-      <div className="popup-agregarALista">
-         <h1 onClick={handleClosePopup} className="popup-cancel-button">
-            x
-         </h1>
-         <h1 className="popup-title">Selecciona una lista:</h1>
-         <div className="popup-options">
-            {opciones.map((opcion) => (
-               <button
-                  key={opcion}
-                  onClick={() => handleAgregarALista(opcion)}
-                  className="popup-button"
+      <div className="overlay" onClick={handleClosePopup}>
+         <div className="popup-agregarALista">
+            <div className="popup-agregar-content">
+               <IoIosClose
+                  onClick={handleClosePopup}
+                  className="popup-cancel-button"
+               />
+               <h1 className="popup-title">Selecciona una lista</h1>
+               <div className="popup-default-options">
+                  {opciones.map((opcion) => (
+                     <button
+                        key={opcion}
+                        onClick={() => handleAgregarALista(opcion)}
+                        className={ "popup-button " + (listaActual === opcion ? "popup-button-actual" : "") }
+                     >
+                        {opcion}
+                     </button>
+                  ))}
+                  {listaActual && (
+                     <HiOutlineTrash onClick={handleQuitarDeLista} className="popup-delete-button" />
+               )}
+               </div>
+
+               {listasPersonalizadas.length > 0 && (
+                  <>
+                  <h2 className="popup-subtitle">Mis listas:</h2>
+                  <div className="popup-options">
+                     {listasPersonalizadas.map((lista) => (
+                        <button
+                           key={lista.id}
+                           onClick={() =>
+                              handleAgregarAListaPersonalizada(lista.nombre)
+                           }
+                           className="popup-button popup-button-personalizada"
+                        >
+                           {lista.nombre}
+                        </button>
+                     ))}
+                  </div>
+                  </>
+                  
+               )}
+               <h2
+                  onClick={() =>
+                     localStorage.getItem("id")
+                        ? navigate("/crearLista", {
+                             state: { contenido: idContenido },
+                          })
+                        : goToLogin()
+                  }
+                  className="popup-crear-button"
                >
-                  {opcion}
-               </button>
-            ))}
-         </div>
-         {listasPersonalizadas.length > 0 && (
-            <div className="popup-options">
-               {listasPersonalizadas.map((lista) => (
-                  <button
-                     key={lista.id}
-                     onClick={() =>
-                        handleAgregarAListaPersonalizada(lista.nombre)
-                     }
-                     className="popup-button"
-                  >
-                     {lista.nombre}
-                  </button>
-               ))}
+                  + Crear lista
+               </h2>
+               
             </div>
-         )}
-         <button
-            onClick={() =>
-               localStorage.getItem("id")
-                  ? navigate("/crearLista", {
-                       state: { contenido: idContenido },
-                    })
-                  : goToLogin()
-            }
-            className="popup-button popup-crear-button"
-         >
-            + Crear lista
-         </button>
-         {listaActual && (
-            <button
-               onClick={handleQuitarDeLista}
-               className="popup-delete-button"
-            >
-               Quitar de lista
-            </button>
-         )}
-      </div>
+         </div>
       </div>
    );
 };
