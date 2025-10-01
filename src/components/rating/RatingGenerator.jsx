@@ -107,6 +107,7 @@ const RatingGenerator = ({
 
 
    return (
+      <>
       <div className="rating-container">
          
          <Rating
@@ -134,8 +135,14 @@ const RatingGenerator = ({
                   }}/>
             </div>
          )}
-         
+   
       </div>
+      {value != 0 && !readOnly && (
+            <p className="rating-instruction">
+               Cambios sin guardar...
+            </p>
+         )}
+      </>
    );
 };
 
