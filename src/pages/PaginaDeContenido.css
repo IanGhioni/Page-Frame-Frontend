@@ -1,112 +1,154 @@
 .p-image-preview-indicator:hover {
-    opacity: 50%;
-    border-radius: 0%;
+   opacity: 50%;
+   border-radius: 0%;
 }
 
 .p-image-mask {
-    background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.466);
+}
+
+.container-contenido-info {
+   display: flex;
+   flex-direction: column;
+}
+
+.container-pagina-contenido {
+   width: 98vw;
+   margin-top: 70px;
+   padding-left: 250px;
+   box-sizing: border-box;
+   overflow-x: hidden;
 }
 
 .container-contenido {
-    width: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-self: flex-start;
-    justify-content: space-around;
-    padding: 50px;
-    background-image: url("https://static.vecteezy.com/system/resources/previews/002/743/214/non_2x/realistic-crumpled-paper-texture-background-free-vector.jpg");
+   margin-top: 40px;
+   margin-bottom: 40px;
+   width: 1300px;
+   display: flex;
+   gap: 10px;
+   align-self: flex-start;
+   justify-content: space-around;
 }
 
 .container-img {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
+   padding: 40px;
+   position: fixed;
+   left: 150px;
 }
 
-.button-options {
-    margin: 4%;
+.container-info {
+   display: flex;
+   flex-direction: column;
+   align-items: right;
+   width: 700px;
+   padding: 40px;
+   padding-bottom: 0px;
+   background-image: url(../assets/background-contenido/contenido-bg.png);
+   position: relative;
+   border-top-left-radius: 6px;
+   border-top-right-radius: 8px;
+   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.281);
 }
 
-.button-options:disabled:hover {
-    cursor: not-allowed;
-    border-color: rgb(192, 4, 4);
+.container-contenido-bottom {
+   height: 120px;
+   width: 100%;
+   background-image: url(../assets/background-contenido/contenido-bg-bottom.png);
+   background-size: no-repeat;
+   z-index: 2;
 }
 
-.container-header-titulo-icon {
-    display: flex;
-    align-items: baseline;
+.container-paper-clip {
+   width: 100px;
+   height: 250px;
+   background-image: url(../assets/background-contenido/contenido-bg-clip.png);
+   background-size: cover;
+   margin-bottom: 20px;
+   position: absolute;
+   transform: rotate(6deg);
+   top: -10px;
+   right: 50px;
+   z-index: 2;
 }
 
-.container-header {
-    display: flex;
-    flex-direction: row;
-    gap: 25px;
+.container-seccion-icon {
+   display: flex;
+   align-items: center;
+   gap: 10px;
 }
 
-.container-header-central {
-    margin-left: 1%;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
+.container-info-header {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
 }
 
-.header-titulo {
-    font-size: 2.5rem;
-    font-weight: 600;
-    text-align: left;
-    width: 600px;
-}
-
-.header-autores {
-    font-size: 1.5rem;
-}
-
-.header-generos {
-    font-size: 1.2rem;
+.container-seccion-icon {
+   display: flex;
+   align-items: center;
+   gap: 100px;
 }
 
 .container-puntaje {
-    display: flex;
-    align-items: center;
-    width: 400px;
+   display: flex;
+   font-size: 1.1rem;
+   align-items: center;
+   margin-top: 15px;
+}
+
+.container-publicacion-largo {
+   display: flex;
+   gap: 20px;
+   margin-left: 3px;
+}
+
+.header-titulo {
+   margin: 0;
+   font-size: 2.5rem;
+}
+
+.header-autores,
+.titulo-descripcion {
+   margin: 0;
+   font-weight: 500;
+}
+
+.header-generos {
+   margin-left: 0;
+   margin-bottom: 10px;
+   font-size: 1.2rem;
+   font-style: italic;
+}
+
+.header-estrellas {
+   margin-right: 10px;
 }
 
 .header-puntaje {
-    margin-left: 10px;
-    font-size: 1.6rem;
-    align-self: center;
+   margin: 0;
+   margin-right: 5px;
 }
 
 .header-reseñas {
-    margin-left: 1%;
-    font-size: 1.2rem;
+   margin: 0;
 }
 
-.header-publicacion {
-    font-weight: 700;
-    font-size: 1.2rem;
+.tipo-contenido {
+   width: 99px;
+   height: 95px;
+   background-image: url("../assets/tipo-contenido.png");
+   background-size: cover;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 4rem;
 }
 
-.header-largo {
-    font-size: 1rem;
-    font-style: italic;
-}
-
-.icon {
-    width: 100px;
-    height: 100px;
-    align-self: normal;
-    margin-left: 7%;
-}
-
-.div-descripcion {
-    margin-left: 1%;
-    text-align: left;
-}
-
-.titulo-descripcion {
-    margin-top: 4%;
-    margin-bottom: 0%;
-    font-size: large;
-    font-style: oblique;
+.container-descripcion {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   text-align: left;
 }

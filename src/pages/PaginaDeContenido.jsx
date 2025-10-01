@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { buscarPorId } from "../service/contenido";
 import { Image } from "primereact/image";
 import "./PaginaDeContenido.css";
-import bookIcon from "../assets/book-icon.svg";
-import movieIcon from "../assets/movie-icon-small.svg";
+import { BiMoviePlay } from "react-icons/bi";
+import { TbBooks } from "react-icons/tb";
 import RatingReadOnly from "../components/rating/RatingReadOnly";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import AgregarAListas from "../components/AgregarAListas";
@@ -26,14 +26,6 @@ const PaginaDeContenido = () => {
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
    const token = localStorage.getItem("token");
-
-   const icon = () => {
-      if (contenido.isbn == "") {
-         return movieIcon;
-      } else {
-         return bookIcon;
-      }
-   };
 
    const fetchData = async () => {
       try {
@@ -84,7 +76,7 @@ const PaginaDeContenido = () => {
    }, [shouldSendReview, value, token]);
 
    return (
-      <div className="container">
+      <div className="container-pagina-contenido">
          <GoBackButton />
          {error ? (
             <div>
@@ -98,91 +90,108 @@ const PaginaDeContenido = () => {
             <div>
                <Navbar />
                <div className="container-contenido">
-                  <div className="container-header">
-                     <div className="container-img">
-                        <Image
-                           src={contenido.imagen}
-                           alt="Logo de pelicula"
-                           width="200"
-                           preview
-                           onError={(e) => {
-                                             e.target.onerror = null;
-                                             e.target.src = img404;
-                                          }}
-                                          onLoad={(e) => {
-                                             const img = e.target;
-                                             if (img.naturalWidth <= 90 || img.naturalHeight <= 90) {
-                                                img.src = img404;
-                                             }
-                                          }}
-                        />
-                        <AgregarAListas
-                           idContenido={contenido.id}
-                           esPelicula={contenido.isbn == ""}
-                           onRefresh={onRefresh}
-                           setOnRefresh={setOnRefresh}
-                           tieneReview={userReview}
-                        />
-                        <RatingGenerator
-                           contenidoId={contenido.id}
-                           reviews={contenido.reviews}
-                           token={token}
-                           goToLogin={goToLogin}
-                           onRefresh={onRefresh}
-                           setOnRefresh={setOnRefresh}
-                           esPelicula={contenido.isbn == ""}
-                        />
-                     </div>
-                     <div>
-                        <div className="container-header-titulo-icon">
-                           <div className="container-header-central">
-                              <p className="header-titulo">
-                                 {contenido.titulo}
-                              </p>
-                              <p className="header-autores">
-                                 de {contenido.autores}
-                              </p>
+                  <div className="container-img">
+                     <Image
+                        src={contenido.imagen}
+                        alt="Logo de pelicula"
+                        width="200"
+                        preview
+                        onError={(e) => {
+                           e.target.onerror = null;
+                           e.target.src = img404;
+                        }}
+                        onLoad={(e) => {
+                           const img = e.target;
+                           if (
+                              img.naturalWidth <= 90 ||
+                              img.naturalHeight <= 90
+                           ) {
+                              img.src = img404;
+                           }
+                        }}
+                     />
+                     <AgregarAListas
+                        idContenido={contenido.id}
+                        esPelicula={contenido.isbn == ""}
+                        onRefresh={onRefresh}
+                        setOnRefresh={setOnRefresh}
+                        tieneReview={userReview}
+                     />
+                     <RatingGenerator
+                        contenidoId={contenido.id}
+                        reviews={contenido.reviews}
+                        token={token}
+                        goToLogin={goToLogin}
+                        onRefresh={onRefresh}
+                        setOnRefresh={setOnRefresh}
+                        esPelicula={contenido.isbn == ""}
+                     />
+                  </div>
+                  <div className="container-contenido-info">
+                     <div className="container-info">
+                        <div className="container-paper-clip"/>
+                        <div className="container-info-header">
+                           <h1 className="header-titulo">{contenido.titulo}</h1>
+                           <h2 className="header-autores">
+                              de {contenido.autores}
+                           </h2>
+                        </div>
+                        <div className="container-seccion-icon">
+                           <div className="header-seccion-generos-puntaje">
                               <p className="header-generos">
                                  Géneros: {contenido.categoria}
                               </p>
                               <div className="container-puntaje">
                                  <RatingReadOnly
                                     value={contenido.ratingAverage}
+                                    className="header-estrellas"
                                  />
                                  <p className="header-puntaje">
                                     {contenido.ratingAverage.toFixed(2)}
                                  </p>
                                  <p className="header-reseñas">
-                                    {" "}
+                                    {""}
                                     de {contenido.ratingCount} reseñas
                                  </p>
                               </div>
-                              <p className="header-publicacion">
-                                 Publicado en el año {contenido.publicacion}
-                              </p>
-                              {contenido.isbn === "" ? (
-                                 <p className="header-largo">
-                                    {" "}
-                                    Duracion: {contenido.largo} minutos
+                              <div className="container-publicacion-largo">
+                                 <p className="header-publicacion">
+                                    Publicado en el año {contenido.publicacion}
                                  </p>
+                                 <p>{" - "}</p>
+                                 {contenido.isbn === "" ? (
+                                    <p className="header-largo">
+                                       {" "}
+                                       Duracion: {contenido.largo} minutos
+                                    </p>
+                                 ) : (
+                                    <p className="header-largo">
+                                       {contenido.largo} paginas
+                                    </p>
+                                 )}
+                              </div>
+                           </div>
+                           <div className="tipo-contenido">
+                              {contenido.isbn ? (
+                                 <TbBooks className="tipo-contenido-icon" />
                               ) : (
-                                 <p className="header-largo">
-                                    {contenido.largo} paginas
-                                 </p>
+                                 <BiMoviePlay className="tipo-contenido-icon" />
                               )}
                            </div>
-                           <img src={icon()} className="icon" />
                         </div>
-                        <div className="div-descripcion">
-                           <h4 className="titulo-descripcion">Descripcion:</h4>
-                           <p>{contenido.descripcion}</p>
+                        <div className="container-descripcion">
+                           <h2 className="titulo-descripcion">Descripcion:</h2>
+                           <p className="descripcion-texto">
+                              {contenido.descripcion}
+                           </p>
                         </div>
                      </div>
+                     <div className="container-contenido-bottom" />
                   </div>
                </div>
             </div>
          ) : (
-            <>Cargando</>
+            <div>Cargando...</div>
          )}
       </div>
    );
