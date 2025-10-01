@@ -11,7 +11,7 @@ import GoBackButton from "../components/GoBackButton/GoBackButton";
 import AgregarAListas from "../components/AgregarAListas";
 import API from "../service/api";
 import { useNavigate } from "react-router-dom";
-import ReviewGenerator from "../components/ReviewGenerator";
+import RatingGenerator from "../components/rating/RatingGenerator";
 import img404 from "../assets/image-404.png";
 
 const PaginaDeContenido = () => {
@@ -123,7 +123,7 @@ const PaginaDeContenido = () => {
                            setOnRefresh={setOnRefresh}
                            tieneReview={userReview}
                         />
-                        <ReviewGenerator
+                        <RatingGenerator
                            contenidoId={contenido.id}
                            reviews={contenido.reviews}
                            token={token}

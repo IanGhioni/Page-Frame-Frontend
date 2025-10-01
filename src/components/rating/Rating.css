@@ -1,0 +1,28 @@
+.rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 214px;
+}
+.rating-actions {
+    display: flex;
+    gap: 8px;
+    font-size: 1.5rem;
+    color: #313031;
+}
+
+
+.editRating-icon:hover{
+    color: #443e72;
+    cursor: pointer;
+}
+.editRating-icon-active {
+   color: #7e77b0;
+   cursor: default;
+}
+
+.deleteRating-icon:hover {
+    color: #680f0f;
+    cursor: pointer;
+}
