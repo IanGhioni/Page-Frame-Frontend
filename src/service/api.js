@@ -17,6 +17,7 @@ const agregarAListaPersonalizada = (idUser, idContenido, nombreLista) => axios.p
 const getContenidosDeListaPersonalizada = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/getContenidoDeListaPersonalizada/${nombreLista}`)
 const eliminarListaPersonalizada = (idUser, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/listaPersonalizada/${nombreLista}`)
 const eliminarContenidoDeListaPersonalizada = (idUser, idContenido, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/${idContenido}/DeListaPersonalizada/${nombreLista}`)
+const buscarContenidoPorAutor = (nombre, nroPagina, tamañoPagina) => axios.get(`${base_url}/contenido/searchAutores?nombre=${nombre}&nroPagina=${nroPagina}&tamanioPagina=${tamañoPagina}`)
 
 export default {
     explorarContenidos,
@@ -33,5 +34,6 @@ export default {
     agregarAListaPersonalizada,
     getContenidosDeListaPersonalizada,
     eliminarListaPersonalizada,
-    eliminarContenidoDeListaPersonalizada
+    eliminarContenidoDeListaPersonalizada,
+    buscarContenidoPorAutor
 }
