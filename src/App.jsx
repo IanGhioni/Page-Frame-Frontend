@@ -9,7 +9,7 @@ import Register from './pages/Register';
 import Lista from './pages/Lista';
 import CrearLista from './pages/CrearLista';
 import ListaPersonalizada from './pages/ListaPersonalizada';
-
+import BuscarContenidoPorAutor from './pages/BuscarContenidoPorAutor';
 import PaginaDeContenido from './pages/PaginaDeContenido';
 import User from './pages/User';
 
@@ -21,6 +21,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path="/cargarContenido" element={<CargarContenido />} />
         <Route path="/buscarContenido/:titulo/:pagina" element={<BuscarContenido />}/>
+        <Route path="/buscarPorAutor/:nombre/:pagina" element={<BuscarContenidoPorAutor />}/>
         <Route path='/contenido/:id' element={<PaginaDeContenido />}></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
