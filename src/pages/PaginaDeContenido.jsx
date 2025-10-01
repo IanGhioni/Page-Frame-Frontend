@@ -12,6 +12,7 @@ import AgregarAListas from "../components/AgregarAListas";
 import API from "../service/api";
 import { useNavigate } from "react-router-dom";
 import ReviewGenerator from "../components/ReviewGenerator";
+import img404 from "../assets/image-404.png";
 
 const PaginaDeContenido = () => {
    const params = useParams();
@@ -105,20 +106,15 @@ const PaginaDeContenido = () => {
                            width="200"
                            preview
                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src =
-                                 "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
-                           }}
-                           onLoad={(e) => {
-                              const img = e.target;
-                              if (
-                                 img.naturalWidth <= 90 &&
-                                 img.naturalHeight <= 90
-                              ) {
-                                 img.src =
-                                    "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
-                              }
-                           }}
+                                             e.target.onerror = null;
+                                             e.target.src = img404;
+                                          }}
+                                          onLoad={(e) => {
+                                             const img = e.target;
+                                             if (img.naturalWidth <= 90 || img.naturalHeight <= 90) {
+                                                img.src = img404;
+                                             }
+                                          }}
                         />
                         <AgregarAListas
                            idContenido={contenido.id}

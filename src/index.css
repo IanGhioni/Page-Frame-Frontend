@@ -115,3 +115,8 @@ button:hover {
    box-sizing: border-box;
    text-align: center;
 }
+
+
+.MuiRating-root .MuiRating-iconFilled {
+  color: rgb(231, 148, 52) !important;
+}
