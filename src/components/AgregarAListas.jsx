@@ -191,7 +191,7 @@ const PopUpAgregarALista = ({
                   </>
                   
                )}
-               <h2
+               <div
                   onClick={() =>
                      localStorage.getItem("id")
                         ? navigate("/crearLista", {
@@ -200,9 +200,10 @@ const PopUpAgregarALista = ({
                         : goToLogin()
                   }
                   className="popup-crear-button"
-               >
-                  + Crear lista
-               </h2>
+               >  
+                  <span className="popup-crear-plus"> + </span>
+                  <h2 className="popup-crear-title"> Crear nueva lista</h2>
+               </div>
                
             </div>
          </div>
