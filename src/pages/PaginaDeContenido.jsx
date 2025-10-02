@@ -108,6 +108,7 @@ const PaginaDeContenido = () => {
                <Navbar />
                <div className="container-contenido">
                   <div className="container-img">
+                     <div className="contenido-image-back">
                      <Image
                         src={contenido.imagen}
                         alt="Logo de pelicula"
@@ -127,6 +128,8 @@ const PaginaDeContenido = () => {
                            }
                         }}
                      />
+                     </div>
+
                      <AgregarAListas
                         idContenido={contenido.id}
                         esPelicula={contenido.isbn == ""}
