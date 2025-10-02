@@ -44,6 +44,23 @@
    justify-content: space-between;
 }
 
+.lista-crear{
+   padding: 65px 85px 35px 150px;
+   width: 965px;
+   height: 600px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.lista-crear-group{
+   width: 450px;
+}
+
+.form-spacer{
+   height: 55px;
+}
+
 .register{
    padding: 35px 85px 35px 150px;
 }

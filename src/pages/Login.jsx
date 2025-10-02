@@ -45,9 +45,7 @@ const Login = () => {
          .then((response) => {
             localStorage.setItem("token", "Bearer " + response.data.token);
             localStorage.setItem("username", username);
-            API.getPorUsername(
-               localStorage.getItem("username"),
-            ).then((res) => {
+            API.getPorUsername(localStorage.getItem("username")).then((res) => {
                localStorage.setItem("id", res.data.id);
                localStorage.setItem("fotoPerfil", res.data.fotoPerfil);
             });
@@ -68,39 +66,43 @@ const Login = () => {
             <div className="form-container login-register">
                <h1 className="form-title">Login</h1>
                <div className="all-inputs">
-               <div className="form-group">
-                  <label className="form-label">Username</label>
-                  <input
-                     className="form-input"
-                     type="username"
-                     name="username"
-                     value={username}
-                     onChange={(e) => setUsername(e.target.value)}
-                     placeholder="Username"
-                     required
-                  />
-               </div>
-
-               <div className="form-group">
-                  <label className="form-label">Password</label>
-                  <div className="password-container">
+                  <div className="form-group">
+                     <label className="form-label">Username</label>
                      <input
-                        className="form-input password"
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
+                        className="form-input"
+                        type="username"
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Username"
                         required
                      />
-                     <span
-                        onClick={() => setShowPassword((prev) => !prev)}
-                        className="password-icon"
-                     >
-                        {showPassword ? <IoEyeOff  className="icon-eye"/> : <IoEye className="icon-eye"/>}
-                     </span>
                   </div>
-               </div>
+
+                  <div className="form-group">
+                     <label className="form-label">Password</label>
+                     <div className="password-container">
+                        <input
+                           className="form-input password"
+                           type={showPassword ? "text" : "password"}
+                           name="password"
+                           value={password}
+                           onChange={(e) => setPassword(e.target.value)}
+                           placeholder="Password"
+                           required
+                        />
+                        <span
+                           onClick={() => setShowPassword((prev) => !prev)}
+                           className="password-icon"
+                        >
+                           {showPassword ? (
+                              <IoEyeOff className="icon-eye" />
+                           ) : (
+                              <IoEye className="icon-eye" />
+                           )}
+                        </span>
+                     </div>
+                  </div>
                </div>
                <span className="err">{error}</span>
                <button
