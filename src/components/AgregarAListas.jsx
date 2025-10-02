@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import API from "../service/api";
 import "./AgregarALista.css";
 import { useNavigate } from "react-router-dom";
-import { FaSortDown } from "react-icons/fa6";
 import { IoIosClose } from "react-icons/io";
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaAngleDown } from "react-icons/fa6";
@@ -11,8 +10,8 @@ const AgregarAListas = ({
    idContenido,
    esPelicula,
    onRefresh,
-   setOnRefresh,
    tieneReview,
+   setLeidoOVisto,
 }) => {
    const listaOpcionesLibro = ["LEIDO", "QUIERO LEER"];
    const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
@@ -58,6 +57,9 @@ const AgregarAListas = ({
                   ? "En lista personalizada"
                   : null
             );
+            if (contenido && (contenido.estado === "LEIDO" || contenido.estado === "VISTO")) {
+               setLeidoOVisto(true);
+            }
          })
          .catch(() => {
             setListaActual(null);
@@ -69,7 +71,7 @@ const AgregarAListas = ({
          .then(() => {
             setListaActual(nombreLista);
             setShowPopup(false);
-            setOnRefresh(!onRefresh);
+            onRefresh();
          })
          .catch(() => goToLogin());
    };
@@ -83,7 +85,7 @@ const AgregarAListas = ({
          .then(() => {
             setListaActual(nombreLista);
             setShowPopup(false);
-            setOnRefresh(!onRefresh);
+            onRefresh();
          })
          .catch(() => goToLogin());
    };
@@ -98,7 +100,7 @@ const AgregarAListas = ({
          .then(() => {
             setListaActual(null);
             setShowPopup(false);
-            setOnRefresh(!onRefresh);
+            onRefresh();
          })
          .catch(() => alert("Error al quitar el contenido de la lista "));
    };

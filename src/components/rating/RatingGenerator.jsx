@@ -4,6 +4,7 @@ import API from "../../service/api";
 import { HiOutlineTrash } from "react-icons/hi";
 import { TbEditCircle } from "react-icons/tb";
 import "./Rating.css";
+import "../deletePopup.css";
 
 const RatingGenerator = ({
    contenidoId,
@@ -11,9 +12,10 @@ const RatingGenerator = ({
    token,
    goToLogin,
    onRefresh,
-   setOnRefresh,
    esPelicula,
    writeReview,
+   hasWrittenReview,
+   leidoOVisto,
 }) => {
    const [value, setValue] = useState(0);
    const [shouldSendReview, setShouldSendReview] = useState(false);
@@ -40,7 +42,7 @@ const RatingGenerator = ({
          }
          API.valorarContenido(contenidoId, value, localStorage.getItem("id"))
             .then(() => {
-               setOnRefresh(!onRefresh);
+               onRefresh();
                setReadOnly(true);
             })
             .catch(() => {
@@ -56,7 +58,7 @@ const RatingGenerator = ({
                nombreLista
             )
                .then(() => {
-                  setOnRefresh(!onRefresh);
+                  onRefresh();
                })
                .catch(() => goToLogin());
          }
@@ -70,7 +72,7 @@ const RatingGenerator = ({
       }
       API.eliminarRating(contenidoId, localStorage.getItem("id"))
          .then(() => {
-            setOnRefresh(!onRefresh);
+            onRefresh();
             setReadOnly(false);
          })
          .catch(() => {
@@ -97,7 +99,6 @@ const RatingGenerator = ({
          .catch(() => setConsumido(false));
    }, [contenidoId, onRefresh]);
 
-
    const [readOnly, setReadOnly] = useState(false);
    const [isEditing, setIsEditing] = useState(false);
 
@@ -109,50 +110,87 @@ const RatingGenerator = ({
       setReadOnly(!readOnly);
       setIsEditing(!isEditing);
    };
+
+   const [showPopup, setShowPopup] = useState(false);
    
-   const [hasWrittenReview, setHasWrittenReview] = useState(false);
+   const handleClosePopup = () => setShowPopup(false);
+
+   const handleDelete = () => {
+      setValue(0)
+      deleteReview();
+      setShowPopup(false);
+
+   };
+
+   const handleRatingChange = (_, newValue) => {
+      setValue(newValue ?? value);
+      setShouldSendReview(true);
+      if (hasWrittenReview) {
+         window.location.reload();
+      } else {
+         onRefresh();
+      }
+   };
 
    return (
       <>
-      <div className="rating-container">
-         <div className="rating-background">
-            <Rating
-            name="simple-controlled"
-            value={value}
-            precision={0.5}
-            onChange={(_, newValue) => {
-               setValue(newValue ?? value);
-               setShouldSendReview(true);
-            }}
-            size="large"
-            readOnly={readOnly}
-         />
-         </div>
-         
-         {token && value !== 0 && (
-            <div className="rating-actions">
-               <TbEditCircle
-                  className={ "editRating-icon " + (isEditing ? "editRating-icon-active" : "")}
-                  onClick={handleEdit}
+         <div className="rating-container">
+            <div className="rating-background">
+               <Rating
+                  name="simple-controlled"
+                  value={value}
+                  precision={0.5}
+                  onChange={handleRatingChange}
+                  size="large"
+                  readOnly={readOnly}
                />
-               <HiOutlineTrash 
-                  className="deleteRating-icon"
-                  onClick={() => {
-                     setValue(0);
-                     deleteReview();
-                  }}/>
             </div>
+
+            {token && value !== 0 && (
+               <div className="rating-actions">
+                  <TbEditCircle
+                     className={
+                        "editRating-icon " +
+                        (isEditing ? "editRating-icon-active" : "")
+                     }
+                     onClick={handleEdit}
+                  />
+                  <HiOutlineTrash
+                     className="deleteRating-icon"
+                     onClick={() => {
+                        setShowPopup(true);
+                     }}
+                  />
+               </div>
+            )}
+         </div>
+         {isEditing && (
+            <h4 className="rating-instruction">Cambios sin guardar...</h4>
          )}
-   
-      </div>
-      {isEditing && (
-            <h4 className="rating-instruction">
-               Cambios sin guardar...
+         {!hasWrittenReview && value !== 0 && (
+            <h4 className="rating-suggestion" onClick={writeReview}>
+               Escribir una review!
             </h4>
          )}
-      {!hasWrittenReview &&  value !== 0 && (
-         <h4 className="rating-suggestion" onClick={writeReview}>Escribir una review!</h4>
-      ) }
+         {leidoOVisto && value == 0 && (
+            <h4 className="rating-suggestion">
+               Valora este contenido!
+            </h4>
+         )}
+         {showPopup && (
+            <div className="overlay" onClick={handleClosePopup}>
+            <div className="delete-popup">
+               <h2 className="delete-popup-message">¿Estás seguro de que quieres eliminar tu valoracion?</h2>
+               {hasWrittenReview && (
+                  <h3 className="delete-popup-submessage">Esto tambien eliminara tu reseña.</h3>
+               )}
+               <div className="delete-popup-buttons">
+               <button className="delete-cancel-button" onClick={handleClosePopup}>Cancelar</button>
+               <button className="delete-confirm-button" onClick={handleDelete}>Eliminar</button>
+               </div>
+            </div>
+            </div>
+         )}
       </>
    );
 };

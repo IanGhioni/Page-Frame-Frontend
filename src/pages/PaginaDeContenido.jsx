@@ -86,6 +86,11 @@ const PaginaDeContenido = () => {
       }
       setShowWriteReview(true);
    };
+   const handleRefresh = () => {
+      setOnRefresh(!onRefresh);
+   };
+
+   const [leidoOVisto, setLeidoOVisto] = useState(false);   
 
    return (
       <div className="container-pagina-contenido">
@@ -125,19 +130,20 @@ const PaginaDeContenido = () => {
                      <AgregarAListas
                         idContenido={contenido.id}
                         esPelicula={contenido.isbn == ""}
-                        onRefresh={onRefresh}
-                        setOnRefresh={setOnRefresh}
+                        onRefresh={handleRefresh}
                         tieneReview={userReview}
+                        setLeidoOVisto={setLeidoOVisto}
                      />
                      <RatingGenerator
                         contenidoId={contenido.id}
                         reviews={contenido.reviews}
                         token={token}
                         goToLogin={goToLogin}
-                        onRefresh={onRefresh}
-                        setOnRefresh={setOnRefresh}
+                        onRefresh={handleRefresh}
                         esPelicula={contenido.isbn == ""}
                         writeReview={handleWriteReview}
+                        hasWrittenReview={reviewTexto.texto}
+                        leidoOVisto={leidoOVisto}
                      />
                   </div>
                   <div className="container-contenido-info">
@@ -202,9 +208,10 @@ const PaginaDeContenido = () => {
                            <WriteReview
                               onClose={() => setShowWriteReview(false)}
                               contenidoId={contenido.id}
+                              onRefresh={handleRefresh}
                            />
                         )}
-                        {reviewTexto.texto && <ReviewDeUsuario review={reviewTexto} />}
+                        {reviewTexto.texto && <ReviewDeUsuario review={reviewTexto} onRefresh={handleRefresh} />}
                      </div>
                      <div className="container-contenido-bottom" />
                   </div>
@@ -217,7 +224,26 @@ const PaginaDeContenido = () => {
    );
 };
 
-const WriteReview = ({ onClose, contenidoId }) => {
+const ReviewDeUsuario = ({ review }) => {
+   return (
+      <div className="user-review-container">
+         <p className="user-review-content">{review.texto}</p>
+         <div className="user-review-footer">
+            <span className="user-review-date">
+               17/09/2025, 12:10hs
+            </span>
+            <RatingReadOnly
+               className="user-review-rating"
+               value={review.valoracion}
+            />
+            {/* <TbEditCircle/> */}
+            {/* <HiOutlineTrash className="user-review-delete" /> */}
+         </div>
+      </div>
+   );
+};
+
+const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
    const [reviewText, setReviewText] = useState("");
    
    const handleSubmit = () => {
@@ -228,6 +254,7 @@ const WriteReview = ({ onClose, contenidoId }) => {
       )
       .then(() => {
          console.log("Reseña enviada con éxito 🐱‍🏍");
+         onRefresh();
          onClose();
       })
       .catch(() => {
@@ -252,25 +279,6 @@ const WriteReview = ({ onClose, contenidoId }) => {
                   Cancelar
                </button>
             </div>
-         </div>
-      </div>
-   );
-};
-
-const ReviewDeUsuario = ({ review }) => {
-   return (
-      <div className="user-review-container">
-         <p className="user-review-content">{review.texto}</p>
-         <div className="user-review-footer">
-            <span className="user-review-date">
-               17/09/2025, 12:10hs
-            </span>
-            <RatingReadOnly
-               className="user-review-rating"
-               value={review.valoracion}
-            />
-            {/* <TbEditCircle/> */}
-            {/* <HiOutlineTrash className="user-review-delete" /> */}
          </div>
       </div>
    );

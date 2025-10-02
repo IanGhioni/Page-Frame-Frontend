@@ -6,6 +6,7 @@ import Navbar from "../components/navBar/NavBar";
 import CardContenido from "../components/cardContenido/CardContenido";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import "./ListaPersonalizada.css";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const ListaPersonalizada = () => {
    const [loading] = useState(false);
@@ -81,62 +82,59 @@ const ListaPersonalizada = () => {
                      </h2>
                      <button onClick={confirmarEliminarLista}>Eliminar lista</button>
                   </div>
+                  <div className="lista-descripcion">
+                     {/* <p>Descripción de la lista personalizada. (falta el endpoint) </p> */}
+                  </div>
                   {contenidos.map((contenido) => (
-                     <div key={contenido.id} className="card-contenido-container">
+                     <div key={contenido.id} className="card-list-container">
                         <CardContenido contenido={contenido} />
                         <button 
                            onClick={() => confirmarEliminarContenido(contenido.id)} 
                            className="btn-eliminar"
                         >
-                           x
+                           <HiOutlineTrash/>
                         </button>
                      </div>
                   ))}
                </div>
-               {showModalContenido && (
-                  <div className="modal-overlay">
-                     <div className="modal">
-                        <h3>¿Seguro que quieres eliminar este contenido?</h3>
-                        <div className="modal-buttons">
-                           <button onClick={() => setShowModalContenido(false)}>Cancelar</button>
-                           <button onClick={handleEliminarContenido} className="btn-aceptar">
-                              Aceptar
-                           </button>
-                        </div>
+              {showModalContenido && (
+               <div className="overlay" onClick={() => setShowModalContenido(false)}>
+                  <div className="delete-popup">
+                     <h2 className="delete-popup-message">¿Seguro que quieres eliminar este contenido?</h2>
+                     <div className="delete-popup-buttons">
+                        <button className="delete-cancel-button" onClick={() => setShowModalContenido(false)}>Cancelar</button>
+                        <button className="delete-confirm-button"  onClick={handleEliminarContenido}>Eliminar</button>
                      </div>
                   </div>
-               )}
+               </div>
+            )}
                {showModalLista && (
-                  <div className="modal-overlay">
-                     <div className="modal">
-                        <h3>¿Seguro que quieres eliminar la lista "{nombreLista}"?</h3>
-                        <div className="modal-buttons">
-                           <button onClick={() => setShowModalLista(false)}>Cancelar</button>
-                           <button onClick={handleEliminarLista} className="btn-aceptar">
-                              Aceptar
-                           </button>
-                        </div>
+               <div className="overlay" onClick={() => setShowModalLista(false)}>
+                  <div className="delete-popup">
+                     <h2 className="delete-popup-message">¿Seguro que quieres eliminar la lista "{nombreLista}"?</h2>
+                     <div className="delete-popup-buttons">
+                        <button className="delete-cancel-button" onClick={() => setShowModalLista(false)}>Cancelar</button>
+                        <button className="delete-confirm-button"  onClick={handleEliminarLista}>Eliminar</button>
                      </div>
                   </div>
-               )}
+               </div>
+            )}
             </>
          ) : (
             <div>
                <h1>Esta lista está vacía :(</h1>
                <button onClick={confirmarEliminarLista}>Eliminar lista</button>
                {showModalLista && (
-                  <div className="modal-overlay">
-                     <div className="modal">
-                        <h3>¿Seguro que quieres eliminar la lista "{nombreLista}"?</h3>
-                        <div className="modal-buttons">
-                           <button onClick={() => setShowModalLista(false)}>Cancelar</button>
-                           <button onClick={handleEliminarLista} className="btn-aceptar">
-                              Aceptar
-                           </button>
-                        </div>
+               <div className="overlay" onClick={() => setShowModalLista(false)}>
+                  <div className="delete-popup">
+                     <h2 className="delete-popup-message">¿Seguro que quieres eliminar la lista "{nombreLista}"?</h2>
+                     <div className="delete-popup-buttons">
+                        <button className="delete-cancel-button" onClick={() => setShowModalLista(false)}>Cancelar</button>
+                        <button className="delete-confirm-button"  onClick={handleEliminarLista}>Eliminar</button>
                      </div>
                   </div>
-               )}
+               </div>
+            )}
             </div>
          )}
       </div>

@@ -4,7 +4,7 @@
    height: 70px;
    width: 60px;
    font-size: 40px;
-   position: absolute;
+   position: fixed;
    top: 75px;
    left: 14px;
    z-index: 1;
