@@ -188,18 +188,21 @@
    margin-top: 10px;
 }
 .write-review-submit {
-   background-color: #7b769e;
-   color: white;
+   background-color: var(--color-lila);
+   color: var(--color-offWhite);
    font-weight: bold;
    border: none;
    border-radius: 100px;
    padding: 10px 20px;
    cursor: pointer;
    transition: background-color 0.3s;
+}
+.write-review-submit:hover{
+   background-color: var(--color-lilaHover);
 }
 .write-review-cancel{
    background-color: transparent;
-   color: #7b769e;
+   color: var(--color-lilaHover);
    font-weight: bold;
    border: none;
    border-radius: 100px;
@@ -207,8 +210,11 @@
    cursor: pointer;
    transition: background-color 0.3s;
 }
+.write-review-cancel:hover{
+  color: var(--color-lilaBorde);
+}
 .user-review-container{
-   border: 2px solid #997e7b;
+   border: 2px solid var(--color-beigeBordes);
    background-color: transparent;
    border-radius: 30px;
    padding: 10px 15px;
@@ -216,7 +222,7 @@
    box-sizing: border-box;
    width: 100%;
    transition: border 0.3s;
-   color: #231f20;
+   color: var(--color-negro);
    display: flex;
    flex-direction: column;
    gap: 10px;
@@ -259,11 +265,11 @@
    cursor: pointer;
    font-size: 1.5rem;
    margin-left: 10px;
-   color: #231f20;
+   color: var(--color-negro);
 }
 .user-review-edit:hover{
-   color: #675fa5;
+   color: var(--color-lilaBorde);
 }
 .user-review-delete:hover{
-   color: #a53232;;
+   color: var(--color-rojo);
 }

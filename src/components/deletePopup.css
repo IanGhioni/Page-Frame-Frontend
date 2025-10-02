@@ -26,7 +26,7 @@
 .delete-popup-submessage {
    font-size: 20px;
    text-align: center;
-   color: #3a3a3a;
+   color: var(--color-grisOscuro);
    font-weight: 300;
 }
 
@@ -46,16 +46,17 @@
 }
 
 .delete-cancel-button {
-   background-color: #e8e9e400;
-   color: #2b2b2b;
+   background-color: transparent;
+   color: var(--color-negro);
 }
 .delete-cancel-button:hover {
    text-decoration: underline;
 }
 .delete-confirm-button {
-   background-color: #9b281c;
-   color: #fff;
+   background-color: var(--color-rojo);
+   color: var(--color-offWhite);
 }
 .delete-confirm-button:hover {
-   background-color: #c0392b;
+   transition: background-color 0.2s ease;
+   background-color: var(--color-rojoHover);
 }

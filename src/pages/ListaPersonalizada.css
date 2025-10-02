@@ -12,11 +12,11 @@
   border: none;
   cursor: pointer;
   font-size: 2rem;
-  color: rgb(26, 26, 26);
+  color: var(--color-negro);
   transition: color 0.3s;
 }
 .btn-eliminar:hover {
-  color: rgb(107, 32, 32);
+  color: var(--color-rojoHover);
   transform: scale(1.1);
   transition: transform 0.3s;
 }

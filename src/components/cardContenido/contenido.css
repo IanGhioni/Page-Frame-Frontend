@@ -61,12 +61,12 @@
 
 .contenido-titulo:hover {
    cursor: pointer;
-   text-decoration: underline solid 2px black;
+   text-decoration: underline solid 2px var(--color-negro);
 }
 
 .contenido-autor {
    font-size: 1rem;
-   color: #555;
+   color: var(--color-grisOscuro);
    margin: 0;
 }
 
@@ -79,7 +79,7 @@
 
 .contenido-rating-text {
    font-size: 1.1rem;
-   color: #333;
+   color: var(--color-negro);
    margin-left: 0.5rem;
    align-self: center;
    text-align: center;
@@ -87,17 +87,8 @@
 
 .contenido-publicacion {
    font-size: 1rem;
-   color: #666;
+   color: var(--color-grisOscuro);
    margin: 0;
-}
-
-.contenido-categoria {
-   font-size: 0.75rem;
-   background: #f3f3f3;
-   color: #444;
-   padding: 0.2rem 0.5rem;
-   border-radius: 6px;
-   align-self: flex-start;
 }
 
 .icon-imagen-list {
@@ -113,8 +104,9 @@
 }
 
 .icon-list {
-   width: 40px;
-   height: 40px;
-   color: rgb(22, 22, 22);
+   padding: 11px 0px 0px 0px;
+   width: 45px;
+   height: 45px;
+   color: var(--color-negro);
 }
 

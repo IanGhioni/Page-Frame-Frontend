@@ -10,20 +10,20 @@
     display: flex;
     gap: 8px;
     font-size: 1.5rem;
-    color: #313031;
+    color: var(--color-negro);
 }
 
 .editRating-icon:hover{
-    color: #443e72;
+    color: var(--color-lilaBorde);
     cursor: pointer;
 }
 .editRating-icon-active {
-   color: #7e77b0;
+   color: var(--color-lilaHover);
    cursor: default;
 }
 
 .deleteRating-icon:hover {
-    color: #680f0f;
+    color: var(--color-rojo);
     cursor: pointer;
 }
 
@@ -44,7 +44,7 @@
     font-weight: 400;
     margin: 0;
     margin-top: 3px;
-    color: #313031;
+    color: var(--color-grisOscuro);
 }
 
 .rating-suggestion{
@@ -55,6 +55,6 @@
 }
 
 .rating-suggestion:hover{
-    color: #443e72;
+    color: var(--color-lilaBorde);
     cursor: pointer;
 }

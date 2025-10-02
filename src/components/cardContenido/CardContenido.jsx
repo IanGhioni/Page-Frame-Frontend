@@ -41,10 +41,6 @@ const CardContenido = ({ contenido }) => {
                <div className="contenido-rating">
                   <RatingReadOnly
                      value={contenido.ratingAverage}
-                     sx={{
-                        color: "#ff00c8ff", // Cambia el color de las estrellas
-                        fontSize: "2rem", // Cambia el tamaño
-                     }}
                   />
 
                   <span className="contenido-rating-text">
