@@ -20,11 +20,9 @@ const ListaPersonalizada = () => {
    const navigate = useNavigate();
 
    useEffect(() => {
-      console.log("Ver lista:", nombreLista);
       const idUser = localStorage.getItem("id");
       API.getContenidosDeListaPersonalizada(idUser, nombreLista)
          .then((response) => {
-            console.log(`Lista ${nombreLista}:`, response);
             setContenidos(response.data);
          })
          .catch((error) => {
@@ -40,12 +38,10 @@ const ListaPersonalizada = () => {
    const handleEliminarLista = () => {
       API.eliminarListaPersonalizada(idUser, nombreLista)
          .then((response) => {
-            console.log(`Lista ${nombreLista} eliminada:`, response);
             navigate("/user");
          })
          .catch((error) => {
             toast.error("Error al eliminar la lista.");
-            console.error(`Error al eliminar la lista ${nombreLista}:`, error);
          });
    };
 
@@ -65,7 +61,6 @@ const ListaPersonalizada = () => {
          })
          .catch((error) => {
             toast.error("Error al eliminar el contenido de la lista.");
-            console.error(`Error al eliminar el contenido ${contenidoAEliminar} de la lista ${nombreLista}:`, error);
          });
    };
 

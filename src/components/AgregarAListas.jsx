@@ -45,11 +45,9 @@ const AgregarAListas = ({
       API.getUsuarioPorId(idUsuario)
          .then((response) => {
             // Busca el contenido por id en listas comunes (NO personalizadas!!!!)
-            console.log(response.data);
             const contenido = response.data.contenidos.find(
                (c) => String(c.contenidoId) === String(idContenido)
             );
-            console.log(response.data.contenidoPersonalizado);
             const contenidoP = response.data.contenidoPersonalizado.find((l) =>
                l.contenidos.find((c) => String(c.id) === String(idContenido))
             );
@@ -60,7 +58,6 @@ const AgregarAListas = ({
                   ? "En lista personalizada"
                   : null
             );
-            console.log(contenidoP + "🙌");
          })
          .catch(() => {
             setListaActual(null);
@@ -101,7 +98,6 @@ const AgregarAListas = ({
          .then(() => {
             setListaActual(null);
             setShowPopup(false);
-            console.log("Contenido eliminado de la lista: 🗑️", idContenido);
             setOnRefresh(!onRefresh);
          })
          .catch(() => alert("Error al quitar el contenido de la lista "));

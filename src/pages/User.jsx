@@ -30,7 +30,6 @@ const User = () => {
       async function fetchListas() {
          try {
             const response = await API.getListasPersonalizadas(userId);
-            console.log(response.data);
             setListasPersonalizadas(response.data);
          } catch (error) {
             console.error(error);

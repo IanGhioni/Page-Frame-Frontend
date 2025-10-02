@@ -13,6 +13,7 @@ const RatingGenerator = ({
    onRefresh,
    setOnRefresh,
    esPelicula,
+   writeReview,
 }) => {
    const [value, setValue] = useState(0);
    const [shouldSendReview, setShouldSendReview] = useState(false);
@@ -108,6 +109,8 @@ const RatingGenerator = ({
       setReadOnly(!readOnly);
       setIsEditing(!isEditing);
    };
+   
+   const [hasWrittenReview, setHasWrittenReview] = useState(false);
 
    return (
       <>
@@ -143,10 +146,13 @@ const RatingGenerator = ({
    
       </div>
       {isEditing && (
-            <p className="rating-instruction">
+            <h4 className="rating-instruction">
                Cambios sin guardar...
-            </p>
+            </h4>
          )}
+      {!hasWrittenReview &&  value !== 0 && (
+         <h4 className="rating-suggestion" onClick={writeReview}>Escribir una review!</h4>
+      ) }
       </>
    );
 };

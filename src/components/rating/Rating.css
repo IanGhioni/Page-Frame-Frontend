@@ -4,7 +4,6 @@
     justify-content: center;
     gap: 8px;
     width: 250px;
-    
 }
 
 .rating-actions {
@@ -39,4 +38,23 @@
     justify-content: center;
     box-sizing: border-box;
     padding-bottom: 2px;
+}
+
+.rating-instruction{
+    font-weight: 400;
+    margin: 0;
+    margin-top: 3px;
+    color: #313031;
+}
+
+.rating-suggestion{
+    margin: 0;
+    margin-top: 5px;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+.rating-suggestion:hover{
+    color: #443e72;
+    cursor: pointer;
 }

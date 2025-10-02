@@ -4,8 +4,6 @@ import { useParams } from "react-router-dom";
 import { buscarPorId } from "../service/contenido";
 import { Image } from "primereact/image";
 import "./PaginaDeContenido.css";
-import { BiMoviePlay } from "react-icons/bi";
-import { TbBooks } from "react-icons/tb";
 import RatingReadOnly from "../components/rating/RatingReadOnly";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
 import AgregarAListas from "../components/AgregarAListas";
@@ -13,6 +11,9 @@ import API from "../service/api";
 import { useNavigate } from "react-router-dom";
 import RatingGenerator from "../components/rating/RatingGenerator";
 import img404 from "../assets/image-404.png";
+import { HiOutlineTrash } from "react-icons/hi";
+import { BiMoviePlay } from "react-icons/bi";
+import { TbBooks, TbEditCircle } from "react-icons/tb";
 
 const PaginaDeContenido = () => {
    const params = useParams();
@@ -22,6 +23,7 @@ const PaginaDeContenido = () => {
    const [shouldSendReview, setShouldSendReview] = useState(false);
    const [onRefresh, setOnRefresh] = useState(false);
    const [userReview, setUserReview] = useState(false);
+   const [tieneReviewTexto, setTieneReviewTexto] = useState(false);
 
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
@@ -42,6 +44,7 @@ const PaginaDeContenido = () => {
             (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
          );
          setUserReview(userReviews ? userReviews.length > 0 : false);
+         setTieneReviewTexto(userReviews.texto ? true : false);
          const lastReview =
             userReviews.length > 0 ? userReviews[userReviews.length - 1] : null;
          setValue(lastReview ? lastReview.valoracion : 0);
@@ -63,10 +66,8 @@ const PaginaDeContenido = () => {
             setShouldSendReview(false);
             return;
          }
-         console.log("Enviar reseña:  ✨✨✨", value);
          API.valorarContenido(params.id, value, localStorage.getItem("id"))
             .then(() => {
-               console.log("Reseña enviada con éxito 🐱‍🏍");
             })
             .catch(() => {
                console.error("Error al enviar la reseña ☠");
@@ -74,6 +75,16 @@ const PaginaDeContenido = () => {
          setShouldSendReview(false);
       }
    }, [shouldSendReview, value, token]);
+
+   const [showWriteReview, setShowWriteReview] = useState(false);
+
+   const handleWriteReview = () => {
+      if (!token) {
+         goToLogin();
+         return;
+      }
+      setShowWriteReview(true);
+   };
 
    return (
       <div className="container-pagina-contenido">
@@ -125,11 +136,12 @@ const PaginaDeContenido = () => {
                         onRefresh={onRefresh}
                         setOnRefresh={setOnRefresh}
                         esPelicula={contenido.isbn == ""}
+                        writeReview={handleWriteReview}
                      />
                   </div>
                   <div className="container-contenido-info">
                      <div className="container-info">
-                        <div className="container-paper-clip"/>
+                        <div className="container-paper-clip" />
                         <div className="container-info-header">
                            <h1 className="header-titulo">{contenido.titulo}</h1>
                            <h2 className="header-autores">
@@ -185,6 +197,13 @@ const PaginaDeContenido = () => {
                               {contenido.descripcion}
                            </p>
                         </div>
+                        {showWriteReview && (
+                           <WriteReview
+                              onClose={() => setShowWriteReview(false)}
+                              contenidoId={contenido.id}
+                           />
+                        )}
+                        {tieneReviewTexto && <ReviewDeUsuario review={userReview} />}
                      </div>
                      <div className="container-contenido-bottom" />
                   </div>
@@ -193,6 +212,65 @@ const PaginaDeContenido = () => {
          ) : (
             <div>Cargando...</div>
          )}
+      </div>
+   );
+};
+
+const WriteReview = ({ onClose, contenidoId }) => {
+   const [reviewText, setReviewText] = useState("");
+   
+   const handleSubmit = () => {
+      API.escribirReview(
+         contenidoId,
+         localStorage.getItem("id"),
+         { text: reviewText }
+      )
+      .then(() => {
+         console.log("Reseña enviada con éxito 🐱‍🏍");
+         onClose();
+      })
+      .catch(() => {
+         console.error("Error al enviar la reseña ☠");
+      });
+   };
+
+   return (
+      <div className="write-review-popup">
+         <div className="write-review-content">
+            <textarea
+               className="write-review-textarea"
+               value={reviewText}
+               onChange={(e) => setReviewText(e.target.value)}
+               placeholder="Escribe tu reseña aquí..."
+            ></textarea>
+            <div className="write-review-buttons">
+               <button className="write-review-submit" onClick={handleSubmit}>
+                  Enviar
+               </button>
+               <button className="write-review-cancel" onClick={onClose}>
+                  Cancelar
+               </button>
+            </div>
+         </div>
+      </div>
+   );
+};
+
+const ReviewDeUsuario = ({ review }) => {
+   return (
+      <div className="user-review-container">
+         <p className="user-review-content">{review.contenido}</p>
+         <div className="user-review-footer">
+            <span className="user-review-date">
+               {new Date(review.fecha).toLocaleDateString()}
+            </span>
+            <RatingReadOnly
+               className="user-review-rating"
+               value={review.valoracion}
+            />
+            {/* <TbEditCircle/> */}
+            <HiOutlineTrash className="user-review-delete" />
+         </div>
       </div>
    );
 };
