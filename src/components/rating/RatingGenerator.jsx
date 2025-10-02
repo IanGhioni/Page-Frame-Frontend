@@ -25,6 +25,8 @@ const RatingGenerator = ({
          const lastReview =
             userReviews.length > 0 ? userReviews[userReviews.length - 1] : null;
          setValue(lastReview ? lastReview.valoracion : 0);
+         setIsEditing(false);
+         setReadOnly(lastReview ? true : false);
       }
    }, [reviews, token]);
 
@@ -96,6 +98,7 @@ const RatingGenerator = ({
 
 
    const [readOnly, setReadOnly] = useState(false);
+   const [isEditing, setIsEditing] = useState(false);
 
    const handleEdit = () => {
       if (!token) {
@@ -103,8 +106,8 @@ const RatingGenerator = ({
          return;
       }
       setReadOnly(!readOnly);
+      setIsEditing(!isEditing);
    };
-
 
    return (
       <>
@@ -126,7 +129,7 @@ const RatingGenerator = ({
          {token && value !== 0 && (
             <div className="rating-actions">
                <TbEditCircle
-                  className={ "editRating-icon " + (!readOnly ? "editRating-icon-active" : "")}
+                  className={ "editRating-icon " + (isEditing ? "editRating-icon-active" : "")}
                   onClick={handleEdit}
                />
                <HiOutlineTrash 
@@ -139,7 +142,7 @@ const RatingGenerator = ({
          )}
    
       </div>
-      {value != 0 && !readOnly && (
+      {isEditing && (
             <p className="rating-instruction">
                Cambios sin guardar...
             </p>
