@@ -23,7 +23,7 @@ const PaginaDeContenido = () => {
    const [shouldSendReview, setShouldSendReview] = useState(false);
    const [onRefresh, setOnRefresh] = useState(false);
    const [userReview, setUserReview] = useState(false);
-   const [tieneReviewTexto, setTieneReviewTexto] = useState(false);
+   const [reviewTexto, setReviewTexto] = useState("");
 
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
@@ -44,7 +44,8 @@ const PaginaDeContenido = () => {
             (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
          );
          setUserReview(userReviews ? userReviews.length > 0 : false);
-         setTieneReviewTexto(userReviews.texto ? true : false);
+         setReviewTexto(userReviews[userReviews.length - 1] || { texto: "" });
+
          const lastReview =
             userReviews.length > 0 ? userReviews[userReviews.length - 1] : null;
          setValue(lastReview ? lastReview.valoracion : 0);
@@ -203,7 +204,7 @@ const PaginaDeContenido = () => {
                               contenidoId={contenido.id}
                            />
                         )}
-                        {tieneReviewTexto && <ReviewDeUsuario review={userReview} />}
+                        {reviewTexto.texto && <ReviewDeUsuario review={reviewTexto} />}
                      </div>
                      <div className="container-contenido-bottom" />
                   </div>
@@ -259,17 +260,17 @@ const WriteReview = ({ onClose, contenidoId }) => {
 const ReviewDeUsuario = ({ review }) => {
    return (
       <div className="user-review-container">
-         <p className="user-review-content">{review.contenido}</p>
+         <p className="user-review-content">{review.texto}</p>
          <div className="user-review-footer">
             <span className="user-review-date">
-               {new Date(review.fecha).toLocaleDateString()}
+               17/09/2025, 12:10hs
             </span>
             <RatingReadOnly
                className="user-review-rating"
                value={review.valoracion}
             />
             {/* <TbEditCircle/> */}
-            <HiOutlineTrash className="user-review-delete" />
+            {/* <HiOutlineTrash className="user-review-delete" /> */}
          </div>
       </div>
    );
