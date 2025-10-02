@@ -48,9 +48,6 @@ button {
    cursor: pointer;
    transition: border-color 0.25s;
 }
-button:hover {
-   border-color: #646cff;
-}
 
 @media (prefers-color-scheme: light) {
    :root {
@@ -114,4 +111,8 @@ button:hover {
    justify-content: center;
    box-sizing: border-box;
    text-align: center;
+}
+
+.MuiRating-root .MuiRating-iconFilled {
+  color: rgb(231, 148, 52) !important;
 }

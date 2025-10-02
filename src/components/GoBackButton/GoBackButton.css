@@ -1,10 +1,22 @@
 .goBack {
-   padding: 10px;
    border: none;
    cursor: pointer;
+   height: 70px;
+   width: 60px;
    font-size: 40px;
    position: absolute;
-   top: 70px;
-   left: 0px;
+   top: 75px;
+   left: 14px;
    z-index: 1;
+   background-image: url("../../assets/tape.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.goBack-icon {
+   padding-right: 7px;
+   z-index: 2;
 }

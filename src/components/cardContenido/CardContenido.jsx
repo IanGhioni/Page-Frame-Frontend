@@ -1,86 +1,67 @@
 import "./contenido.css";
-import bookIcon from "../../assets/book-icon.svg";
-import movieIcon from "../../assets/movie-icon-small.svg";
+import { BiMoviePlay } from "react-icons/bi";
+import { TbBooks } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import RatingReadOnly from "../rating/RatingReadOnly";
-import AgregarAListas from "../AgregarAListas";
-import { useEffect, useState } from "react";
+import img404 from "../../assets/image-404.png";
 
 const CardContenido = ({ contenido }) => {
    const navigate = useNavigate();
 
-   const icon = () => {
-      if (contenido.isbn == "") {
-         return movieIcon;
-      } else {
-         return bookIcon;
-      }
-   };
-
-   const [onRefresh, setOnRefresh] = useState(false);
-   const [userReview, setUserReview] = useState(false);
-
-   useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (token !== null && contenido) {
-         const userReviews = contenido.reviews.filter(
-            (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
-         );
-         setUserReview(userReviews ? userReviews.length > 0 : false);
-      }
-   }, [contenido]);
-
-
    return (
-      <div className="contenido-card">
-         <div className="contenido-imagen">
-            <img
-               onClick={() => navigate(`/contenido/${contenido.id}`)}
-               src={contenido.imagen}
-               onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                     "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
-               }}
-               onLoad={(e) => {
-                  const img = e.target;
-                  if (img.naturalWidth <= 90 || img.naturalHeight <= 90) {
-                     img.src =
-                        "https://www.shutterstock.com/image-vector/404-error-icon-vector-symbol-260nw-1545236357.jpg";
-                  }
-               }}
-            />
-         </div>
-         <div className="contenido-info">
-            <h2
-               className="contenido-titulo"
-               onClick={() => navigate(`/contenido/${contenido.id}`)}
-            >
-               {contenido.titulo}
-            </h2>
-            <p className="contenido-autor">de {contenido.autores}</p>
-
-            <div className="contenido-rating">
-               <RatingReadOnly value={contenido.ratingAverage} />
-               <span className="contenido-rating-text">
-                  {contenido.ratingAverage.toFixed(2)} - {contenido.ratingCount}{" "}
-                  reseñas
-               </span>
+      <div className="card-contenido-container">
+         <div className="contenido-card">
+            <div className="contenido-imagen">
+               <img
+                  onClick={() => navigate(`/contenido/${contenido.id}`)}
+                  src={contenido.imagen}
+                  onError={(e) => {
+                     e.target.onerror = null;
+                     e.target.src = img404;
+                  }}
+                  onLoad={(e) => {
+                     const img = e.target;
+                     if (img.naturalWidth <= 90 || img.naturalHeight <= 90) {
+                        img.src = img404;
+                     }
+                  }}
+               />
             </div>
-            <p className="contenido-publicacion">
-               Publicado en {contenido.publicacion}
-            </p>
-            <AgregarAListas
-               idContenido={contenido.id}
-               esPelicula={contenido.isbn == ""}
-               onRefresh={onRefresh}
-               setOnRefresh={setOnRefresh}
-               tieneReview={userReview}
-            />
+            <div className="contenido-info">
+               <h2
+                  className="contenido-titulo"
+                  onClick={() => navigate(`/contenido/${contenido.id}`)}
+               >
+                  {contenido.titulo}
+               </h2>
+               <p className="contenido-autor">de {contenido.autores}</p>
+               <p className="contenido-publicacion">
+                  Publicado en {contenido.publicacion}
+               </p>
+               <div className="contenido-rating">
+                  <RatingReadOnly
+                     value={contenido.ratingAverage}
+                     sx={{
+                        color: "#ff00c8ff", // Cambia el color de las estrellas
+                        fontSize: "2rem", // Cambia el tamaño
+                     }}
+                  />
+
+                  <span className="contenido-rating-text">
+                     {contenido.ratingAverage.toFixed(2)} -{" "}
+                     {contenido.ratingCount} reseñas
+                  </span>
+               </div>
+            </div>
+            
          </div>
-         <div className="icon-imagen">
-            <img src={icon()}></img>
-         </div>
+         <div className="icon-imagen-list">
+               {contenido.isbn ? (
+                  <TbBooks className="icon-list" />
+               ) : (
+                  <BiMoviePlay className="icon-list" />
+               )}
+            </div>
       </div>
    );
 };

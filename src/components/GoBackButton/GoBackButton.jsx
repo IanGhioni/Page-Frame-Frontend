@@ -6,7 +6,7 @@ const GoBackButton = () => {
    const navigate = useNavigate();
    return (
       <div className="goBack">
-         <IoIosArrowBack onClick={() => navigate(-1)} />
+         <IoIosArrowBack onClick={() => navigate(-1)} className="goBack-icon"/>
       </div>
    );
 };

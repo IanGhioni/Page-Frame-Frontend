@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
-import API from "../service/api";
+import API from "../../service/api";
+import { HiOutlineTrash } from "react-icons/hi";
+import { TbEditCircle } from "react-icons/tb";
+import "./Rating.css";
 
-const ReviewGenerator = ({
+const RatingGenerator = ({
    contenidoId,
    reviews,
    token,
    goToLogin,
    onRefresh,
    setOnRefresh,
-   esPelicula
+   esPelicula,
 }) => {
    const [value, setValue] = useState(0);
    const [shouldSendReview, setShouldSendReview] = useState(false);
@@ -34,21 +37,25 @@ const ReviewGenerator = ({
          }
          API.valorarContenido(contenidoId, value, localStorage.getItem("id"))
             .then(() => {
-               console.log("Reseña de " + value + " enviada con éxito 🐱‍🏍");
                setOnRefresh(!onRefresh);
+               setReadOnly(true);
             })
             .catch(() => {
-               console.error("Error al enviar la reseña ☠");
+               console.error("☠ Error al enviar la reseña ☠");
             });
          setShouldSendReview(false);
-         
+
          if (!consumido) {
-            const nombreLista = esPelicula ? 'VISTO' : 'LEIDO';
-            API.agregarALista(localStorage.getItem("id"), contenidoId, nombreLista)
-                     .then(() => {
-                        setOnRefresh(!onRefresh);
-                     })
-                     .catch(() => goToLogin());
+            const nombreLista = esPelicula ? "VISTO" : "LEIDO";
+            API.agregarALista(
+               localStorage.getItem("id"),
+               contenidoId,
+               nombreLista
+            )
+               .then(() => {
+                  setOnRefresh(!onRefresh);
+               })
+               .catch(() => goToLogin());
          }
       }
    }, [shouldSendReview, value, token, contenidoId, goToLogin]);
@@ -58,10 +65,10 @@ const ReviewGenerator = ({
          goToLogin();
          return;
       }
-      API.eliminarReview(contenidoId, localStorage.getItem("id"))
+      API.eliminarRating(contenidoId, localStorage.getItem("id"))
          .then(() => {
             setOnRefresh(!onRefresh);
-            console.log("Reseña eliminada 🗑🗑");
+            setReadOnly(false);
          })
          .catch(() => {
             console.error("☠ Error al eliminar la reseña ☠");
@@ -87,34 +94,58 @@ const ReviewGenerator = ({
          .catch(() => setConsumido(false));
    }, [contenidoId, onRefresh]);
 
+
+   const [readOnly, setReadOnly] = useState(false);
+
+   const handleEdit = () => {
+      if (!token) {
+         goToLogin();
+         return;
+      }
+      setReadOnly(!readOnly);
+   };
+
+
    return (
       <>
-         <Rating
+      <div className="rating-container">
+         <div className="rating-background">
+            <Rating
             name="simple-controlled"
             value={value}
             precision={0.5}
-            onChange={(event, newValue) => {
+            onChange={(_, newValue) => {
                setValue(newValue ?? value);
                setShouldSendReview(true);
             }}
             size="large"
+            readOnly={readOnly}
          />
+         </div>
+         
          {token && value !== 0 && (
-            <button
-               onClick={() => {
-                  setValue(0);
-                  deleteReview();
-               }}
-               style={{
-                  backgroundColor: "#ff4d4d",
-                  color: "white",
-               }}
-            >
-               eliminar reseña
-            </button>
+            <div className="rating-actions">
+               <TbEditCircle
+                  className={ "editRating-icon " + (!readOnly ? "editRating-icon-active" : "")}
+                  onClick={handleEdit}
+               />
+               <HiOutlineTrash 
+                  className="deleteRating-icon"
+                  onClick={() => {
+                     setValue(0);
+                     deleteReview();
+                  }}/>
+            </div>
+         )}
+   
+      </div>
+      {value != 0 && !readOnly && (
+            <p className="rating-instruction">
+               Cambios sin guardar...
+            </p>
          )}
       </>
    );
 };
 
-export default ReviewGenerator;
+export default RatingGenerator;
