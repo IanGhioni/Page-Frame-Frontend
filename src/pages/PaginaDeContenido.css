@@ -201,3 +201,71 @@
    cursor: pointer;
    transition: background-color 0.3s;
 }
+
+.user-review-container{
+   border: 2px solid #997e7b;
+   background-color: transparent;
+   border-radius: 30px;
+   padding: 10px 15px;
+   font-size: 16px;
+   box-sizing: border-box;
+   width: 100%;
+   transition: border 0.3s;
+   color: #231f20;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.user-review-content{
+   font-size: 1.03rem;
+   margin: 0;
+}
+
+.user-review-footer{
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin: 0;
+   height: 20px;
+   margin-top: 30px;
+}
+
+.user-review-avatar {
+   width: 45px;
+   object-fit: cover;
+   align-self: flex-end;
+}
+
+.user-review-author{
+   margin: 0;
+   font-weight: bold;
+   font-size: 1.2rem;
+}
+.user-review-date{
+   margin: 0;
+   color: gray;
+   font-size: 0.9rem;
+   margin-right: auto;
+}
+.user-review-rating{
+   padding-bottom: 5px;
+}
+
+.user-review-buttons{
+   display: flex;
+}
+
+.user-review-edit, .user-review-delete{
+   cursor: pointer;
+   font-size: 1.5rem;
+   margin-left: 10px;
+   color: #231f20;
+}
+.user-review-edit:hover{
+   color: #675fa5;
+}
+
+.user-review-delete:hover{
+   color: #a53232;;
+}

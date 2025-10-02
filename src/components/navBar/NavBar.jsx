@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import logo from "../../assets/mini-logo.png";
 import { getFotoPerfil } from "../../FotoPerfilMapper";
-import {Menu} from 'primereact/menu';
+import { Menu } from 'primereact/menu';
 
 const Navbar = () => {
    const [nombre, setNombre] = useState("");

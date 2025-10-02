@@ -14,6 +14,7 @@ import img404 from "../assets/image-404.png";
 import { HiOutlineTrash } from "react-icons/hi";
 import { BiMoviePlay } from "react-icons/bi";
 import { TbBooks, TbEditCircle } from "react-icons/tb";
+import { getFotoPerfil } from "../FotoPerfilMapper";
 
 const PaginaDeContenido = () => {
    const params = useParams();
@@ -68,8 +69,7 @@ const PaginaDeContenido = () => {
             return;
          }
          API.valorarContenido(params.id, value, localStorage.getItem("id"))
-            .then(() => {
-            })
+            .then(() => {})
             .catch(() => {
                console.error("Error al enviar la reseña ☠");
             });
@@ -90,7 +90,7 @@ const PaginaDeContenido = () => {
       setOnRefresh(!onRefresh);
    };
 
-   const [leidoOVisto, setLeidoOVisto] = useState(false);   
+   const [leidoOVisto, setLeidoOVisto] = useState(false);
 
    return (
       <div className="container-pagina-contenido">
@@ -211,7 +211,12 @@ const PaginaDeContenido = () => {
                               onRefresh={handleRefresh}
                            />
                         )}
-                        {reviewTexto.texto && <ReviewDeUsuario review={reviewTexto} onRefresh={handleRefresh} />}
+                        {reviewTexto.texto && (
+                           <ReviewDeUsuario
+                              review={reviewTexto}
+                              onRefresh={handleRefresh}
+                           />
+                        )}
                      </div>
                      <div className="container-contenido-bottom" />
                   </div>
@@ -225,19 +230,27 @@ const PaginaDeContenido = () => {
 };
 
 const ReviewDeUsuario = ({ review }) => {
+   const fotoPerfil = getFotoPerfil(review.userPhoto);
    return (
       <div className="user-review-container">
          <p className="user-review-content">{review.texto}</p>
          <div className="user-review-footer">
-            <span className="user-review-date">
-               17/09/2025, 12:10hs
-            </span>
+            <img
+               src={fotoPerfil}
+               alt="Foto de perfil"
+               className="user-review-avatar"
+            />
+            <h3 className="user-review-author">{review.username}</h3>
+
+            <h3 className="user-review-date">17/09/2025, 12:10hs</h3>
             <RatingReadOnly
                className="user-review-rating"
                value={review.valoracion}
             />
-            {/* <TbEditCircle/> */}
-            {/* <HiOutlineTrash className="user-review-delete" /> */}
+            {/* <div className="user-review-buttons">
+               <TbEditCircle className="user-review-edit" />
+               <HiOutlineTrash className="user-review-delete" />
+            </div> */}
          </div>
       </div>
    );
@@ -245,21 +258,19 @@ const ReviewDeUsuario = ({ review }) => {
 
 const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
    const [reviewText, setReviewText] = useState("");
-   
+
    const handleSubmit = () => {
-      API.escribirReview(
-         contenidoId,
-         localStorage.getItem("id"),
-         { text: reviewText }
-      )
-      .then(() => {
-         console.log("Reseña enviada con éxito 🐱‍🏍");
-         onRefresh();
-         onClose();
+      API.escribirReview(contenidoId, localStorage.getItem("id"), {
+         text: reviewText,
       })
-      .catch(() => {
-         console.error("Error al enviar la reseña ☠");
-      });
+         .then(() => {
+            console.log("Reseña enviada con éxito 🐱‍🏍");
+            onRefresh();
+            onClose();
+         })
+         .catch(() => {
+            console.error("Error al enviar la reseña ☠");
+         });
    };
 
    return (
