@@ -156,3 +156,48 @@
    align-items: flex-start;
    text-align: left;
 }
+
+.container-descripcion p {
+   font-size: 1.03rem;
+}
+
+.write-review-content{
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+}
+
+.write-review-textarea {
+   max-width: 700px;
+   min-width: 699px;
+   height: auto;
+   font-size: 1.03rem;
+}
+
+.write-review-buttons{
+   display: flex;
+   gap: 10px;
+   margin-top: 10px;
+}
+
+.write-review-submit {
+   background-color: #7b769e;
+   color: white;
+   font-weight: bold;
+   border: none;
+   border-radius: 100px;
+   padding: 10px 20px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.write-review-cancel{
+   background-color: transparent;
+   color: #7b769e;
+   font-weight: bold;
+   border: none;
+   border-radius: 100px;
+   padding: 10px 20px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}

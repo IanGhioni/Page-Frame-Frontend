@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import GoBackButton from "../components/GoBackButton/GoBackButton";
-import "./crearLista.css";
+import "./form.css";
 import api from "../service/axiosInstance";
 
 const CrearLista = () => {

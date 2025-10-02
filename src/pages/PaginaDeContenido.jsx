@@ -266,17 +266,18 @@ const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
       <div className="write-review-popup">
          <div className="write-review-content">
             <textarea
-               className="write-review-textarea"
+               className="form-input-text write-review-textarea"
                value={reviewText}
                onChange={(e) => setReviewText(e.target.value)}
                placeholder="Escribe tu reseña aquí..."
+               rows={6}
             ></textarea>
             <div className="write-review-buttons">
-               <button className="write-review-submit" onClick={handleSubmit}>
-                  Enviar
-               </button>
                <button className="write-review-cancel" onClick={onClose}>
                   Cancelar
+               </button>
+               <button className="write-review-submit" onClick={handleSubmit}>
+                  Enviar
                </button>
             </div>
          </div>

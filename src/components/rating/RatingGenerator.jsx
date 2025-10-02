@@ -112,14 +112,13 @@ const RatingGenerator = ({
    };
 
    const [showPopup, setShowPopup] = useState(false);
-   
+
    const handleClosePopup = () => setShowPopup(false);
 
    const handleDelete = () => {
-      setValue(0)
+      setValue(0);
       deleteReview();
       setShowPopup(false);
-
    };
 
    const handleRatingChange = (_, newValue) => {
@@ -168,27 +167,50 @@ const RatingGenerator = ({
             <h4 className="rating-instruction">Cambios sin guardar...</h4>
          )}
          {!hasWrittenReview && value !== 0 && (
-            <h4 className="rating-suggestion" onClick={writeReview}>
+            <h4
+               className="rating-suggestion"
+               onClick={() => {
+                  writeReview();
+                  setTimeout(() => {
+                     window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: "smooth",
+                     });
+                  }, 100);
+               }}
+            >
                Escribir una review!
             </h4>
          )}
          {leidoOVisto && value == 0 && (
-            <h4 className="rating-suggestion">
-               Valora este contenido!
-            </h4>
+            <h4 className="rating-suggestion">Valora este contenido!</h4>
          )}
          {showPopup && (
             <div className="overlay" onClick={handleClosePopup}>
-            <div className="delete-popup">
-               <h2 className="delete-popup-message">¿Estás seguro de que quieres eliminar tu valoracion?</h2>
-               {hasWrittenReview && (
-                  <h3 className="delete-popup-submessage">Esto tambien eliminara tu reseña.</h3>
-               )}
-               <div className="delete-popup-buttons">
-               <button className="delete-cancel-button" onClick={handleClosePopup}>Cancelar</button>
-               <button className="delete-confirm-button" onClick={handleDelete}>Eliminar</button>
+               <div className="delete-popup">
+                  <h2 className="delete-popup-message">
+                     ¿Estás seguro de que quieres eliminar tu valoracion?
+                  </h2>
+                  {hasWrittenReview && (
+                     <h3 className="delete-popup-submessage">
+                        Esto tambien eliminara tu reseña.
+                     </h3>
+                  )}
+                  <div className="delete-popup-buttons">
+                     <button
+                        className="delete-cancel-button"
+                        onClick={handleClosePopup}
+                     >
+                        Cancelar
+                     </button>
+                     <button
+                        className="delete-confirm-button"
+                        onClick={handleDelete}
+                     >
+                        Eliminar
+                     </button>
+                  </div>
                </div>
-            </div>
             </div>
          )}
       </>
