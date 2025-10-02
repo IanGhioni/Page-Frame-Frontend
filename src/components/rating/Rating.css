@@ -3,15 +3,16 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 214px;
+    width: 250px;
+    
 }
+
 .rating-actions {
     display: flex;
     gap: 8px;
     font-size: 1.5rem;
     color: #313031;
 }
-
 
 .editRating-icon:hover{
     color: #443e72;
@@ -25,4 +26,17 @@
 .deleteRating-icon:hover {
     color: #680f0f;
     cursor: pointer;
+}
+
+.rating-background{
+    background-image: url(../../assets/star-tape.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 175px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-bottom: 2px;
 }

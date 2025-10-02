@@ -109,8 +109,8 @@ const RatingGenerator = ({
    return (
       <>
       <div className="rating-container">
-         
-         <Rating
+         <div className="rating-background">
+            <Rating
             name="simple-controlled"
             value={value}
             precision={0.5}
@@ -121,6 +121,8 @@ const RatingGenerator = ({
             size="large"
             readOnly={readOnly}
          />
+         </div>
+         
          {token && value !== 0 && (
             <div className="rating-actions">
                <TbEditCircle

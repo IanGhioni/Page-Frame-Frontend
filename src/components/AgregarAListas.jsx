@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaSortDown } from "react-icons/fa6";
 import { IoIosClose } from "react-icons/io";
 import { HiOutlineTrash } from "react-icons/hi";
+import { FaAngleDown } from "react-icons/fa6";
 
 const AgregarAListas = ({
    idContenido,
@@ -111,8 +112,9 @@ const AgregarAListas = ({
    return (
       <>
          <button onClick={handleAgregarClick} className="button-agregarALista">
+            <div></div>
             {listaActual ? `${listaActual}` : "Agregar a lista"}
-            <FaSortDown className="icon-agregarALista" />
+            <FaAngleDown className="icon-agregarALista" />
          </button>
          {showPopup && (
             <PopUpAgregarALista

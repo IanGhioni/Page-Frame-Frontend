@@ -33,9 +33,12 @@
 .container-img {
    display: flex;
    flex-direction: column;
+   align-items: center;
    padding: 40px;
    position: fixed;
+   z-index: 100;
    left: 150px;
+
 }
 
 .container-info {
@@ -57,7 +60,7 @@
    width: 100%;
    background-image: url(../assets/background-contenido/contenido-bg-bottom.png);
    background-size: no-repeat;
-   z-index: 2;
+   z-index: 99;
 }
 
 .container-paper-clip {
@@ -70,7 +73,7 @@
    transform: rotate(6deg);
    top: -10px;
    right: 50px;
-   z-index: 2;
+   z-index: 99;
 }
 
 .container-seccion-icon {
