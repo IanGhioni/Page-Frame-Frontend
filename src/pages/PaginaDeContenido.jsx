@@ -245,7 +245,7 @@ const ReviewDeUsuario = ({ review }) => {
             />
             <h3 className="user-review-author">{review.username}</h3>
 
-            <h3 className="user-review-date">17/09/2025, 12:10hs</h3>
+            <h3 className="user-review-date">{review.fecha.split("-").reverse().join("/")}, {review.hora}hs</h3>
             <RatingReadOnly
                className="user-review-rating"
                value={review.valoracion}
