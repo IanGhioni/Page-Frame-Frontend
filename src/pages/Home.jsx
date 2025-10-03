@@ -81,7 +81,7 @@ const Home = () => {
             </>
          ) : (
             <div>
-               <h2>No hay nada en la base o algo raro paso</h2>
+               <h2>No hay nada en la base o algo raro paso </h2>
             </div>
          )}
       </div>
