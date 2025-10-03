@@ -4,9 +4,22 @@ import { TbBooks } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import RatingReadOnly from "../rating/RatingReadOnly";
 import img404 from "../../assets/image-404.png";
+import AgregarAListas from "../AgregarAListas.jsx";
+import { useState, useEffect } from "react";
 
 const CardContenido = ({ contenido }) => {
    const navigate = useNavigate();
+   const [onRefresh, setOnRefresh] = useState(false);
+   const [userReview, setUserReview] = useState(false);
+   useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token !== null && contenido) {
+         const userReviews = contenido.reviews.filter(
+            (r) => String(r.usuarioId) === String(localStorage.getItem("id"))
+         );
+         setUserReview(userReviews ? userReviews.length > 0 : false);
+      }
+   }, [contenido]);
 
    return (
       <div className="card-contenido-container">
@@ -38,26 +51,32 @@ const CardContenido = ({ contenido }) => {
                <p className="contenido-publicacion">
                   Publicado en {contenido.publicacion}
                </p>
+               
                <div className="contenido-rating">
-                  <RatingReadOnly
-                     value={contenido.ratingAverage}
-                  />
+                  <RatingReadOnly value={contenido.ratingAverage} />
 
                   <span className="contenido-rating-text">
                      {contenido.ratingAverage.toFixed(2)} -{" "}
                      {contenido.ratingCount} reseñas
                   </span>
                </div>
+               <AgregarAListas
+                  idContenido={contenido.id}
+                  esPelicula={contenido.isbn == ""}
+                  onRefresh={onRefresh}
+                  setOnRefresh={setOnRefresh}
+                  tieneReview={userReview}
+                  className="card-agregar-listas"
+               />
             </div>
-            
          </div>
          <div className="icon-imagen-list">
-               {contenido.isbn ? (
-                  <TbBooks className="icon-list" />
-               ) : (
-                  <BiMoviePlay className="icon-list" />
-               )}
-            </div>
+            {contenido.isbn ? (
+               <TbBooks className="icon-list" />
+            ) : (
+               <BiMoviePlay className="icon-list" />
+            )}
+         </div>
       </div>
    );
 };

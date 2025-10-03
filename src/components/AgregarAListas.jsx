@@ -12,6 +12,7 @@ const AgregarAListas = ({
    onRefresh,
    tieneReview,
    setLeidoOVisto,
+   className
 }) => {
    const listaOpcionesLibro = ["LEIDO", "QUIERO LEER"];
    const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
@@ -109,7 +110,7 @@ const AgregarAListas = ({
 
    return (
       <>
-         <button onClick={handleAgregarClick} className="button-agregarALista">
+         <button onClick={handleAgregarClick} className={`button-agregarALista ${className}`}>
             <div></div>
             {listaActual ? `${listaActual}` : "Agregar a lista"}
             <FaAngleDown className="icon-agregarALista" />

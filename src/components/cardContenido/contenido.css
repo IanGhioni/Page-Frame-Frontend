@@ -110,3 +110,6 @@
    color: var(--color-negro);
 }
 
+.card-agregar-listas{
+   margin-top: 5px !important;
+}
