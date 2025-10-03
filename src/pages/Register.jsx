@@ -87,7 +87,7 @@ const Register = () => {
                toast("Register completed");
                setTimeout(() => {
                   goToPage("/");
-               }, 3000);
+               }, 2000);
             })
             .catch((err) => {
                setError(err.response.data.title);

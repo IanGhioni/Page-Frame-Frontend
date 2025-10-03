@@ -1,0 +1,60 @@
+.rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 250px;
+}
+
+.rating-actions {
+    display: flex;
+    gap: 8px;
+    font-size: 1.5rem;
+    color: var(--color-negro);
+}
+
+.editRating-icon:hover{
+    color: var(--color-lilaBorde);
+    cursor: pointer;
+}
+.editRating-icon-active {
+   color: var(--color-lilaHover);
+   cursor: default;
+}
+
+.deleteRating-icon:hover {
+    color: var(--color-rojo);
+    cursor: pointer;
+}
+
+.rating-background{
+    background-image: url(../../assets/star-tape.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 175px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-bottom: 2px;
+}
+
+.rating-instruction{
+    font-weight: 400;
+    margin: 0;
+    margin-top: 3px;
+    color: var(--color-grisOscuro);
+}
+
+.rating-suggestion{
+    margin: 0;
+    margin-top: 5px;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+.rating-suggestion:hover{
+    color: var(--color-lilaBorde);
+    cursor: pointer;
+}

@@ -1,0 +1,62 @@
+.delete-popup {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-56%, -50%);
+   padding: 0px 60px 30px 97px;
+   background-image: url("../assets/small-popup-bg.png");
+   width: auto;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: bottom;
+   aspect-ratio: 1275/854;
+   box-sizing: border-box;
+   height: 350px;
+   z-index: 200;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+.delete-popup-message {
+   font-size: 25px;
+   margin-bottom: 5px;
+   text-align: center;
+}
+.delete-popup-submessage {
+   font-size: 20px;
+   text-align: center;
+   color: var(--color-grisOscuro);
+   font-weight: 300;
+}
+
+.delete-popup-buttons {
+   margin-top: 20px;
+   display: flex;
+   justify-content: space-between;
+   width: 65%;
+}
+.delete-cancel-button,
+.delete-confirm-button {
+   padding: 10px 20px;
+   border: none;
+   border-radius: 35px;
+   cursor: pointer;
+   font-size: 18px;
+}
+
+.delete-cancel-button {
+   background-color: transparent;
+   color: var(--color-negro);
+}
+.delete-cancel-button:hover {
+   text-decoration: underline;
+}
+.delete-confirm-button {
+   background-color: var(--color-rojo);
+   color: var(--color-offWhite);
+}
+.delete-confirm-button:hover {
+   transition: background-color 0.2s ease;
+   background-color: var(--color-rojoHover);
+}

@@ -2,8 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #938eb6;
-    color: #000000;
+    background-color: var(--color-lila);
+    color: var(--color-negro);
     width: 100%;
     position: fixed;
     top: 0;
@@ -38,7 +38,7 @@
 }
 
 .navbar-accion:hover{
-    color: #1e1857;
+    color: var(--color-negroOnLilaHover);
     transition: color 0.2s;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .navbar-searchbar{
-    background-color: #fafafa;
+    background-color: var(--color-offWhite);
     width: 500px;
     height: 35px;
     border-top-left-radius: 100px;
@@ -70,14 +70,14 @@
     box-sizing: border-box;
     background-color: transparent;
     border: none;
-    color: #000000;
+    color: var(--color-negro);
 }
 
 .navbar-search-button{
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: #000000;
+    color: var(--color-negro);
     font-size: 20px;
     padding-right: 10px;
     align-items: center;
@@ -86,27 +86,25 @@
 
 .button-filtrar {
     font-size: small;
-    border-top-left-radius: 0%;
-    border-bottom-left-radius: 0%;
-    background-color: #fafafa;
-    color: #000000;
+    border-radius: 0% 50px 50px 0%;
+
+    background-color: var(--color-offWhite);
+    color: var(--color-negro);
     font-weight: 800;
 }
+
 .button-filtrar:hover {
-    border-color: #fafafa;
+    border-color: var(--color-offWhite);
 }
 
 .p-menu {
     margin-top: 3px;
     padding-left: 10px;
-    background-color: #fafafa;
+    background-color: var(--color-offWhite);
     width: 320px;
     border-radius: 15px;
     font-weight: 600;
-    border-color: #000000;
-    border-style: solid;
-    border-width: 1px;
-    
+    box-shadow: 0 2px 8px rgba(19, 19, 19, 0.411);
     position: fixed;
     z-index: 100;
     top: 0;
@@ -119,26 +117,26 @@
 
 .p-menuitem	{
     padding-left: 5%;
-    color: #000000;
+    color: var(--color-negro);
     padding: 2.5%;
     margin-top: 2%;
 
 }
 .p-menuitem:hover {
-    background-color: #e7e6f0;
-    border-radius: 10px;
+    background-color: #a29cc7;
+    border-radius: 40px;
 }
 
 .p-menuitem:active {
-    background-color: #c3c0d6;
-    border-radius: 10px;
+    background-color: #a29cc7;
+    border-radius: 40px;
 }
 
 .p-menuitem-text {
-    color: #000000;
+    color: var(--color-negro);
 }
 
 .menuitem-activo {
-    background-color: #cbb0ee;
-    border-radius: 10px;
+    background-color: var(--color-lilaClaro);
+    border-radius: 40px;
 }

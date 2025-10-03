@@ -11,13 +11,15 @@ const getUsuarioPorId = (id) => axios.get(`${base_url}/usuario/id/${id}`)
 const eliminarContenidoDeLista = (idUser, idContenido) => axios.delete(`${base_url}/usuario/${idUser}/eliminarDeLista/${idContenido}`)
 const verLista = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/lista/${nombreLista}`)
 const valorarContenido = (idContenido, rating, idUser) => axios.post(`${base_url}/contenido/${idContenido}/valorar/${rating}/${idUser}`)
-const eliminarReview = (idContenido, idUser) => axios.delete(`${base_url}/contenido/${idContenido}/eliminarValoracion/${idUser}`)
+const eliminarRating = (idContenido, idUser) => axios.delete(`${base_url}/contenido/${idContenido}/eliminarValoracion/${idUser}`)
 const getListasPersonalizadas = (idUser) => axios.get(`${base_url}/usuario/${idUser}/listas`)
 const agregarAListaPersonalizada = (idUser, idContenido, nombreLista) => axios.post(`${base_url}/usuario/${idUser}/agregar/${idContenido}/aListaPersonalizada/${nombreLista}`)
 const getContenidosDeListaPersonalizada = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/getContenidoDeListaPersonalizada/${nombreLista}`)
 const eliminarListaPersonalizada = (idUser, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/listaPersonalizada/${nombreLista}`)
 const eliminarContenidoDeListaPersonalizada = (idUser, idContenido, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/${idContenido}/DeListaPersonalizada/${nombreLista}`)
 const buscarContenidoPorAutor = (nombre, nroPagina, tamañoPagina) => axios.get(`${base_url}/contenido/searchAutores?nombre=${nombre}&nroPagina=${nroPagina}&tamanioPagina=${tamañoPagina}`)
+const escribirReview = (contenidoId, userId, body) => axios.post(`${base_url}/contenido/escribirReview/${contenidoId}/${userId}`, body)
+
 
 export default {
     explorarContenidos,
@@ -29,11 +31,12 @@ export default {
     eliminarContenidoDeLista,
     verLista,
     valorarContenido,
-    eliminarReview,
+    eliminarRating,
     getListasPersonalizadas,
     agregarAListaPersonalizada,
     getContenidosDeListaPersonalizada,
     eliminarListaPersonalizada,
     eliminarContenidoDeListaPersonalizada,
-    buscarContenidoPorAutor
+    buscarContenidoPorAutor,
+    escribirReview
 }

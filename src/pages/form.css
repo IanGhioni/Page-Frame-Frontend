@@ -40,20 +40,20 @@
    display: flex;
    flex-direction: column;
    width: 300px;
-   color: black;
+   color: var(--color-negro);
    align-items: flex-start;
    margin: 1px;
 }
 
 .form-label {
-   color: #675fa5;
+   color: var(--color-lilaTexto);
    font-weight: 600;
    font-size: 20px;
    padding-left: 3px;
 }
 
 .form-input {
-   border: 2px solid #997e7b;
+   border: 2px solid var(--color-beigeBordes);
    background-color: transparent;
    box-sizing: border-box;
    border-radius: 100px;
@@ -61,7 +61,7 @@
    font-size: 16px;
    width: 100%;
    transition: border 0.3s;
-   color: #231f20;
+   color: var(--color-negro);
 }
 
 .select:focus {
@@ -70,18 +70,18 @@
 
 .select-option {
    font-size: 16px;
-   color: #231f20;
+   color: var(--color-negro);
 }
 
 .form-input:focus-visible,
 .form-input-long:focus-visible,
 .form-input-text:focus-visible {
-   border: 2px solid #7872a8;
+   border: 2px solid var(--color-lilaHover);
 }
 .form-input::placeholder,
 .form-input-long::placeholder,
 .form-input-text::placeholder {
-   color: #797270;
+   color: var(--color-beigePlaceHolder);
    font-style: italic;
 }
 
@@ -92,8 +92,8 @@
 :-webkit-autofill,
 :-webkit-autofill:hover, 
 :-webkit-autofill:focus {
-   -webkit-text-fill-color: rgb(0, 0, 0);
-   color: #231f20;
+   -webkit-text-fill-color: var(--color-negro);
+   color: var(--color-negro);
 }
 
 .select {
@@ -118,7 +118,7 @@
    pointer-events: none;
    transform: translateY(-50%);
    font-size: 15px;
-   color: #997e7b;
+   color: var(--color-beigeBordes);
    z-index: 3;
 }
 
@@ -130,22 +130,21 @@ input[type="number"]::-webkit-inner-spin-button {
    display: flex;
    flex-direction: column;
    width: 100%;
-   color: black;
+   color: var(--color-negro);
    align-items: flex-start;
 }
 
 .form-input-long,
 .form-input-text {
-   border: 2px solid #997e7b;
+   border: 2px solid var(--color-beigeBordes);
    background-color: transparent;
    border-radius: 100px;
    padding: 10px 15px;
    font-size: 16px;
    box-sizing: border-box;
-
    width: 100%;
    transition: border 0.3s;
-   color: #231f20;
+   color: var(--color-negro);
 }
 
 .form-input-text {

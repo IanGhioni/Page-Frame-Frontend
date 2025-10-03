@@ -12,11 +12,9 @@ const Lista = () => {
    const [contenidos, setContenidos] = useState([]);
 
    useEffect(() => {
-      console.log("Ver lista:", nombreLista);
       const idUser = localStorage.getItem("id");
       API.verLista(idUser, nombreLista)
          .then((response) => {
-            console.log(`Lista ${nombreLista}:`, response);
             setContenidos(response.data);
          })
          .catch((error) => {

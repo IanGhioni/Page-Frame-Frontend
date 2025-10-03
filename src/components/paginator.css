@@ -12,13 +12,13 @@
 .p-paginator-last {
   border-radius: 6px;
   margin: 0 4px;
-  color: #ffffff;
+  color: var(--color-offWhite);
   border-radius: 25rem;
 }
 
 .p-paginator .p-paginator-page.p-highlight {
-  background: #641085; 
-  color: white;        
+  background: var(--color-lila); 
+  color: var(--color-offWhite);        
 }
 
 .p-paginator-page:hover,
@@ -27,7 +27,7 @@
 .p-paginator-next:hover, 
 .p-paginator-last:hover {
   transform: scale(110%);
-  border-color: #641085;
+  border-color: var(--color-lilaHover);
   border-width: 2px;
 }
 
@@ -35,5 +35,5 @@
 .p-paginator-prev:disabled,
 .p-paginator-next:disabled, 
 .p-paginator-last:disabled{
-  color: grey;
+  color: var(--color-grisOscuro);
 }
