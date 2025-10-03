@@ -96,12 +96,12 @@ const PaginaDeContenido = () => {
       <div className="container-pagina-contenido">
          <GoBackButton />
          {error ? (
-            <div>
-               <Navbar />
-               <div className="error-container">
-                  <h2>Ocurrió un error al cargar este contenido</h2>
-                  <p>Por favor, intentá nuevamente más tarde.</p>
-               </div>
+            <div className="error-container">
+               <img
+                  src="/src/assets/404-contenido.png"
+                  alt=" Contenido no encontrado"
+                  className="error-image"
+               />
             </div>
          ) : contenido ? (
             <div>
@@ -109,25 +109,25 @@ const PaginaDeContenido = () => {
                <div className="container-contenido">
                   <div className="container-img">
                      <div className="contenido-image-back">
-                     <Image
-                        src={contenido.imagen}
-                        alt="Logo de pelicula"
-                        width="200"
-                        preview
-                        onError={(e) => {
-                           e.target.onerror = null;
-                           e.target.src = img404;
-                        }}
-                        onLoad={(e) => {
-                           const img = e.target;
-                           if (
-                              img.naturalWidth <= 90 ||
-                              img.naturalHeight <= 90
-                           ) {
-                              img.src = img404;
-                           }
-                        }}
-                     />
+                        <Image
+                           src={contenido.imagen}
+                           alt="Logo de pelicula"
+                           width="200"
+                           preview
+                           onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = img404;
+                           }}
+                           onLoad={(e) => {
+                              const img = e.target;
+                              if (
+                                 img.naturalWidth <= 90 ||
+                                 img.naturalHeight <= 90
+                              ) {
+                                 img.src = img404;
+                              }
+                           }}
+                        />
                      </div>
 
                      <AgregarAListas
@@ -245,7 +245,9 @@ const ReviewDeUsuario = ({ review }) => {
             />
             <h3 className="user-review-author">{review.username}</h3>
 
-            <h3 className="user-review-date">{review.fecha.split("-").reverse().join("/")}, {review.hora}hs</h3>
+            <h3 className="user-review-date">
+               {review.fecha.split("-").reverse().join("/")}, {review.hora}hs
+            </h3>
             <RatingReadOnly
                className="user-review-rating"
                value={review.valoracion}

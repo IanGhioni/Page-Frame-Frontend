@@ -74,14 +74,14 @@
 }
 
 .container-paper-clip {
-   width: 100px;
-   height: 250px;
+   width: 70px;
+   height: 180px;
    background-image: url(../assets/background-contenido/contenido-bg-clip.png);
    background-size: cover;
    margin-bottom: 20px;
    position: absolute;
    transform: rotate(6deg);
-   top: -10px;
+   top: -8px;
    right: 50px;
    z-index: 99;
 }
@@ -134,6 +134,7 @@
    margin-bottom: 10px;
    font-size: 1.2rem;
    font-style: italic;
+   max-width: 480px;
 }
 
 .header-estrellas {
@@ -170,6 +171,7 @@
 .container-descripcion p {
    font-size: 1.03rem;
 }
+
 /* Reviews */
 .write-review-content{
    display: flex;
