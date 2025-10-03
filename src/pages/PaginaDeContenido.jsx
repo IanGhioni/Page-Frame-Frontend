@@ -15,6 +15,7 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { BiMoviePlay } from "react-icons/bi";
 import { TbBooks, TbEditCircle } from "react-icons/tb";
 import { getFotoPerfil } from "../FotoPerfilMapper";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const PaginaDeContenido = () => {
    const params = useParams();
@@ -265,6 +266,16 @@ const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
    const [reviewText, setReviewText] = useState("");
 
    const handleSubmit = () => {
+      if (!reviewText.trim()) {
+         toast.error("El texto de la reseña no puede estar vacío");
+         return;
+      }
+
+      if (reviewText.length >= 255) {
+         toast.error("El texto de la reseña es demasiado largo");
+         return;
+      }
+
       API.escribirReview(contenidoId, localStorage.getItem("id"), {
          text: reviewText,
       })
@@ -273,8 +284,9 @@ const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
             onRefresh();
             onClose();
          })
-         .catch(() => {
-            console.error("Error al enviar la reseña ☠");
+         .catch((error) => {
+            console.error("Error al enviar reseña", error);
+            toast.error("Hubo un error al enviar tu reseña");
          });
    };
 
@@ -297,6 +309,19 @@ const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
                </button>
             </div>
          </div>
+         <ToastContainer
+                  position="bottom-right"
+                  autoClose={3000}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick={false}
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="colored"
+                  transition={Bounce}
+            />
       </div>
    );
 };
