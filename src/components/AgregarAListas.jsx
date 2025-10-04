@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { IoIosClose } from "react-icons/io";
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaAngleDown } from "react-icons/fa6";
+import { createPortal } from "react-dom";
 
 const AgregarAListas = ({
    idContenido,
@@ -12,7 +13,7 @@ const AgregarAListas = ({
    onRefresh,
    tieneReview,
    setLeidoOVisto,
-   className
+   className,
 }) => {
    const listaOpcionesLibro = ["LEIDO", "QUIERO LEER"];
    const listaOpcionesPelicula = ["VISTO", "QUIERO VER"];
@@ -58,7 +59,10 @@ const AgregarAListas = ({
                   ? "En lista personalizada"
                   : null
             );
-            if (contenido && (contenido.estado === "LEIDO" || contenido.estado === "VISTO")) {
+            if (
+               contenido &&
+               (contenido.estado === "LEIDO" || contenido.estado === "VISTO")
+            ) {
                setLeidoOVisto(true);
             }
          })
@@ -110,7 +114,10 @@ const AgregarAListas = ({
 
    return (
       <>
-         <button onClick={handleAgregarClick} className={`button-agregarALista ${className}`}>
+         <button
+            onClick={handleAgregarClick}
+            className={`button-agregarALista ${className}`}
+         >
             <div></div>
             {listaActual ? `${listaActual}` : "Agregar a lista"}
             <FaAngleDown className="icon-agregarALista" />
@@ -149,7 +156,7 @@ const PopUpAgregarALista = ({
    listaActual,
    handleQuitarDeLista,
 }) => {
-   return (
+   return createPortal(
       <div className="overlay" onClick={handleClosePopup}>
          <div className="popup-agregarALista">
             <div className="popup-agregar-content">
@@ -163,34 +170,39 @@ const PopUpAgregarALista = ({
                      <button
                         key={opcion}
                         onClick={() => handleAgregarALista(opcion)}
-                        className={ "popup-button " + (listaActual === opcion ? "popup-button-actual" : "") }
+                        className={
+                           "popup-button " +
+                           (listaActual === opcion ? "popup-button-actual" : "")
+                        }
                      >
                         {opcion}
                      </button>
                   ))}
                   {listaActual && (
-                     <HiOutlineTrash onClick={handleQuitarDeLista} className="popup-delete-button" />
-               )}
+                     <HiOutlineTrash
+                        onClick={handleQuitarDeLista}
+                        className="popup-delete-button"
+                     />
+                  )}
                </div>
 
                {listasPersonalizadas.length > 0 && (
                   <>
-                  <h2 className="popup-subtitle">Mis listas:</h2>
-                  <div className="popup-options">
-                     {listasPersonalizadas.map((lista) => (
-                        <button
-                           key={lista.id}
-                           onClick={() =>
-                              handleAgregarAListaPersonalizada(lista.nombre)
-                           }
-                           className="popup-button popup-button-personalizada"
-                        >
-                           {lista.nombre}
-                        </button>
-                     ))}
-                  </div>
+                     <h2 className="popup-subtitle">Mis listas:</h2>
+                     <div className="popup-options">
+                        {listasPersonalizadas.map((lista) => (
+                           <button
+                              key={lista.id}
+                              onClick={() =>
+                                 handleAgregarAListaPersonalizada(lista.nombre)
+                              }
+                              className="popup-button popup-button-personalizada"
+                           >
+                              {lista.nombre}
+                           </button>
+                        ))}
+                     </div>
                   </>
-                  
                )}
                <div
                   onClick={() =>
@@ -201,14 +213,14 @@ const PopUpAgregarALista = ({
                         : goToLogin()
                   }
                   className="popup-crear-button"
-               >  
+               >
                   <span className="popup-crear-plus"> + </span>
                   <h2 className="popup-crear-title"> Crear nueva lista</h2>
                </div>
-               
             </div>
          </div>
       </div>
+      , document.body
    );
 };
 
