@@ -233,8 +233,19 @@ const PaginaDeContenido = () => {
    );
 };
 
-const ReviewDeUsuario = ({ review }) => {
+const ReviewDeUsuario = ({ review, onRefresh }) => {
    const fotoPerfil = getFotoPerfil(review.userPhoto);
+
+   const handleDelete = () => {
+      API.eliminarReview(review.contenidoId, localStorage.getItem("id"))
+         .then(() => {
+            onRefresh();
+         })
+         .catch((error) => {
+            console.error("Error al eliminar reseña", error);
+         });
+   };
+
    return (
       <div className="user-review-container">
          <p className="user-review-content">{review.texto}</p>
@@ -253,10 +264,10 @@ const ReviewDeUsuario = ({ review }) => {
                className="user-review-rating"
                value={review.valoracion}
             />
-            {/* <div className="user-review-buttons">
-               <TbEditCircle className="user-review-edit" />
-               <HiOutlineTrash className="user-review-delete" />
-            </div> */}
+            <div className="user-review-buttons">
+               {/* <TbEditCircle className="user-review-edit" /> */}
+               <HiOutlineTrash className="user-review-delete" onClick={handleDelete}/>
+            </div>
          </div>
       </div>
    );
