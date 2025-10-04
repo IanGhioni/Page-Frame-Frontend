@@ -235,6 +235,8 @@ const PaginaDeContenido = () => {
 
 const ReviewDeUsuario = ({ review, onRefresh }) => {
    const fotoPerfil = getFotoPerfil(review.userPhoto);
+   const [showModal, setShowModal] = useState(false);
+
 
    const handleDelete = () => {
       API.eliminarReview(review.contenidoId, localStorage.getItem("id"))
@@ -245,6 +247,8 @@ const ReviewDeUsuario = ({ review, onRefresh }) => {
             console.error("Error al eliminar reseña", error);
          });
    };
+   
+
 
    return (
       <div className="user-review-container">
@@ -266,10 +270,22 @@ const ReviewDeUsuario = ({ review, onRefresh }) => {
             />
             <div className="user-review-buttons">
                {/* <TbEditCircle className="user-review-edit" /> */}
-               <HiOutlineTrash className="user-review-delete" onClick={handleDelete}/>
+               <HiOutlineTrash className="user-review-delete" onClick={() => setShowModal(true)}/>
             </div>
          </div>
+         {showModal && (
+               <div className="overlay" onClick={() => setShowModal(false)}>
+                  <div className="delete-popup">
+                     <h2 className="delete-popup-message">¿Seguro que quieres eliminar tu review?</h2>
+                     <div className="delete-popup-buttons">
+                        <button className="delete-cancel-button" onClick={() => setShowModal(false)}>Cancelar</button>
+                        <button className="delete-confirm-button"  onClick={handleDelete}>Eliminar</button>
+                     </div>
+                  </div>
+               </div>
+            )}
       </div>
+      
    );
 };
 
