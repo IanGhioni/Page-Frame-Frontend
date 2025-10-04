@@ -21,6 +21,12 @@ const CardContenido = ({ contenido }) => {
       }
    }, [contenido]);
 
+   const handleRefresh = () => {
+      setOnRefresh(!onRefresh);
+   };
+
+   const [leidoOVisto, setLeidoOVisto] = useState(false);
+
    return (
       <div className="card-contenido-container">
          <div className="contenido-card">
@@ -63,9 +69,9 @@ const CardContenido = ({ contenido }) => {
                <AgregarAListas
                   idContenido={contenido.id}
                   esPelicula={contenido.isbn == ""}
-                  onRefresh={onRefresh}
-                  setOnRefresh={setOnRefresh}
+                  onRefresh={handleRefresh}
                   tieneReview={userReview}
+                  setLeidoOVisto={setLeidoOVisto}
                   className="card-agregar-listas"
                />
             </div>

@@ -51,7 +51,6 @@ const Navbar = () => {
 
    useEffect(() => {
       const handleScroll = (event) => {
-         console.log("Scrolleando");
          menuLeft.current.hide(event)
       }
 
