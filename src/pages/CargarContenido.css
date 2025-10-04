@@ -2,8 +2,8 @@
    margin-left: auto;
    padding: 12px 20px;
    border: none;
-   background-color: #7b769e;
-   color: white;
+   background-color: var(--color-lila);
+   color: var(--color-offWhite);
    font-weight: bold;
    border-radius: 100px;
    cursor: pointer;
@@ -12,10 +12,10 @@
 }
 
 .submit-btn:hover {
-   background-color: rgb(95, 88, 145);
+   background-color: var(--color-lilaHover);
    outline: none;
 }
 
 .submit-btn:disabled {
-   background-color: #7b769e80;
+   background-color: var(--color-lilaClaro);
 }

@@ -1,3 +1,22 @@
 #root {
   max-width: 1280px;
 }
+:root {
+  --color-lilaClaro: #bcb6e4;
+  --color-lila: #938eb6;
+  --color-lilaHover: #7b769e;
+  --color-lilaTexto: #575091;
+  --color-lilaBorde: #423d6d;
+  --color-negroOnLilaHover: #2b2753;
+  --color-negro: #211f22;
+  --color-grisOscuro: #4d4c4e;
+  --color-marron: #5a3c34;
+  --color-beigeOscuro: #574846;
+  --color-beigeBordes: #997e7b;
+  --color-beigePlaceHolder: #5f5755;
+  --color-offWhite: #eee9e8;
+  --color-rojo: #a53232;
+  --color-rojoHover: #7a2920;
+  --color-celeste: #5684b6;
+  
+}
