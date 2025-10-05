@@ -18,13 +18,13 @@ const Navbar = () => {
             label: 'Filtrar busqueda:',
             items: [
                {
-                  label: '• Por nombre de contenido',
+                  label: '⬤ Por nombre de contenido',
                   icon: 'pi pi-refresh',
                   className: buscarPorNombre ? "menuitem-activo" : "",
                   command: () => {setBuscarPorAutor(false), setBuscarPorNombre(true)}
                },
                {
-                  label: '• Por nombre del escritor/director',
+                  label: '⬤ Por nombre del escritor/director',
                   icon: 'pi pi-upload',
                   className: buscarPorAutor ? "menuitem-activo" : "",
                   command: () => {setBuscarPorAutor(true), setBuscarPorNombre(false)}
