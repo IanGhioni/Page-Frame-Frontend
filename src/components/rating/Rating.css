@@ -4,27 +4,26 @@
     justify-content: center;
     gap: 8px;
     width: 250px;
-    
 }
 
 .rating-actions {
     display: flex;
     gap: 8px;
     font-size: 1.5rem;
-    color: #313031;
+    color: var(--color-negro);
 }
 
 .editRating-icon:hover{
-    color: #443e72;
+    color: var(--color-lilaBorde);
     cursor: pointer;
 }
 .editRating-icon-active {
-   color: #7e77b0;
+   color: var(--color-lilaHover);
    cursor: default;
 }
 
 .deleteRating-icon:hover {
-    color: #680f0f;
+    color: var(--color-rojo);
     cursor: pointer;
 }
 
@@ -39,4 +38,23 @@
     justify-content: center;
     box-sizing: border-box;
     padding-bottom: 2px;
+}
+
+.rating-instruction{
+    font-weight: 400;
+    margin: 0;
+    margin-top: 3px;
+    color: var(--color-grisOscuro);
+}
+
+.rating-suggestion{
+    margin: 0;
+    margin-top: 5px;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+.rating-suggestion:hover{
+    color: var(--color-lilaBorde);
+    cursor: pointer;
 }

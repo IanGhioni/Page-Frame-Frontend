@@ -1,17 +1,17 @@
 .redirect-text {
    margin-top: 0px;
    font-size: 1.1rem;
-   color: #231f20;
+   color: var(--color-negro);
 }
 
 .redirect-link {
-   color: #5684b6;
+   color: var(--color-celeste);
    text-decoration: underline;
    cursor: pointer;
 }
 
 .form-title {
-   color: #7872a8;
+   color: var(--color-lilaTexto);
    margin: 0;
    font-size: 3.5rem;
 }
@@ -20,8 +20,8 @@
    font-size: 1.4rem;
    padding: 12px 20px;
    border: none;
-   background-color: #7b769e;
-   color: white;
+   background-color: var(--color-lila);
+   color: var(--color-offWhite);
    font-weight: bold;
    border-radius: 100px;
    cursor: pointer;
@@ -30,7 +30,7 @@
 }
 
 .login-register-btn:hover {
-   background-color: rgb(95, 88, 145);
+   background-color: var(--color-lilaHover);
    outline: none;
 }
 
@@ -44,6 +44,23 @@
    justify-content: space-between;
 }
 
+.lista-crear{
+   padding: 65px 85px 35px 150px;
+   width: 965px;
+   height: 600px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.lista-crear-group{
+   width: 450px;
+}
+
+.form-spacer{
+   height: 55px;
+}
+
 .register{
    padding: 35px 85px 35px 150px;
 }
@@ -54,9 +71,10 @@
 }
 
 .icon-eye {
-   color: #64514f;
+   color: var(--color-beigeBordes);
    margin-left: -43px;
    margin-top: 13px;
+   cursor: pointer;
 }
 
 .all-inputs {
@@ -66,7 +84,7 @@
 }
 
 .password-requirements-container {
-   background-color: #f0efe6;
+   background-color: var(--color-offWhite);
    margin-top: 10px;
    width: 300px;
    display: flex;
@@ -81,7 +99,7 @@
    z-index: 10;
 }
 .password-requirements {
-   color: rgb(3, 0, 0);
+   color: var(--color-negro);
    font-size: 0.9rem;
    margin: 0cm;
 }
@@ -92,15 +110,15 @@
 }
 
 .valid {
-   color: #5b5585;
+   color: var(--color-lilaTexto);
 }
 
 .invalid {
-   color: #64514f;
+   color: var(--color-beigeOscuro);
 }
 
 .err {
-   color: rgb(173, 39, 39);
+   color: var(--color-rojo);
    font-size: 1.1rem;
    margin-top: 0px;
 }
@@ -164,7 +182,7 @@
    border-radius: 50%;
    background: rgba(187, 0, 0, 0);
    z-index: 1;
-   box-shadow: 0 4px 16px 0 rgb(0, 0, 0);
+   box-shadow: 0 4px 16px 0 var(--color-negro);
    opacity: 1;
    pointer-events: none;
 }
@@ -172,7 +190,7 @@
 .foto-perfil-label {
    margin-top: 8px;
    font-size: 1rem;
-   color: #333;
+   color: var(--color-grisOscuro);
    font-weight: 500;
    text-align: center;
 }
@@ -191,12 +209,12 @@
    position: absolute;
    top: 50%;
    transform: translateY(-50%);
-   background-color: #f0f0f000;
+   background-color: transparent;
    padding: 0 10px;
    border: none;
    width: 2px;
    font-size: 2.7rem;
-   color: #7b769e;
+   color: var(--color-lilaHover);
    cursor: pointer;
    z-index: 10;
    display: flex;
