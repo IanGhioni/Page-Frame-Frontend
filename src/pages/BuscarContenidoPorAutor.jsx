@@ -16,16 +16,35 @@ const BuscarContenidoPorAutor = () => {
     const [loading, setLoading] = useState(false);
     const [first, setFirst] = useState(0);
     const [rows] = useState(12);
+    const [filtrarLibros, setFiltrarLibros] = useState(null)
+    const [filtrarPelis, setFiltrarPelis] = useState(null)
     const navigate = useNavigate();
 
     const fetchData = async () => {
         try {
-            setLoading(true); 
-            const res = (await api.buscarContenidoPorAutor(params.nombre, params.pagina, rows)).data;
-            setDataPagina(res);
-            setFirst(res.numeroDePagina * rows); 
+            setLoading(true);
+            console.log("params.peli: " + params.peli)
+            console.log("params.libro: " + params.libro)
+            var res;
+            if (params.libro == "true") {
+                console.log("ENTRO A BUSCAR POR LIBRO")
+                res = await api.buscarPorAutoresLibros(params.nombre, params.pagina, rows);
+                setFiltrarLibros("true")
+                setFiltrarPelis("false")
+            } else if (params.peli == "true") {
+                console.log("ENTRO A BUSCAR POR PELI")
+                res = await api.buscarPorAutoresPeliculas(params.nombre, params.pagina, rows);
+                setFiltrarLibros("false")
+                setFiltrarPelis("true")
+            } else {
+                res = await api.buscarContenidoPorAutor(params.nombre, params.pagina, rows);
+                setFiltrarLibros("false")
+                setFiltrarPelis("false")
+            }
+            console.log(res.data)
+            setDataPagina(res.data);
+            setFirst(res.data.numeroDePagina * rows);
         } catch (err) {
-            console.error("Error al buscar:", err);
         } finally {
             setLoading(false)
         }
@@ -33,13 +52,13 @@ const BuscarContenidoPorAutor = () => {
 
     useEffect(() => {
         fetchData();
-    }, [params.titulo, params.pagina]);
+    }, [params.nombre, params.pagina, params.libro, params.peli]);
 
     const onPageChange = (event) => {
         const newPage = event.page;
         window.scrollTo({ top: 0, behavior: "smooth" });
         setLoading(true)
-        navigate(`/buscarPorAutor/${params.nombre}/${newPage}`);
+        navigate(`/buscarPorAutor/${params.nombre}/${newPage}/${filtrarLibros}/${filtrarPelis}`);
     };
     
     return (
@@ -58,11 +77,27 @@ const BuscarContenidoPorAutor = () => {
                         <h2 className="buscador-titulo">Resultados de buscar "{params.nombre}"</h2>
                         <button onClick={() => { navigate("/cargarContenido"); setLoading(true)}}>Cargar contenido</button>
                     </div>
+                <div className="contenido-filtrado-div">
+                    <div className="filtrado-div">
+                        <h3>Filtrar por</h3>
+                        <div>
+                        <button className={`boton-filtro ${filtrarLibros === "true" ? "boton-activo" : ""}`}
+                                onClick={() => {if (params.libro == "true") navigate(`/buscarPorAutor/${params.nombre}/0/false/false`);
+                                                else navigate(`/buscarPorAutor/${params.nombre}/0/true/false`);
+                        }}>Libros</button>
+                        <button className={`boton-filtro ${filtrarPelis === "true" ? "boton-activo" : ""}`}
+                                onClick={() => {if (params.peli == "true") navigate(`/buscarPorAutor/${params.nombre}/0/false/false`)
+                                                else navigate(`/buscarPorAutor/${params.nombre}/0/false/true`);}}>Peliculas</button>
+                        </div>
+                    </div>
+                <div>
                 {dataPagina.resultados.map((contenido) => (
                 <div key={contenido.id}>
                     <CardContenido contenido={contenido} />
                 </div>
                 ))}
+                </div>
+                </div>
 
                 <div className="paginado-container">
                     <h3>Cantidad total de paginas: {dataPagina.totalDePaginas}</h3>

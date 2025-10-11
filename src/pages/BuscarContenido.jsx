@@ -20,7 +20,6 @@ const BuscarContenido = () => {
     const [nombre, setNombre] = useState(null)
     const [filtrarLibros, setFiltrarLibros] = useState(null)
     const [filtrarPelis, setFiltrarPelis] = useState(null)
-    const [busqueda, setBusqueda] = useState(null)
     const navigate = useNavigate();
 
     const fetchData = async () => {
@@ -34,25 +33,18 @@ const BuscarContenido = () => {
                 res = await api.buscarPorNombreLibros(params.titulo, params.pagina, rows);
                 setFiltrarLibros("true")
                 setFiltrarPelis("false")
-                setBusqueda(() => async (name, pagina, cantidad) => { return await api.buscarPorNombreLibros(name, pagina, cantidad) })
             } else if (params.peli == "true") {
                 console.log("ENTRO A BUSCAR POR PELI")
                 res = await api.buscarPorNombrePeliculas(params.titulo, params.pagina, rows);
                 setFiltrarLibros("false")
                 setFiltrarPelis("true")
-                setBusqueda(() => async (name, pagina, cantidad) => { return await api.buscarPorNombrePeliculas(name, pagina, cantidad) })
             } else {
                 res = await buscarPorNombre(params.titulo, params.pagina, rows);
                 setFiltrarLibros("false")
                 setFiltrarPelis("false")
-                setBusqueda(() => async (name, pagina, cantidad) => { return await buscarPorNombre(name, pagina, cantidad) })
-
             }
             setDataPagina(res.data);
             setFirst(res.data.numeroDePagina * rows);
-            console.log(res.data);
-            console.log(res.data.totalDeElementos);
-            console.log(res.data.totalDePaginas);
         } catch (err) {
             console.error("Error al buscar:", err);
         } finally {
@@ -61,10 +53,7 @@ const BuscarContenido = () => {
     };
 
     useEffect(() => {
-        setBusqueda(() => async (name, pagina, cantidad) => { return await buscarPorNombre(name, pagina, cantidad) })
         setNombre(params.titulo)
-        console.log(filtrarLibros)
-        console.log(filtrarPelis)
         fetchData();
     }, [params.titulo, params.pagina, params.libro, params.peli]);
 
@@ -74,11 +63,6 @@ const BuscarContenido = () => {
         navigate(`/buscarContenido/${params.titulo}/${newPage}/${filtrarLibros}/${filtrarPelis}`);
         setLoading(false)
     };
-
-    /*
-    <h3 style={{textAlign: "left"}}>Pagina: {dataPagina.numeroDePagina+1}</h3>
-    Despues peleo para ver como acomodar esto debajo de Resultados de buscar "{params.titulo}"
-    */
     return (
         <div className="container">
             <GoBackButton />
@@ -96,8 +80,15 @@ const BuscarContenido = () => {
                         <button onClick={() => { navigate("/cargarContenido"); setLoading(true)}}>Cargar contenido</button>
                     </div>
                 <div>
-                    <button onClick={() => {navigate(`/buscarContenido/${params.titulo}/0/true/false`);}}>Por libro</button>
-                    <button onClick={() => {navigate(`/buscarContenido/${params.titulo}/0/false/true`);}}>Por peliculas</button>
+                    <h3>Filtrar por</h3>
+                    <div>
+                    <button className={`boton-filtro ${filtrarLibros === "true" ? "boton-activo" : ""}`} 
+                            onClick={() => {if (params.libro == "true") navigate(`/buscarContenido/${params.titulo}/0/false/false`)
+                                            else navigate(`/buscarContenido/${params.titulo}/0/true/false`);}}>Por libro</button>
+                    <button className={`boton-filtro ${filtrarPelis === "true" ? "boton-activo" : ""}`}
+                            onClick={() => {if (params.peli == "true") navigate(`/buscarContenido/${params.titulo}/0/false/false`)
+                                            else navigate(`/buscarContenido/${params.titulo}/0/false/true`);}}>Por peliculas</button>
+                    </div>
                 </div>
                 {dataPagina.resultados.map((contenido) => (
                 <div key={contenido.id}>
