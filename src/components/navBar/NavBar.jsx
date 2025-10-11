@@ -42,7 +42,7 @@ const Navbar = () => {
       }
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (buscarPorNombre) {
-         navigate("/buscarContenido/" + nombre + "/0");
+         navigate("/buscarContenido/" + nombre + "/0/false/false");
       }
       else {
          navigate("/buscarPorAutor/" + nombre + "/0");
