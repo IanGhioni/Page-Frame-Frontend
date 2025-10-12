@@ -26,6 +26,7 @@ const PaginaDeContenido = () => {
    const [onRefresh, setOnRefresh] = useState(false);
    const [userReview, setUserReview] = useState(false);
    const [reviewTexto, setReviewTexto] = useState("");
+   const [editingReview, setEditingReview] = useState(null);
 
    const navigate = useNavigate();
    const goToLogin = () => navigate("/login");
@@ -208,18 +209,31 @@ const PaginaDeContenido = () => {
                               {contenido.descripcion}
                            </p>
                         </div>
-                        {showWriteReview && (
+                        {showWriteReview ? (
                            <WriteReview
-                              onClose={() => setShowWriteReview(false)}
+                              onClose={() => {
+                                 setShowWriteReview(false);
+                                 setEditingReview(null);
+                              }}
                               contenidoId={contenido.id}
-                              onRefresh={handleRefresh}
+                              onRefresh={() => {
+                                 handleRefresh();
+                                 setEditingReview(null);
+                              }}
+                              initialText={editingReview ? editingReview.texto : ""}
+                              editing={!!editingReview} 
                            />
-                        )}
-                        {reviewTexto.texto && (
-                           <ReviewDeUsuario
-                              review={reviewTexto}
-                              onRefresh={handleRefresh}
-                           />
+                        ) : (
+                           reviewTexto.texto && (
+                              <ReviewDeUsuario
+                                 review={reviewTexto}
+                                 onRefresh={handleRefresh}
+                                 onEdit={(review) => {
+                                    setEditingReview(review);
+                                    setShowWriteReview(true);
+                                 }}
+                              />
+                           )
                         )}
                      </div>
                      <div className="container-contenido-bottom" />
@@ -233,10 +247,10 @@ const PaginaDeContenido = () => {
    );
 };
 
-const ReviewDeUsuario = ({ review, onRefresh }) => {
+const ReviewDeUsuario = ({ review, onRefresh, onEdit }) => {
    const fotoPerfil = getFotoPerfil(review.userPhoto);
    const [showModal, setShowModal] = useState(false);
-
+   
 
    const handleDelete = () => {
       API.eliminarReview(review.contenidoId, localStorage.getItem("id"))
@@ -247,8 +261,10 @@ const ReviewDeUsuario = ({ review, onRefresh }) => {
             console.error("Error al eliminar reseña", error);
          });
    };
-   
 
+   const handleEdit = () => {
+      onEdit(review);
+   };
 
    return (
       <div className="user-review-container">
@@ -269,7 +285,7 @@ const ReviewDeUsuario = ({ review, onRefresh }) => {
                value={review.valoracion}
             />
             <div className="user-review-buttons">
-               {/* <TbEditCircle className="user-review-edit" /> */}
+               <TbEditCircle className="user-review-edit" onClick={handleEdit}/>
                <HiOutlineTrash className="user-review-delete" onClick={() => setShowModal(true)}/>
             </div>
          </div>
@@ -289,8 +305,8 @@ const ReviewDeUsuario = ({ review, onRefresh }) => {
    );
 };
 
-const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
-   const [reviewText, setReviewText] = useState("");
+const WriteReview = ({ onClose, contenidoId, onRefresh, initialText = "", editing = false }) => {
+   const [reviewText, setReviewText] = useState(initialText);
 
    const handleSubmit = () => {
       if (!reviewText.trim()) {
@@ -303,11 +319,13 @@ const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
          return;
       }
 
-      API.escribirReview(contenidoId, localStorage.getItem("id"), {
-         text: reviewText,
-      })
+      const apiCall = editing
+         ? API.editarReview(contenidoId, localStorage.getItem("id"), { text: reviewText }) // 🆕
+         : API.escribirReview(contenidoId, localStorage.getItem("id"), { text: reviewText });
+
+      apiCall
          .then(() => {
-            console.log("Reseña enviada con éxito 🐱‍🏍");
+            console.log(editing ? "Reseña editada con éxito ✏️" : "Reseña enviada con éxito 🐱‍🏍");
             onRefresh();
             onClose();
          })
@@ -332,7 +350,7 @@ const WriteReview = ({ onClose, contenidoId, onRefresh }) => {
                   Cancelar
                </button>
                <button className="write-review-submit" onClick={handleSubmit}>
-                  Enviar
+                  {editing ? "Actualizar" : "Enviar"}
                </button>
             </div>
          </div>
