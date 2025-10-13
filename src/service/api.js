@@ -20,6 +20,10 @@ const eliminarContenidoDeListaPersonalizada = (idUser, idContenido, nombreLista)
 const buscarContenidoPorAutor = (nombre, nroPagina, tamañoPagina) => axios.get(`${base_url}/contenido/searchAutores?nombre=${nombre}&nroPagina=${nroPagina}&tamanioPagina=${tamañoPagina}`)
 const escribirReview = (contenidoId, userId, body) => axios.post(`${base_url}/contenido/escribirReview/${contenidoId}/${userId}`, body)
 const eliminarReview = (contenidoId, userId) => axios.delete(`${base_url}/contenido/${contenidoId}/eliminarReview/${userId}`)
+const buscarPorNombreLibros = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/search/libros?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
+const buscarPorNombrePeliculas = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/search/peliculas?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
+const buscarPorAutoresLibros = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/searchAutores/libros?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
+const buscarPorAutoresPeliculas = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/searchAutores/peliculas?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
 const editarReview = (contenidoId, userId, body) => axios.put(`${base_url}/contenido/escribirReview/${contenidoId}/${userId}`, body)
 
 export default {
@@ -41,5 +45,9 @@ export default {
     buscarContenidoPorAutor,
     escribirReview,
     eliminarReview,
+    buscarPorNombreLibros,
+    buscarPorNombrePeliculas,
+    buscarPorAutoresLibros,
+    buscarPorAutoresPeliculas,
     editarReview
 }

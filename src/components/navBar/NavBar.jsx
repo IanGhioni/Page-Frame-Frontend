@@ -3,6 +3,7 @@ import { useState, useRef, useEffect  } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import logo from "../../assets/mini-logo.png";
+import api from "../../service/api";
 import { getFotoPerfil } from "../../FotoPerfilMapper";
 import { Menu } from 'primereact/menu';
 
@@ -42,10 +43,12 @@ const Navbar = () => {
       }
       window.scrollTo({ top: 0, behavior: "smooth" });
       if (buscarPorNombre) {
-         navigate("/buscarContenido/" + nombre + "/0");
+         console.log("Buscando por nombre de contenido: " + nombre);
+         navigate("/buscarContenido/" + nombre + "/0/false/false");
       }
       else {
-         navigate("/buscarPorAutor/" + nombre + "/0");
+         console.log("Buscando por autor: " + nombre);
+         navigate("/buscarPorAutor/" + nombre + "/0/false/false");
       }
    };
 

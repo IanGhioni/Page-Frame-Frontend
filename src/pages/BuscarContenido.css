@@ -14,3 +14,35 @@
     align-items: baseline;
     justify-content: space-between;
 }
+
+.boton-filtro {
+    padding: 8px 16px;
+    border: 1px solid var(--color-lilaBorde);
+    background-color: var(--color-lila);
+    border-radius: 50px;
+    margin: 0 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.boton-filtro:hover {
+    background-color: var(--color-negroOnLilaHover);
+}
+
+.boton-activo {
+    background-color: #ee9a4b;
+    color: rgb(0, 0, 0);
+    border-color: #2b0025;
+}
+
+.filtrado-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.contenido-filtrado-div {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: self-start;
+}
