@@ -48,6 +48,6 @@ export default {
     buscarPorNombreLibros,
     buscarPorNombrePeliculas,
     buscarPorAutoresLibros,
-    buscarPorAutoresPeliculas
+    buscarPorAutoresPeliculas,
     editarReview
 }
