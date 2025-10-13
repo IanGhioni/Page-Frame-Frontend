@@ -24,7 +24,7 @@ const buscarPorNombreLibros = (nombre, pagina, cantidad) => axios.get(`${base_ur
 const buscarPorNombrePeliculas = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/search/peliculas?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
 const buscarPorAutoresLibros = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/searchAutores/libros?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
 const buscarPorAutoresPeliculas = (nombre, pagina, cantidad) => axios.get(`${base_url}/contenido/searchAutores/peliculas?nombre=${nombre}&nroPagina=${pagina}&tamanioPagina=${cantidad}`)
-
+const editarReview = (contenidoId, userId, body) => axios.put(`${base_url}/contenido/escribirReview/${contenidoId}/${userId}`, body)
 
 export default {
     explorarContenidos,
@@ -49,4 +49,5 @@ export default {
     buscarPorNombrePeliculas,
     buscarPorAutoresLibros,
     buscarPorAutoresPeliculas
+    editarReview
 }
