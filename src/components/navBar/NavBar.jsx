@@ -3,7 +3,6 @@ import { useState, useRef, useEffect  } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import logo from "../../assets/mini-logo.png";
-import api from "../../service/api";
 import { getFotoPerfil } from "../../FotoPerfilMapper";
 import { Menu } from 'primereact/menu';
 
