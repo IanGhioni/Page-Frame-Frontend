@@ -44,6 +44,7 @@ const CardContenido = ({ contenido }) => {
                         img.src = img404;
                      }
                   }}
+                  alt={contenido.titulo}
                />
             </div>
             <div className="contenido-info">
