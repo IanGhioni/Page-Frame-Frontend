@@ -1,42 +1,45 @@
 {
-  "name": "pageandframe",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "test": "jest"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.2",
-    "axios": "^1.11.0",
-    "primereact": "^10.9.7",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.5.0",
-    "react-infinite-scroll-component": "^6.1.0",
-    "react-router-dom": "^6.22.3",
-    "react-toastify": "^11.0.5"
-  },
-  "devDependencies": {
-    "@babel/preset-env": "^7.28.3",
-    "@babel/preset-react": "^7.27.1",
-    "@eslint/js": "^9.33.0",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
-    "babel-jest": "^30.2.0",
-    "eslint": "^9.33.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "jest": "^30.2.0",
-    "jest-environment-jsdom": "^30.2.0",
-    "react-test-renderer": "^18.3.1",
-    "vite": "^7.1.2"
-  }
+   "name": "pageandframe",
+   "private": true,
+   "version": "0.0.0",
+   "type": "module",
+   "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "lint": "eslint .",
+      "preview": "vite preview",
+      "test": "jest"
+   },
+   "dependencies": {
+      "@emotion/react": "^11.14.0",
+      "@emotion/styled": "^11.14.1",
+      "@mui/material": "^7.3.2",
+      "axios": "^1.11.0",
+      "primereact": "^10.9.7",
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1",
+      "react-icons": "^5.5.0",
+      "react-infinite-scroll-component": "^6.1.0",
+      "react-router-dom": "^6.22.3",
+      "react-toastify": "^11.0.5"
+   },
+   "devDependencies": {
+      "@babel/preset-env": "^7.28.3",
+      "@babel/preset-react": "^7.27.1",
+      "@eslint/js": "^9.33.0",
+      "@testing-library/jest-dom": "^6.9.1",
+      "@testing-library/react": "^16.3.0",
+      "@types/react": "^19.1.10",
+      "@types/react-dom": "^19.1.7",
+      "@vitejs/plugin-react": "^5.0.0",
+      "babel-jest": "^30.2.0",
+      "eslint": "^9.33.0",
+      "eslint-plugin-react-hooks": "^5.2.0",
+      "eslint-plugin-react-refresh": "^0.4.20",
+      "globals": "^16.3.0",
+      "jest": "^30.2.0",
+      "jest-environment-jsdom": "^30.2.0",
+      "react-test-renderer": "^18.3.1",
+      "vite": "^7.1.2"
+   }
 }
