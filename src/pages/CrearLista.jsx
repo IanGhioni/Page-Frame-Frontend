@@ -92,8 +92,8 @@ const CrearLista = () => {
                      e.preventDefault();
                   }
                }}
-            >   
-                <div className="form-spacer"/>
+            >
+               <div className="form-spacer" />
                <div className="form-group lista-crear-group">
                   <label className="form-label">Nombre de la lista</label>
                   <input
@@ -114,9 +114,13 @@ const CrearLista = () => {
                      onChange={handleChange}
                      placeholder="Descripción de la lista..."
                      rows={4}
-                  />
+                     maxLength={255}
+                  ></textarea>
+                  <span className="character-count">
+                     {formData.descripcion.length}/255
+                  </span>
                </div>
-               <div className="form-spacer"/>
+               <div className="form-spacer" />
                <button type="submit" className="submit-btn">
                   Crear lista
                </button>
