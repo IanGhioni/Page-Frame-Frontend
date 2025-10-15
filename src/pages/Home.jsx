@@ -1,10 +1,7 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/navBar/NavBar";
-import { Paginator } from "primereact/paginator";
-import { useNavigate } from "react-router-dom";
 import "../components/paginator.css";
 import "./BuscarContenido.css";
-import CardContenido from "../components/cardContenido/CardContenido";
 import ScrollCard from "../components/scrollCard/ScrollCard";
 import API from "../service/api";
 import InfiniteScroll from "react-infinite-scroll-component";
