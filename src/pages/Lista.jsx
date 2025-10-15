@@ -19,7 +19,7 @@ const Lista = () => {
          })
          .catch((error) => {
             console.error(`Error al obtener la lista ${nombreLista}:`, error);
-      });
+         });
    }, [nombreLista, idUser]);
 
    return (
@@ -47,6 +47,7 @@ const Lista = () => {
             </>
          ) : (
             <div>
+               <h2 className="buscador-titulo">Lista de "{nombreLista}"</h2>
                <h1>Esta lista está vacía :(</h1>
             </div>
          )}

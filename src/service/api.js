@@ -14,6 +14,7 @@ const valorarContenido = (idContenido, rating, idUser) => axios.post(`${base_url
 const eliminarRating = (idContenido, idUser) => axios.delete(`${base_url}/contenido/${idContenido}/eliminarValoracion/${idUser}`)
 const getListasPersonalizadas = (idUser) => axios.get(`${base_url}/usuario/${idUser}/listas`)
 const agregarAListaPersonalizada = (idUser, idContenido, nombreLista) => axios.post(`${base_url}/usuario/${idUser}/agregar/${idContenido}/aListaPersonalizada/${nombreLista}`)
+const getListasPersonalizada = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/getListaPersonalizada/${nombreLista}`)
 const getContenidosDeListaPersonalizada = (idUser, nombreLista) => axios.get(`${base_url}/usuario/${idUser}/getContenidoDeListaPersonalizada/${nombreLista}`)
 const eliminarListaPersonalizada = (idUser, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/listaPersonalizada/${nombreLista}`)
 const eliminarContenidoDeListaPersonalizada = (idUser, idContenido, nombreLista) => axios.delete(`${base_url}/usuario/${idUser}/eliminar/${idContenido}/DeListaPersonalizada/${nombreLista}`)
@@ -49,5 +50,6 @@ export default {
     buscarPorNombrePeliculas,
     buscarPorAutoresLibros,
     buscarPorAutoresPeliculas,
-    editarReview
+    editarReview,
+    getListasPersonalizada
 }
