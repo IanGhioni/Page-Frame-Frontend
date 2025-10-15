@@ -60,7 +60,7 @@ const CrearLista = () => {
       try {
          await api
             .post(`/usuario/${idUsuario}/crearLista`, formData)
-            .then(() => navigate("/user/lista/" + formData.nombre));
+            .then(() => navigate("/user/listaPersonalizada/" + formData.nombre));
          toast.success("Lista creada con éxito");
       } catch (e) {
          handleError(e);
