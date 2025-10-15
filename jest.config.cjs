@@ -7,6 +7,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': '<rootDir>/styleMock.js',
-    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/styleMock.js', // <-- agrega esta línea
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/styleMock.js', 
   },
 };
