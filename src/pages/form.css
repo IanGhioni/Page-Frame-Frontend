@@ -150,3 +150,11 @@ input[type="number"]::-webkit-inner-spin-button {
 .form-input-text {
    border-radius: 30px;
 }
+
+.character-count {
+   font-size: 14px;
+   color: var(--color-negro);
+   margin: 5px;
+   margin-bottom: 0;
+   align-self: flex-end;
+}

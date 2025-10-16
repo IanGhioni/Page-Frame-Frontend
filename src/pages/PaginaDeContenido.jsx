@@ -344,7 +344,11 @@ const WriteReview = ({ onClose, contenidoId, onRefresh, initialText = "", editin
                onChange={(e) => setReviewText(e.target.value)}
                placeholder="Escribe tu reseña aquí..."
                rows={6}
+               maxLength={255}
             ></textarea>
+            <span className="character-count">
+               {reviewText.length}/255
+            </span>
             <div className="write-review-buttons">
                <button className="write-review-cancel" onClick={onClose}>
                   Cancelar
