@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { IoIosSettings } from "react-icons/io";
 import "./user.css";
 import Navbar from "../components/navBar/NavBar";
 import { getFotoPerfil } from "../FotoPerfilMapper";
@@ -37,6 +38,13 @@ const User = () => {
    }, [userId]);
 
    const fotoPerfil = getFotoPerfil(localStorage.getItem("fotoPerfil"));
+
+
+   const [showPopup, setShowPopup] = useState(false);
+
+   const togglePopup = () => {
+      setShowPopup(!showPopup);
+   };
 
    return (
       <div>
@@ -106,10 +114,21 @@ const User = () => {
                </div>
             </div>
          </div>
-         {/* <button onClick={logout} className="logout-button">
-            Cerrar sesión
-         </button> */}
-                    <div className="overflow"></div> 
+         <div className="settings">
+            <IoIosSettings onClick={togglePopup} className="settings-icon"/>
+         </div>
+         <div className="overflow"></div>
+         {showPopup && (
+               <div className="overlay" onClick={togglePopup}>
+                  <div className="delete-popup">
+                     <h2 className="delete-popup-message">¿Estas seguro que quieres cerrar sesión?</h2>
+                     <div className="delete-popup-buttons">
+                        <button className="delete-cancel-button" onClick={togglePopup}>Cancelar</button>
+                        <button className="delete-confirm-button logout"  onClick={logout}>Cerrar Sesion</button>
+                     </div>
+                  </div>
+               </div>
+            )}
       </div>
    );
 };

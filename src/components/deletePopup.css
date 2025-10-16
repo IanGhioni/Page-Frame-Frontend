@@ -34,7 +34,7 @@
    margin-top: 20px;
    display: flex;
    justify-content: space-between;
-   width: 65%;
+   width: 75%;
 }
 .delete-cancel-button,
 .delete-confirm-button {

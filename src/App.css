@@ -20,3 +20,11 @@
   --color-celeste: #5684b6;
   
 }
+
+@font-face {
+  font-family: 'sweetMelon';
+  src: url('./fonts/SweetMelon.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,6 +1,6 @@
 .profile-container {
    width: 98vw;
-   padding: 20px  40px;
+   padding: 20px 40px;
    box-sizing: border-box;
    display: flex;
    align-items: center;
@@ -24,10 +24,11 @@
 }
 
 .username-text {
-   font-size: 2.1rem;
+   font-family: sweetMelon;
+   font-size: 2.75rem;
+   padding-top: 170px;
    font-weight: bold;
    text-align: center;
-   padding-top: 175px;
    margin: 0;
    color: var(--color-negro);
 }
@@ -106,3 +107,30 @@
    text-decoration: underline;
 }
 
+.settings {
+   border: none;
+   cursor: pointer;
+   height: 70px;
+   width: 60px;
+   font-size: 40px;
+   position: fixed;
+   top: 75px;
+   left: 14px;
+   z-index: 1;
+   background-image: url("../assets/tape.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.settings-icon {
+   padding-right: 2px;
+   z-index: 2;
+   color: rgba(14, 13, 13, 0.781);
+}
+
+.logout{
+   
+}
