@@ -48,36 +48,68 @@ const User = () => {
                   {localStorage.getItem("username")}
                </h2>
             </div>
-            <div className="list-container">
-               <button className="list-button" onClick={() => irALista("VISTO")}>VISTO</button>
-               <button className="list-button" onClick={() => irALista("QUIERO VER")}>
-                  QUIERO VER
-               </button>
-               <button className="list-button" onClick={() => irALista("LEIDO")}>LEIDO</button>
-               <button className="list-button" onClick={() => irALista("QUIERO LEER")}>
-                  QUIERO LEER
-               </button>
-               {listasPersonalizadas.length > 0 &&
-                  listasPersonalizadas.map((lista, index) => (
-                     <button
-                        key={index}
-                        className="list-button"
-                        onClick={() => irAListaPersonalizada(lista.nombre)}
-                     >
-                        {lista.nombre}
-                     </button>
-                  ))}
-               <button
-                  onClick={() => navigate("/crearLista")}
-                  className="list-button create-list"
-               >
-                  + Crear lista
-               </button>
+            <div className="list-background">
+               <div className="list-capa0">
+                  <img
+                     src="/src/assets/capa0-top.png"
+                     className="capa0-top"
+                     alt="Fondo superior"
+                  />
+                  <img
+                     src="/src/assets/capa0-bottom.png"
+                     className="capa0-bottom"
+                     alt="Fondo inferior"
+                  />
+               </div>
+
+               <div className="list-container">
+                  <button
+                     className="list-button"
+                     onClick={() => irALista("VISTO")}
+                  >
+                     VISTO
+                  </button>
+                  <button
+                     className="list-button"
+                     onClick={() => irALista("QUIERO VER")}
+                  >
+                     QUIERO VER
+                  </button>
+                  <button
+                     className="list-button"
+                     onClick={() => irALista("LEIDO")}
+                  >
+                     LEIDO
+                  </button>
+                  <button
+                     className="list-button"
+                     onClick={() => irALista("QUIERO LEER")}
+                  >
+                     QUIERO LEER
+                  </button>
+                  {listasPersonalizadas.length > 0 &&
+                     listasPersonalizadas.map((lista, index) => (
+                        <button
+                           key={index}
+                           className="list-button"
+                           onClick={() => irAListaPersonalizada(lista.nombre)}
+                        >
+                           {lista.nombre}
+                        </button>
+                     ))}
+                  <button
+                     onClick={() => navigate("/crearLista")}
+                     className="list-button create-list"
+                  >
+                     + Crear lista
+                  </button>
+               </div>
             </div>
          </div>
-         <button onClick={logout} className="logout-button">
+         {/* <button onClick={logout} className="logout-button">
             Cerrar sesión
-         </button>
+         </button> */}
+                    <div className="overflow"></div> 
       </div>
    );
 };

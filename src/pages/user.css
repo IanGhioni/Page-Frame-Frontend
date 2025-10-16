@@ -1,6 +1,6 @@
 .profile-container {
-   width: 100vw;
-   padding: 30px;
+   width: 98vw;
+   padding: 20px  40px;
    box-sizing: border-box;
    display: flex;
    align-items: center;
@@ -32,20 +32,58 @@
    color: var(--color-negro);
 }
 
+.list-background {
+   position: relative;
+   width: 450px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.list-capa0 {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 0;
+   pointer-events: none;
+}
+
+.capa0-top {
+   flex: 1;
+   width: 100%;
+}
+
+.capa0-bottom {
+   flex: 1;
+   width: 100%;
+}
+
 .list-container {
-   background-image: url("../assets/list-container.png");
-   background-size: contain;
-   background-repeat: no-repeat;
-   height: 707px;
-   width: 585px;
+   position: relative;
+   z-index: 1;
+   padding: 24px;
    box-sizing: border-box;
-   padding-left: 110px;
+   margin: 80px 10px;
+   margin-right: 0px;
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   justify-content: center;
+   width: 340px;
+   min-height: 485px;
    gap: 20px;
-   padding-top: 16px
+   background-image: url("../assets/list-container-liso.png");
+   background-size: cover;
+   background-position: center;
+   border-radius: 3px;
+}
+
+.overflow {
+   height: 80px;
+   width: 10px;
 }
 
 .list-button {
@@ -57,13 +95,14 @@
    cursor: pointer;
    color: var(--color-negro);
    font-weight: 600;
+   text-align: left;
 }
 
 .list-button:hover {
    color: var(--color-celeste);
 }
 
-.create-list{
-    text-decoration: underline;
-
+.create-list {
+   text-decoration: underline;
 }
+
