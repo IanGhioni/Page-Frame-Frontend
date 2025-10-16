@@ -5,10 +5,8 @@ import Navbar from "../components/navBar/NavBar";
 import { getFotoPerfil } from "../FotoPerfilMapper";
 import API from "../service/api";
 
-
 const User = () => {
    const navigate = useNavigate();
-   const goToLogin = () => navigate("/login");
 
    const logout = () => {
       localStorage.clear();
@@ -25,7 +23,7 @@ const User = () => {
 
    const [listasPersonalizadas, setListasPersonalizadas] = useState([]);
    const userId = localStorage.getItem("id");
-   
+
    useEffect(() => {
       async function fetchListas() {
          try {
@@ -43,32 +41,43 @@ const User = () => {
    return (
       <div>
          <Navbar />
-         <img
-            className="profile-pic"
-            src={fotoPerfil}
-            alt="Profile"
-         />
-         <h2>holis {localStorage.getItem("username")}</h2>
-         <button
-            onClick={logout}
-            style={{ backgroundColor: "skyblue", color: "black" }}
-         >
-            Logout
-         </button>
-         <button
-                  onClick={() => navigate("/crearLista")}
-               className="popup-button popup-crear-button"> + Crear lista
+         <div className="profile-container">
+            <img className="profile-pic" src={fotoPerfil} alt="Profile" />
+            <div className="username-background" alt="username background">
+               <h2 className="username-text">
+                  {localStorage.getItem("username")}
+               </h2>
+            </div>
+            <div className="list-container">
+               <button className="list-button" onClick={() => irALista("VISTO")}>VISTO</button>
+               <button className="list-button" onClick={() => irALista("QUIERO VER")}>
+                  QUIERO VER
                </button>
-         <button onClick={() => irALista("VISTO")}>VISTO</button>
-         <button onClick={() => irALista("QUIERO VER")}>QUIERO VER</button>
-         <button onClick={() => irALista("LEIDO")}>LEIDO</button>
-         <button onClick={() => irALista("QUIERO LEER")}>QUIERO LEER</button>
-
-         {listasPersonalizadas.length > 0 && listasPersonalizadas.map((lista, index) => (
-            <button key={index} onClick={() => irAListaPersonalizada(lista.nombre)}>
-               {lista.nombre}
-            </button>
-         ))}
+               <button className="list-button" onClick={() => irALista("LEIDO")}>LEIDO</button>
+               <button className="list-button" onClick={() => irALista("QUIERO LEER")}>
+                  QUIERO LEER
+               </button>
+               {listasPersonalizadas.length > 0 &&
+                  listasPersonalizadas.map((lista, index) => (
+                     <button
+                        key={index}
+                        className="list-button"
+                        onClick={() => irAListaPersonalizada(lista.nombre)}
+                     >
+                        {lista.nombre}
+                     </button>
+                  ))}
+               <button
+                  onClick={() => navigate("/crearLista")}
+                  className="list-button create-list"
+               >
+                  + Crear lista
+               </button>
+            </div>
+         </div>
+         <button onClick={logout} className="logout-button">
+            Cerrar sesión
+         </button>
       </div>
    );
 };

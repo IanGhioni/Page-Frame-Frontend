@@ -1,7 +1,69 @@
-.profile-pic{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
+.profile-container {
+   width: 100vw;
+   padding: 30px;
+   box-sizing: border-box;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-top: 50px;
+}
+
+.profile-pic {
+   width: 220px;
+   object-fit: cover;
+   margin-bottom: 20px;
+}
+
+.username-background {
+   background-image: url("../assets/name-card.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+   width: 410px;
+   height: 332px;
+}
+
+.username-text {
+   font-size: 2.1rem;
+   font-weight: bold;
+   text-align: center;
+   padding-top: 175px;
+   margin: 0;
+   color: var(--color-negro);
+}
+
+.list-container {
+   background-image: url("../assets/list-container.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   height: 707px;
+   width: 585px;
+   box-sizing: border-box;
+   padding-left: 110px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+   gap: 20px;
+   padding-top: 16px
+}
+
+.list-button {
+   background-color: transparent;
+   border: none;
+   font-size: 1.5rem;
+   margin: 0;
+   padding: 0;
+   cursor: pointer;
+   color: var(--color-negro);
+   font-weight: 600;
+}
+
+.list-button:hover {
+   color: var(--color-celeste);
+}
+
+.create-list{
+    text-decoration: underline;
+
 }
