@@ -124,7 +124,7 @@ const User = () => {
                      <h2 className="delete-popup-message">¿Estas seguro que quieres cerrar sesión?</h2>
                      <div className="delete-popup-buttons">
                         <button className="delete-cancel-button" onClick={togglePopup}>Cancelar</button>
-                        <button className="delete-confirm-button logout"  onClick={logout}>Cerrar Sesion</button>
+                        <button className="delete-confirm-button"  onClick={logout}>Cerrar Sesion</button>
                      </div>
                   </div>
                </div>
