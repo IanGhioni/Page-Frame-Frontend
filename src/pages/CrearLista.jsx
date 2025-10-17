@@ -37,6 +37,11 @@ const CrearLista = () => {
          toast.error("Por favor completa todos los campos obligatorios");
          return false;
       }
+      const nombreValido = /^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜñÑ'\s]+$/;
+      if (!nombreValido.test(formData.nombre)) {
+         toast.error("El nombre de la lista solo puede contener letras o números");
+         return false;
+      }
       return true;
    };
 
