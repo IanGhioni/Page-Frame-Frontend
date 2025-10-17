@@ -1,10 +1,10 @@
-import rana from '../src/assets/fotos_perfil/rana.png';
-import gato from '../src/assets/fotos_perfil/gato.png';
-import panda from '../src/assets/fotos_perfil/panda.png';
-import mariposa from '../src/assets/fotos_perfil/mariposa.png';
-import vaquita from '../src/assets/fotos_perfil/vaquita.png';
-import perro from '../src/assets/fotos_perfil/perro.png';
-import ballena from '../src/assets/fotos_perfil/ballena.png';
+import rana from '../src/assets/fotos_perfil/rana.svg';
+import gato from '../src/assets/fotos_perfil/gato.svg';
+import panda from '../src/assets/fotos_perfil/panda.svg';
+import mariposa from '../src/assets/fotos_perfil/mariposa.svg';
+import vaquita from '../src/assets/fotos_perfil/vaquita.svg';
+import perro from '../src/assets/fotos_perfil/perro.svg';
+import ballena from '../src/assets/fotos_perfil/ballena.svg';
 
 const fotosPerfil ={
     rana,
