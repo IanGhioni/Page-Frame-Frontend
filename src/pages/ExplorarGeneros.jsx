@@ -31,6 +31,7 @@ const ExplorarGeneros = () => {
       <div>
          <GoBackButton />
          <Navbar />
+         
          <div className="explorar-generos">
             <h2 className="explorar-generos-titulo">
                Explorar distintos géneros!
