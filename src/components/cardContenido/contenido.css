@@ -57,6 +57,7 @@
    font-weight: bold;
    margin: 0;
    text-align: left;
+   margin-top: 19px;
 }
 
 .contenido-titulo:hover {
@@ -74,7 +75,7 @@
    display: flex;
    align-items: center;
    gap: 0.25rem;
-   margin-top: 0.5rem;
+   margin: 5px 0px;
 }
 
 .contenido-rating-text {
@@ -112,4 +113,5 @@
 
 .card-agregar-listas{
    margin-top: 5px !important;
+   padding: 5px 18px !important;
 }
