@@ -79,23 +79,26 @@ const BuscarContenido = () => {
                         <h2 className="buscador-titulo">Resultados de buscar "{params.titulo}"</h2>
                         <button onClick={() => { navigate("/cargarContenido"); setLoading(true)}}>Cargar contenido</button>
                     </div>
-                <div>
+                <div className="contenido-filtrado-div">
+                    <div className="filtrado-div">
                     <h3>Filtrar por</h3>
                     <div>
                     <button className={`boton-filtro ${filtrarLibros === "true" ? "boton-activo" : ""}`} 
                             onClick={() => {if (params.libro == "true") navigate(`/buscarContenido/${params.titulo}/0/false/false`)
-                                            else navigate(`/buscarContenido/${params.titulo}/0/true/false`);}}>Por libro</button>
+                                            else navigate(`/buscarContenido/${params.titulo}/0/true/false`);}}>Libros</button>
                     <button className={`boton-filtro ${filtrarPelis === "true" ? "boton-activo" : ""}`}
                             onClick={() => {if (params.peli == "true") navigate(`/buscarContenido/${params.titulo}/0/false/false`)
-                                            else navigate(`/buscarContenido/${params.titulo}/0/false/true`);}}>Por peliculas</button>
+                                            else navigate(`/buscarContenido/${params.titulo}/0/false/true`);}}>Peliculas</button>
                     </div>
                 </div>
+                <div>
                 {dataPagina.resultados.map((contenido) => (
                 <div key={contenido.id}>
                     <CardContenido contenido={contenido} />
                 </div>
                 ))}
-
+                </div>
+                </div>
                 <div className="paginado-container">
                     <h3>Cantidad total de paginas: {dataPagina.totalDePaginas}</h3>
                     {dataPagina.totalDePaginas == 1 ? (
