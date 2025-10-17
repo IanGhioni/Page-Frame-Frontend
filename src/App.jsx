@@ -13,6 +13,7 @@ import BuscarContenidoPorAutor from './pages/BuscarContenidoPorAutor';
 import PaginaDeContenido from './pages/PaginaDeContenido';
 import User from './pages/User';
 import ExplorarGeneros from './pages/ExplorarGeneros';
+import Explorar from './pages/Explorar';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/user/listaPersonalizada/:nombreLista" element={<ListaPersonalizada />} />
         <Route path="/crearLista" element={<CrearLista />}/>
         <Route path="/explorarGeneros" element={<ExplorarGeneros />} />
+        <Route path="/explorar/:genero" element={<Explorar />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>

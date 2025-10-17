@@ -16,7 +16,7 @@ const ListaPersonalizada = () => {
    const [showModalContenido, setShowModalContenido] = useState(false);
    const [contenidoAEliminar, setContenidoAEliminar] = useState(null);
 
-   const [showModalLista, setShowModalLista] = useState(false); // 👈 nuevo estado para lista
+   const [showModalLista, setShowModalLista] = useState(false);
 
    const navigate = useNavigate();
 

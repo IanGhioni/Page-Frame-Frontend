@@ -25,6 +25,7 @@ const generosDisponibles = [
 ];
 
 const ExplorarGeneros = () => {
+   const navigate = useNavigate();
 
    return (
       <div>
