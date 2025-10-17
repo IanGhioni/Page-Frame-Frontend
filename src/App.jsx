@@ -32,7 +32,7 @@ function App() {
         <Route path="/user/listaPersonalizada/:nombreLista" element={<ListaPersonalizada />} />
         <Route path="/crearLista" element={<CrearLista />}/>
         <Route path="/explorarGeneros" element={<ExplorarGeneros />} />
-        <Route path="/explorar/:genero" element={<Explorar />} />
+        <Route path="/explorar/:genero/:pagina" element={<Explorar />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>

@@ -18,7 +18,7 @@ const generosDisponibles = [
    "history",
    "LGBTQIA+",
    "mystery",
-   "non fiction",
+   "nonfiction",
    "romance",
    "horror",
    "thriller",
@@ -34,12 +34,12 @@ const ExplorarGeneros = () => {
          
          <div className="explorar-generos">
             <h2 className="explorar-generos-titulo">
-               Explorar distintos géneros!
+               Explora distintos géneros!
             </h2>
             <div className="explorar-generos-container">
                <div className="generos-lista">
                   {generosDisponibles.map((genero) => (
-                     <button key={genero} className="genero-boton" onClick={() => navigate(`/explorar/${genero}`)}>
+                     <button key={genero} className="genero-boton" onClick={() => navigate(`/explorar/${genero}/0`)}>
                         {genero}
                      </button>
                   ))}
