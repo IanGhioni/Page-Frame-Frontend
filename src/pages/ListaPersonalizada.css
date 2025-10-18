@@ -20,3 +20,23 @@
   transform: scale(1.1);
   transition: transform 0.3s;
 }
+
+.lista-descripcion-container{
+  background-image: url("../assets/tarjetita.png");
+  background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+   width: 790px;           
+   height: auto;           
+   aspect-ratio: 1163/393;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 1rem;
+}
+
+.lista-descripcion{
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 20px;
+}
