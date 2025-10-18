@@ -163,7 +163,7 @@ const PaginaDeContenido = () => {
                         <div className="container-seccion-icon">
                            <div className="header-seccion-generos-puntaje">
                               <p className="header-generos">
-                                 Géneros: {contenido.categoria}
+                                 Géneros: {(contenido.categoria || '').replace(/^,\s*/, '')}
                               </p>
                               <div className="container-puntaje">
                                  <RatingReadOnly

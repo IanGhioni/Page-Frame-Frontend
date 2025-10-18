@@ -140,3 +140,15 @@
     background-color: var(--color-lilaClaro);
     border-radius: 40px;
 }
+
+.navbar-accions {
+    display: flex;
+    align-items: center;
+}
+
+.spacer{
+    width: 2px;
+    height: 25px;
+    background-color: var(--color-negro);
+    margin: 0 20px;
+}

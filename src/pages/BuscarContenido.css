@@ -1,6 +1,7 @@
 .buscador-titulo {
     text-align: left;
     margin-top: 12%;
+    font-weight: 200;
 }
 
 .paginado-container {
@@ -17,32 +18,60 @@
 
 .boton-filtro {
     padding: 8px 16px;
-    border: 1px solid var(--color-lilaBorde);
+    border: 2px solid var(--color-lilaBorde);
     background-color: var(--color-lila);
     border-radius: 50px;
     margin: 0 8px;
     cursor: pointer;
     transition: 0.2s;
+    width: 98px;
 }
 
 .boton-filtro:hover {
-    background-color: var(--color-negroOnLilaHover);
+    background-color: var(--color-lilaTexto);
+    color: var(--color-offWhite);
 }
 
 .boton-activo {
-    background-color: #ee9a4b;
-    color: rgb(0, 0, 0);
-    border-color: #2b0025;
+    background-color: #f6955d;
+    color: var(--color-negro);
+    border-color: #791f2b;
+}
+
+.boton-activo:hover {
+    background-color: #dd6b48;
+    color: var(--color-negro);
 }
 
 .filtrado-div {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    
 }
 
 .contenido-filtrado-div {
     display: flex;
     flex-direction: row-reverse;
-    align-items: self-start;
+    
+}
+
+.resaltado {
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.cargar-contenido-container {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    gap: 16px;
+    justify-content: center;
+}
+
+.cargar-contenido-link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cargar-contenido-link:hover {
+    color: var(--color-celeste);
 }
