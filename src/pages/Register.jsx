@@ -6,13 +6,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import PageAndFrameBanner from "../components/PageAndFrameBanner";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import rana from "../assets/fotos_perfil/rana.png";
-import gato from "../assets/fotos_perfil/gato.png";
-import panda from "../assets/fotos_perfil/panda.png";
-import mariposa from "../assets/fotos_perfil/mariposa.png";
-import vaquita from "../assets/fotos_perfil/vaquita.png";
-import perro from "../assets/fotos_perfil/perro.png";
-import ballena from "../assets/fotos_perfil/ballena.png";
+import rana from "../assets/fotos_perfil/rana.svg";
+import gato from "../assets/fotos_perfil/gato.svg";
+import panda from "../assets/fotos_perfil/panda.svg";
+import mariposa from "../assets/fotos_perfil/mariposa.svg";
+import vaquita from "../assets/fotos_perfil/vaquita.svg";
+import perro from "../assets/fotos_perfil/perro.svg";
+import ballena from "../assets/fotos_perfil/ballena.svg";
 
 import "./loginandregister.css";
 

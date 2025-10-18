@@ -63,12 +63,12 @@ button {
 }
 
 .heart-pf {
-   background-image: url("/src/assets/heart.png");
+   background-image: url("/src/assets/heart.svg");
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   width: 270px;
-   height: 270px;
+   width: 300px;
+   height: 300px;
    position: absolute;
    top: -30px;
    left: -40px;
@@ -76,7 +76,7 @@ button {
 }
 
 .star-pf {
-   background-image: url("/src/assets/star.png");
+   background-image: url("/src/assets/star.svg");
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
