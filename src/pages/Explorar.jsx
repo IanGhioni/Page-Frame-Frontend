@@ -18,7 +18,6 @@ const Explorar = () => {
    const navigate = useNavigate();
    const genero = `, ${params.genero}`;
 
-
    const onPageChange = async (event) => {
       setLoading(true);
       const newPage = event.page;
@@ -41,7 +40,7 @@ const Explorar = () => {
          .finally(() => {
             setLoading(false);
          });
-   }, []);
+   }, [params.pagina]);
 
 
    return (
