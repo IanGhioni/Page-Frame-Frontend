@@ -314,11 +314,6 @@ const WriteReview = ({ onClose, contenidoId, onRefresh, initialText = "", editin
          return;
       }
 
-      if (reviewText.length >= 255) {
-         toast.error("El texto de la reseña es demasiado largo");
-         return;
-      }
-
       const apiCall = editing
          ? API.editarReview(contenidoId, localStorage.getItem("id"), { text: reviewText }) // 🆕
          : API.escribirReview(contenidoId, localStorage.getItem("id"), { text: reviewText });
