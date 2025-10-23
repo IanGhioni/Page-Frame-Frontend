@@ -40,5 +40,6 @@
 }
 
 .genero-boton:hover {
-   transform: scale(1.05);
+   transform: scale(1.05) rotate(1deg);
+   transition: transform 0.2s;
 }

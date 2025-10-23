@@ -5,6 +5,7 @@ import "./BuscarContenido.css";
 import ScrollCard from "../components/scrollCard/ScrollCard";
 import API from "../service/api";
 import InfiniteScroll from "react-infinite-scroll-component";
+import HomeSkeleton from "../components/HomeSkeleton";
 
 const Home = () => {
    const [loading, setLoading] = useState(true);
@@ -51,9 +52,7 @@ const Home = () => {
       <div className="container">
          <Navbar />
          {loading ? (
-            <div className="loading-container">
-               <h2>Cargando resultados...</h2>
-            </div>
+            <HomeSkeleton />
          ) : pageDTO.resultados && pageDTO.resultados.length > 0 ? (
             <>
                <InfiniteScroll
@@ -63,7 +62,7 @@ const Home = () => {
                   loader={<h4>Cargando más contenidos...</h4>}
                   endMessage={
                      <p style={{ textAlign: "center" }}>
-                        <b>Scrolleaste todo!!</b>
+                        <b>Llegaste al final!</b>
                      </p>
                   }
                >
@@ -78,7 +77,7 @@ const Home = () => {
             </>
          ) : (
             <div>
-               <h2>No hay nada en la base o algo raro paso </h2>
+               <h2>Ocurrio un error</h2>
             </div>
          )}
       </div>

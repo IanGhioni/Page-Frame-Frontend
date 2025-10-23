@@ -25,12 +25,25 @@
    height: 250px;
    position: relative;
    padding: 25px 25px 15px 15px;
+   transition: transform 0.2s ease-in-out;
+}
+
+.scroll-card-back:hover {
+   transform: scale(1.02) rotate(1deg);
+
+   transition: transform 0.2s ease-in-out;
 }
 
 .scroll-card-img {
    object-fit: cover;
    width: 125px;
    cursor: pointer;
+   transition: transform 0.2s ease-in-out;
+}
+
+.scroll-card-img:hover {
+   transform: scale(1.01);
+   transition: transform 0.2s ease-in-out;
 }
 
 .scroll-card-cutout{
@@ -55,10 +68,15 @@
    margin: 10px 0px 0px 0px;
    cursor: pointer;
    text-align: center;
+   transition: transform 0.2s ease-in-out;
 }
+.scroll-card-title:hover {
+   transform: scale(1.03);
+   transition: transform 0.2s ease-in-out;
+}
+
 .scroll-card-author {
    font-size: 1.1rem;
    margin: 0px;
-   text-decoration: underline;
    text-align: center;
 }
