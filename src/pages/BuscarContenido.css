@@ -17,7 +17,7 @@
 }
 
 .boton-filtro {
-    padding: 8px 16px;
+    padding: 6px 16px;
     border: 2px solid var(--color-lilaBorde);
     background-color: var(--color-lila);
     border-radius: 50px;
@@ -45,14 +45,17 @@
 
 .filtrado-div {
     display: flex;
-    flex-direction: column;
-    
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.filtrado-titulo{
+    margin: 20px;
 }
 
 .contenido-filtrado-div {
     display: flex;
     flex-direction: row-reverse;
-    
 }
 
 .resaltado {

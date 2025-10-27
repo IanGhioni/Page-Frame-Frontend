@@ -1,0 +1,41 @@
+.home-skeleton {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.content-skeleton {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: flex-start;
+    gap: 50px;
+    width: 60vw;
+}
+.card-skeleton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 167px;
+    height: 250px;
+    margin-bottom: 80px;
+    border-radius: 10px;
+    animation: pulsing 1.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulsing {
+    0% {
+        background-color: #00000014;
+        transform: translateY(0);
+    }
+    50% {
+        background-color: #00000025;
+        transform: translateY(-1px);
+    }
+    100% {
+        background-color: #00000014;
+        transform: translateY(0);
+    }
+}
