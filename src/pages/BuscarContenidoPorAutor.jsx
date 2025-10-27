@@ -99,11 +99,11 @@ const BuscarContenidoPorAutor = () => {
                               onClick={() => {
                                  if (params.libro == "true")
                                     navigate(
-                                       `/buscarContenido/${params.titulo}/0/false/false`
+                                       `/buscarPorAutor/${params.nombre}/0/false/false`
                                     );
                                  else
                                     navigate(
-                                       `/buscarContenido/${params.titulo}/0/true/false`
+                                       `/buscarPorAutor/${params.nombre}/0/true/false`
                                     );
                               }}
                            >
@@ -116,11 +116,11 @@ const BuscarContenidoPorAutor = () => {
                               onClick={() => {
                                  if (params.peli == "true")
                                     navigate(
-                                       `/buscarContenido/${params.titulo}/0/false/false`
+                                       `/buscarPorAutor/${params.nombre}/0/false/false`
                                     );
                                  else
                                     navigate(
-                                       `/buscarContenido/${params.titulo}/0/false/true`
+                                       `/buscarPorAutor/${params.nombre}/0/false/true`
                                     );
                               }}
                            >
